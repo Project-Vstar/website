@@ -1,3 +1,7 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
+
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
