@@ -1,10 +1,15 @@
 "use client";
 import React from "react";
+import Header from "@/app/components/header";
 
 export default function VStarPage() {
   return (
-    <div className="flex items-center justify-center h-screen bg-foreground text-white text-4xl">
-        VSTAR Page
+    <div className="flex flex-col md:flex-row h-screen">
+      <Header />
+
+      <div className="text-white text-4xl font-bold">
+        VSTAR
+      </div>
     </div>
   );
 }
