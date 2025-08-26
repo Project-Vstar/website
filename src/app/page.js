@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import FactionChooser from "@/app/components/faction-chooser";
 
 export default function Home() {
   const [hovered, setHovered] = useState(null);
@@ -16,44 +17,19 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       <Header />
-      <div className="flex flex-1 md:flex-row min-h-[100vh] overflow-hidden">
-        <div
-          className={`transition-all duration-300 ease-in-out
-            bg-[linear-gradient(to_bottom,theme(colors.blue.900),var(--foreground))]
-            md:bg-[linear-gradient(to_right,theme(colors.blue.900),var(--foreground))]
-            ${getFlexClass("left")}
-            hover:scale-105
-            flex items-center justify-center cursor-pointer
-            overflow-hidden`}
-          onMouseEnter={() => setHovered("left")}
-          onMouseLeave={() => setHovered(null)}
-          onClick={() => (window.location.href = "/vstar")}
-        >
-          <div className="text-white text-3xl md:text-5xl font-bold transition">
-            VSTAR
-          </div>
+      <FactionChooser hovered={hovered} setHovered={setHovered} getFlexClass={getFlexClass} />
+
+      <div className="text-white text-4xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
+        <div className="flex flex-col justify-center items-center">
+          <p className="p-4">Section 2</p>
+          <p className="p-4">Additional content for Section 2.</p>
         </div>
+      </div>
 
-        <div
-          className="flex-[1] hover:cursor-default bg-[var(--foreground)] relative hidden md:block overflow-hidden"
-          onMouseEnter={() => setHovered(null)}
-        ></div>
-
-        <div
-          className={`transition-all duration-300 ease-in-out
-            bg-[linear-gradient(to_top,theme(colors.red.900),var(--foreground))]
-            md:bg-[linear-gradient(to_left,theme(colors.red.900),var(--foreground))]
-            ${getFlexClass("right")}
-            hover:scale-105
-            flex items-center justify-center cursor-pointer
-            overflow-hidden`}
-          onMouseEnter={() => setHovered("right")}
-          onMouseLeave={() => setHovered(null)}
-          onClick={() => (window.location.href = "/vinfernia")}
-        >
-          <div className="text-white text-3xl md:text-5xl font-bold transition">
-            VINFERNIA
-          </div>
+      <div className="text-white text-4xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
+        <div className="flex flex-col justify-center items-center">
+          <p className="p-4">Section 3</p>
+          <p className="p-4">Additional content for Section 3.</p>
         </div>
       </div>
       <Footer />
