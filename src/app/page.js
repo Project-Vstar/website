@@ -71,7 +71,7 @@ export default function Home() {
               hunter in 1960.
             </p>
             <p className="p-4">
-              In 1965, he was given supervision over the "Kurjawje" Project
+              In 1965, he was given supervision over the &quot;Kurjawje&quot; Project
               (Kurjawje = Mist, as in the mists of time).
             </p>
             <p className="p-4">
@@ -119,7 +119,7 @@ export default function Home() {
               friends and family as he had to.
             </p>
             <p className="p-4">
-              Due to the fascists forcing the allies' hands and the allies
+              Due to the fascists forcing the allies&apos; hands and the allies
               bombing his city, he joined the Diplomatic Service (as a Spy) in
               1956. After a successful career in Espionage and being the no. 1
               hunted Spy in the West, he gets transferred to the State Security
@@ -127,7 +127,7 @@ export default function Home() {
             </p>
             <p className="p-4">
               In the year 1965, he is given hand and supervision over the
-              "Kurjawje" Project (Kurjawje = Mist, as in mists of time).
+              &quot;Kurjawje&quot; Project (Kurjawje = Mist, as in mists of time).
             </p>
             <p className="p-4">
               In 1966, scientists of the Drježdźany Socialist Republic invent a
