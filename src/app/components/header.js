@@ -8,7 +8,9 @@ const Header = () => {
         <header className="absolute top-0 left-0 w-full z-10">
             <nav className="flex items-center justify-between p-4 bg-transparent">
                 <div>
-                    <Image src="/vstar.png" alt="Logo" width={32} height={32} />
+                    <Link href="/">
+                        <Image src="/vstar.png" alt="Logo" width={32} height={32} />
+                    </Link>
                 </div>
                 <div className="hidden md:flex space-x-4">
                     <Link href="/" className="text-white hover:underline">Home</Link>
