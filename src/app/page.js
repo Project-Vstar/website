@@ -34,7 +34,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="bg-gray-900 text-white py-16">
+      <div className="bg-gray-600 text-white py-16">
         <h2 className="text-4xl font-bold text-center mb-8">Our Partners</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 px-8">
           {Array(8)
