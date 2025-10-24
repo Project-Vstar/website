@@ -15,7 +15,7 @@ export default function TalentPage() {
     };
 
     const talentData = {
-        name: "Lockhart",
+        name: "Dee",
         nameJapanese: "Japanese name here? holollive inspo",
         tagline: "Tagline if applicable",
         biography: `Lockhart biography here. meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow.`,

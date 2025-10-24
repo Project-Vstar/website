@@ -7,16 +7,25 @@ const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     return (
         <header className="absolute top-0 left-0 w-full z-10">
-            <nav className="flex items-center justify-between p-4 bg-transparent">
+            <nav className="pl-30 flex items-center justify-between p-4 bg-transparent">
                 <div>
-                    <Link href="/">
+                    <Link href="/" className="flex items-center">
                         <Image src="/vstar.png" alt="Logo" width={32} height={32} />
+                        <p className="font-oswald text-white font-bold text-xl ml-2">VSTAR</p>
                     </Link>
                 </div>
-                <div className="hidden md:flex space-x-4">
-                    <Link href="/" className="text-white hover:underline">Home</Link>
-                    <Link href="/vstar" className="text-white hover:underline">VSTAR</Link>
-                    <Link href="/vinfernia" className="text-white hover:underline">VINFERNIA</Link>
+                <div className="hidden md:block pr-30">
+                    <div className="bg-white/50 backdrop-blur-md border-2 border-white rounded-4xl px-5 py-1 flex gap-2">
+                        <Link href="/" className="font-oswald text-black hover:text-gray-600 px-4 py-2 rounded-xl transition-all">
+                            Home
+                        </Link>
+                        <Link href="/vstar" className="font-oswald text-black hover:text-gray-600 px-4 py-2 rounded-lg transition-all">
+                            VSTAR
+                        </Link>
+                        <Link href="/vinfernia" className="font-oswald text-black hover:text-gray-600 px-4 py-2 rounded-lg transition-all">
+                            VINFERNIA
+                        </Link>
+                    </div>
                 </div>
                 <div className="md:hidden">
                     <button

@@ -5,7 +5,7 @@ import Footer from "@/app/components/footer";
 
 export default function VStarPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-slate-900">
       <Header />
 
       <div className="text-white text-4xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">

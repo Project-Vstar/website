@@ -209,7 +209,7 @@ Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
   const currentTranslation = translations[language];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-slate-900">
       <Header />
 
       <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
