@@ -8,12 +8,12 @@ const Header = () => {
     return (
         <header className="absolute top-0 left-0 w-full z-10">
             <nav className="pl-30 flex items-center justify-between p-4 bg-transparent">
-                <div>
-                    <Link href="/" className="flex items-center">
+                <Link href="/" className="flex items-center">
+                    <div className="bg-white/50 backdrop-blur-md border-2 border-white rounded-4xl px-5 py-1 flex gap-2">
                         <Image src="/vstar.png" alt="Logo" width={32} height={32} />
-                        <p className="font-oswald text-white font-bold text-xl ml-2">VSTAR</p>
-                    </Link>
-                </div>
+                        <p className="font-oswald text-black font-bold text-xl ml-2">VSTAR</p>
+                    </div>
+                </Link>
                 <div className="hidden md:block pr-30">
                     <div className="bg-white/50 backdrop-blur-md border-2 border-white rounded-4xl px-5 py-1 flex gap-2">
                         <Link href="/" className="font-oswald text-black hover:text-gray-600 px-4 py-2 rounded-xl transition-all">
