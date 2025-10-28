@@ -21,8 +21,7 @@ const FactionChooser = () => {
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => (window.location.href = "/vstar")}
             >
-                <div className="text-white text-3xl md:text-5xl font-bold transition">
-                    VSTAR
+                <div className="hover:grayscale-0 top-0 left-0 w-full h-full opacity-20 bg-[url('/VSTAR/vstar.png')] bg-center bg-no-repeat bg-contain">
                 </div>
             </div>
 
@@ -43,8 +42,7 @@ const FactionChooser = () => {
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => (window.location.href = "/vinfernia")}
             >
-                <div className="text-white text-3xl md:text-5xl font-bold transition">
-                    VINFERNIA
+                <div className="top-0 left-0 w-full h-full opacity-20 bg-[url('/VINFERNIA/VINFERNIA/Vinfernia_black.png')] bg-center bg-no-repeat bg-contain">
                 </div>
             </div>
         </div>
