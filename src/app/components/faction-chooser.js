@@ -16,13 +16,15 @@ const FactionChooser = () => {
                     ${getFlexClass("left")}
                     hover:scale-105
                     flex items-center justify-center cursor-pointer
-                    overflow-hidden`}
+                    overflow-hidden relative`}
                 onMouseEnter={() => setHovered("left")}
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => (window.location.href = "/vstar")}
             >
-                <div className="hover:grayscale-0 top-0 left-0 w-full h-full opacity-20 bg-[url('/VSTAR/vstar.png')] bg-center bg-no-repeat bg-contain">
-                </div>
+                <div 
+                    className="absolute top-0 left-0 w-full h-full opacity-20 bg-center bg-no-repeat bg-contain"
+                    style={{ backgroundImage: "url('/vstar.png')" }}
+                />
             </div>
 
             <div
@@ -37,13 +39,15 @@ const FactionChooser = () => {
                     ${getFlexClass("right")}
                     hover:scale-105
                     flex items-center justify-center cursor-pointer
-                    overflow-hidden`}
+                    overflow-hidden relative`}
                 onMouseEnter={() => setHovered("right")}
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => (window.location.href = "/vinfernia")}
             >
-                <div className="top-0 left-0 w-full h-full opacity-20 bg-[url('/VINFERNIA/VINFERNIA/Vinfernia_black.png')] bg-center bg-no-repeat bg-contain">
-                </div>
+                <div 
+                    className="absolute top-0 left-0 w-full h-full opacity-20 bg-center bg-no-repeat bg-contain"
+                    style={{ backgroundImage: "url('/VINFERNIA/VINFERNIA/Vinfernia_Black.png')" }}
+                />
             </div>
         </div>
     );
