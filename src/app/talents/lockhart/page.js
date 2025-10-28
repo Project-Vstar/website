@@ -21,10 +21,10 @@ export default function TalentPage() {
         biography: `Lockhart biography here. meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow.`,
 
         outfits: [
-            { id: 0, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", thumbnail: "/path/to/thumb1.png", name: "Default" },
-            { id: 1, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", thumbnail: "/path/to/thumb2.png", name: "Mask" },
-            { id: 2, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", thumbnail: "/path/to/thumb3.png", name: "Other" },
-            { id: 3, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", thumbnail: "/path/to/thumb3.png", name: "Other Mask" },
+            { id: 0, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", name: "Default" },
+            { id: 1, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", name: "Mask" },
+            { id: 2, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", name: "Other" },
+            { id: 3, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", name: "Other Mask" },
         ],
 
         links: [
@@ -123,11 +123,12 @@ export default function TalentPage() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-b from-yellow-900 via-white-900 to-black">
+        <div className="flex flex-col min-h-screen">
             <Header />
 
-            <main className="flex-grow">
-                <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
+            <main className="flex-grow pt-0">
+                <div className="absolute -z-10 bg-black blur-[2px] h-[74rem] w-full bg-[radial-gradient(#e5e7eb_2px,transparent_1px)] [background-size:17px_17px]" />
+                <section className="relative min-h-screen flex items-center justify-center px-4 my-20">
                     <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-center">
 
                         <div className="relative flex items-center justify-center">
@@ -137,8 +138,8 @@ export default function TalentPage() {
                                         key={outfit.id}
                                         onClick={() => setSelectedOutfit(outfit.id)}
                                         className={`w-16 h-16 rounded-4xl overflow-hidden border-2 transition-all ${selectedOutfit === outfit.id
-                                                ? "scale-110"
-                                                : "border-gray-600 opacity-60 hover:opacity-100"
+                                            ? "scale-110"
+                                            : "border-gray-600 opacity-60 hover:opacity-100"
                                             }`}
                                         style={{
                                             borderColor: selectedOutfit === outfit.id ? signatureColor : undefined,
@@ -146,9 +147,13 @@ export default function TalentPage() {
                                         }}
                                     >
                                         <img
-                                            src={outfit.thumbnail}
+                                            src={outfit.image}
                                             alt={outfit.name}
                                             className="w-full h-full object-cover"
+                                            style={{
+                                                objectPosition: "center -34%",
+                                                transform: 'scale(4)'
+                                            }}
                                         />
                                     </button>
                                 ))}
@@ -158,7 +163,7 @@ export default function TalentPage() {
                                 <img
                                     src={talentData.outfits[selectedOutfit].image}
                                     alt={talentData.name}
-                                    className="w-full h-full object-contain drop-shadow-2xl transition-all duration-300"
+                                    className="w-full h-256 object-contain drop-shadow-2xl transition-all duration-300"
                                 />
                             </div>
                         </div>
@@ -460,10 +465,10 @@ export default function TalentPage() {
                         </a>
                     </div>
                 </section>
-            </main>
+            </main >
 
-            <Footer />
-        </div>
+        <Footer />
+        </div >
     );
 }
 
