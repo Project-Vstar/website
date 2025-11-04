@@ -3,9 +3,9 @@ import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import Link from "next/link";
+import { EmblaCarousel } from "../components/carousel_vinfernia";
 
 export default function VStarPage() {
-  // Temporary mock data — replace with your real talent info
   const talents = [
     { name: "Dee", image: "VINFERNIA/VINFERNIA/Genmate Banner/DeeBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/DeeChar.png", href: "/talents/dee" },
     { name: "DreamyDiino", image: "VINFERNIA/VINFERNIA/Genmate Banner/DiinoBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/DiinoChar.png", href: "/talents/dreamydiino" },
@@ -58,6 +58,44 @@ export default function VStarPage() {
             </Link>
           ))}
         </div>
+
+        <div className="flex min-h-screen text-black bg-gradient-to-br from-red-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
+          <div className="w-1/4 flex items-center justify-center bg-gray-800">
+            <img src="/VSTAR/mfsdd_inverted_designsheet_standingonly_2.png" alt="Dee Ronny syn Łužycy in a suit, standing." className="object-cover h-full w-full" />
+          </div>
+
+          <div className="flex flex-col justify-center text-white">
+            <div className="inline-block mb-4">
+              <span className="bg-red-900 text-red-300  px-4 py-2 rounded-full text-sm font-semibold tracking-wider">VINFERNIA</span>
+            </div>
+            <h2 className="text-5xl font-bold mb-8 tracking-wide">THE LORE OF VINFERNIA</h2>
+            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+              <p>
+                This is the beginning of the Lore of VINFERNIA - it will change over time and contribution of every gen.
+              </p>
+              <p>
+                Being saved by the soldiers showed Dee and his family the nightmare that the bombed-out city became. That is the day the little boy swore to himself to do everything he can to bring peace and happiness to the world.
+              </p>
+              <p>
+                After a successful career in Espionage, he gets transferred to the State Security as a Spyhunter in 1960. In 1965, he is given supervision over the "Kurjawje" Project.
+              </p>
+              <p>
+                With the device in hand, he set out to found his own organization to conquer the world and fulfill his dream:
+              </p>
+              <p className="text-red-400 font-semibold">
+                Bringing happiness and peace all over the world.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-slate-900 py-20 px-8 min-h-[80vh]">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-4 tracking-wider">VINFERNIA MANGA</h2>
+            <EmblaCarousel />
+          </div>
+        </div>
+
       </main>
 
       <Footer />

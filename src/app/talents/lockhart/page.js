@@ -18,8 +18,7 @@ export default function TalentPage() {
         name: "Lockhart",
         nameJapanese: "Japanese name here? holollive inspo",
         tagline: "Tagline if applicable",
-        biography: `Lockhart biography here. meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow.`,
-
+        biography: `Placeholder. biography here. `,
         outfits: [
             { id: 0, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", name: "Default" },
             { id: 1, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", name: "Mask" },
@@ -123,13 +122,32 @@ export default function TalentPage() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-white">
             <Header />
 
             <main className="flex-grow pt-0">
                 <div className="relative">
-                    <div className="absolute -z-10 bg-black blur-[2px] inset-0 w-full bg-[radial-gradient(#e5e7eb_2px,transparent_1px)] [background-size:17px_17px]" />
-
+                    <div
+                        className="absolute inset-0 z-0 pointer-events-none"
+                        style={{
+                            backgroundImage: `
+       linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+       linear-gradient(to bottom, #f0f0f0 1px, transparent 1px),
+       radial-gradient(circle 600px at 0% 200px, #feffc5ff, transparent),     /* Left */
+       radial-gradient(circle 600px at 100% 200px, #feffc5ff, transparent),  /* Right */
+       radial-gradient(circle 600px at 50% 0px, #feffc5ff, transparent),     /* Top */
+       radial-gradient(circle 600px at 50% 100%, #feffc5ff, transparent)     /* Bottom */
+     `,
+                            backgroundSize: `
+       96px 64px,    
+       96px 64px,    
+       100% 100%,    
+       100% 100%,
+       100% 100%,
+       100% 100%
+     `,
+                        }}
+                    />
                     <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-center">
                             <div className="relative flex items-center justify-center">
@@ -171,8 +189,10 @@ export default function TalentPage() {
 
                             <div className="space-y-8">
                                 <div>
-                                    <h1 className="text-5xl lg:text-6xl font-bold text-white mb-2">
-                                        {talentData.name}
+                                    <h1 className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2" style={{ borderColor: signatureColor }}>
+                                        <div className="drop-shadow-lg/50">
+                                            {talentData.name}
+                                        </div>
                                     </h1>
                                     <p className="text-2xl mb-4" style={{ color: signatureColor }}>
                                         {talentData.nameJapanese}
