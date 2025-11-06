@@ -1,18 +1,23 @@
 "use client";
 import React, { useState } from "react";
 import { marked } from "marked";
-
-marked.setOptions({
-  breaks: false,
-});
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 
+marked.setOptions({
+    breaks: false,
+});
+
 export default function PrivacyPolicy() {
+    const [language, setLanguage] = useState("en");
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const [language, setLanguage] = useState("en");
+    const languages = [
+        { code: "en", name: "English", flag: "🇬🇧" },
+        { code: "de", name: "Deutsch", flag: "🇩🇪" }
+    ];
 
-const translations = {
+    const translations = {
     en: {
         title: "Imprint",
         content: `
@@ -43,7 +48,7 @@ Handelsregister: Amtsgericht Dresden
 Handelsregisternummer: HRA 12303  
 
 #### Disclaimer and property rights information  
-**Links to external websites:** The content of external websites to which we directly or indirectly refer, including those of our artists (“Talents”), is outside our area of responsibility and is not assumed by us. We accept no responsibility for any content or disadvantages arising from the use of the information provided on the linked websites.  
+**Links to external websites:** The content of external websites to which we directly or indirectly refer, including those of our artists ("Talents"), is outside our area of responsibility and is not assumed by us. We accept no responsibility for any content or disadvantages arising from the use of the information provided on the linked websites.  
 
 **Notifications of legal violations:** If you become aware of any legal violations on our website, please notify us. We will remove any illegal content and links immediately upon becoming aware of them.
 `
@@ -85,39 +90,94 @@ Handelsregisternummer: HRA 12303
     }
 };
 
-  const currentTranslation = translations[language];
+    const currentTranslation = translations[language];
 
-return (
-    <div className="flex flex-col min-h-screen bg-slate-900">
-        <Header />
+    return (
+        <div className="flex flex-col min-h-screen bg-slate-900">
+            <Header />
 
-        <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
-            <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
+            {/* Language Toggle Button with Popup */}
+            <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50">
                 <button
-                    onClick={() => setLanguage(language === "en" ? "de" : "en")}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition mb-4"
+                    onClick={() => setIsPopupOpen(!isPopupOpen)}
+                    className="bg-slate-800 hover:bg-slate-700 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+                    aria-label="toggle Language popup"
                 >
-                    {language === "en" ? "Deutsch" : "English"}
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+                        <path d="M2 12h20" />
+                    </svg>
                 </button>
-                <h1 className="text-2xl font-bold mb-6">{currentTranslation.title}</h1>
-                <div className="prose text-white text-base leading-relaxed max-w-4xl">
-                    {currentTranslation.content.split("\n").map((line, index) => {
-                        if (line.startsWith("### ")) {
-                            return <h3 key={index} className="text-xl font-semibold mt-4">{line.replace("### ", "")}</h3>;
-                        } else if (line.startsWith("#### ")) {
-                            return <h4 key={index} className="text-lg font-medium mt-3">{line.replace("#### ", "")}</h4>;
-                        } else if (line.trim() === "") {
-                            return <br key={index} />;
-                        } else {
-                            return <p key={index}>{line}</p>;
-                        }
-                    })}
+
+                {/* Language Popup Bubble */}
+                {isPopupOpen && (
+                    <div className="absolute left-16 top-1/2 -translate-y-1/2 bg-slate-800 rounded-2xl shadow-2xl p-4 min-w-[200px]">
+                        {/* Triangle pointer */}
+                        <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-slate-800"></div>
+                        
+                        <div className="space-y-2">
+                            {languages.map((lang) => (
+                                <button
+                                    key={lang.code}
+                                    onClick={() => {
+                                        setLanguage(lang.code);
+                                        setIsPopupOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${
+                                        language === lang.code
+                                            ? "bg-blue-600 text-white shadow-md"
+                                            : "bg-slate-700 text-gray-300 hover:bg-slate-600"
+                                    }`}
+                                >
+                                    <span className="text-xl">{lang.flag}</span>
+                                    <span className="font-medium text-sm">{lang.name}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Overlay to close popup when clicking outside */}
+            {isPopupOpen && (
+                <div
+                    className="fixed inset-0 z-40"
+                    onClick={() => setIsPopupOpen(false)}
+                />
+            )}
+
+            <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
+                <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
+                    <h1 className="text-2xl font-bold mb-6">{currentTranslation.title}</h1>
+                    <div className="prose text-white text-base leading-relaxed max-w-4xl">
+                        {currentTranslation.content.split("\n").map((line, index) => {
+                            if (line.startsWith("### ")) {
+                                return <h3 key={index} className="text-xl font-semibold mt-4">{line.replace("### ", "")}</h3>;
+                            } else if (line.startsWith("#### ")) {
+                                return <h4 key={index} className="text-lg font-medium mt-3">{line.replace("#### ", "")}</h4>;
+                            } else if (line.trim() === "") {
+                                return <br key={index} />;
+                            } else {
+                                return <p key={index}>{line}</p>;
+                            }
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <Footer />
-    </div>
-);
+            <Footer />
+        </div>
+    );
 
 }

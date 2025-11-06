@@ -32,7 +32,7 @@ const Footer = () => {
                     <div className="flex flex-col space-y-1.5 text-sm">
                         <Link href="/member-area" className="hover:underline">Member Area</Link>
                         <Link href="/businesspartner-area" className="hover:underline">Businesspartner Area</Link>
-                        <Link href="/online-shop" className="hover:underline">Online Shop</Link>
+                        <a href="https://shop.vstarproject.eu" target="_blank" rel="noopener noreferrer"  className="hover:underline">Online Shop</a>
                     </div>
 
                     <div className="flex flex-col space-y-1.5 text-sm">
