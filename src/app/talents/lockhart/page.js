@@ -122,7 +122,7 @@ export default function TalentPage() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-white">
+        <div className="flex flex-col min-h-screen bg-black">
             <Header />
 
             <main className="flex-grow pt-0">
