@@ -9,9 +9,9 @@ export default function TalentPage() {
     const signatureColor = "#FBE575";
 
     const themeColors = {
-        schedule: "#FBE575",
-        recommended: "#FBE575",
-        recent: "#FBE575",
+        schedule: "#918448ff",
+        recommended: "#c7ac25ff",
+        recent: "#ceb537ff",
     };
 
     const talentData = {
@@ -126,27 +126,27 @@ export default function TalentPage() {
             <Header />
 
             <main className="flex-grow pt-0">
-                <div className="relative">
+                <div className="relative bg-stone-800">
                     <div
-                        className="absolute inset-0 z-0 pointer-events-none"
-                        style={{
-                            backgroundImage: `
-       linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-       linear-gradient(to bottom, #f0f0f0 1px, transparent 1px),
-       radial-gradient(circle 600px at 0% 200px, #feffc5ff, transparent),     /* Left */
-       radial-gradient(circle 600px at 100% 200px, #feffc5ff, transparent),  /* Right */
-       radial-gradient(circle 600px at 50% 0px, #feffc5ff, transparent),     /* Top */
-       radial-gradient(circle 600px at 50% 100%, #feffc5ff, transparent)     /* Bottom */
-     `,
-                            backgroundSize: `
-       96px 64px,    
-       96px 64px,    
-       100% 100%,    
-       100% 100%,
-       100% 100%,
-       100% 100%
-     `,
-                        }}
+    //                     className="absolute inset-0 z-0 pointer-events-none"
+    //                     style={{
+    //                         backgroundImage: `
+    //    linear-gradient(to right, #adadadff 1px, transparent 1px),
+    //    linear-gradient(to bottom, #8b8b8bff 1px, transparent 1px),
+    //    radial-gradient(circle 600px at 0% 200px, #feffc5ff, transparent),     /* Left */
+    //    radial-gradient(circle 600px at 100% 200px, #feffc5ff, transparent),  /* Right */
+    //    radial-gradient(circle 600px at 50% 0px, #feffc5ff, transparent),     /* Top */
+    //    radial-gradient(circle 600px at 50% 100%, #feffc5ff, transparent)     /* Bottom */
+    //  `,
+    //                         backgroundSize: `
+    //    96px 64px,    
+    //    96px 64px,    
+    //    100% 100%,    
+    //    100% 100%,
+    //    100% 100%,
+    //    100% 100%
+    //  `,
+    //                     }}
                     />
                     <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-center">
@@ -156,7 +156,7 @@ export default function TalentPage() {
                                         <button
                                             key={outfit.id}
                                             onClick={() => setSelectedOutfit(outfit.id)}
-                                            className={`w-16 h-16 rounded-4xl overflow-hidden border-2 transition-all ${selectedOutfit === outfit.id
+                                            className={`w-16 h-16 rounded-4xl overflow-hidden z--50 border-2 transition-all ${selectedOutfit === outfit.id
                                                 ? "scale-110"
                                                 : "border-gray-600 opacity-60 hover:opacity-100"
                                                 }`}
