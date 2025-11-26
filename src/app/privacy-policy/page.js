@@ -7,6 +7,7 @@ marked.setOptions({
 });
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import Hero from "@/app/components/hero";
 
 export default function PrivacyPolicy() {
 
@@ -212,14 +213,19 @@ Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
     <div className="flex flex-col min-h-screen bg-slate-900">
       <Header />
 
-      <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
+            <Hero 
+              title="Privacy Policy"
+              description="Your privacy is important to us."
+              dotPattern={{
+                size: 2,
+                spacing: 25,
+                color: "255, 255, 255",
+                opacity: 0.1
+              }}
+            />
+
+      <div className="flex-grow flex items-center justify-center min-h-[90vh] pb-40">
         <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
-          <button
-            onClick={() => setLanguage(language === "en" ? "de" : "en")}
-            className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition mb-4"
-          >
-            {language === "en" ? "Deutsch" : "English"}
-          </button>
           <h1 className="text-2xl font-bold mb-6">{currentTranslation.title}</h1>
           <div
             className="text-white text-base leading-relaxed max-w-4xl whitespace-pre-wrap"

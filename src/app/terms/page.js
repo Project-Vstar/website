@@ -3,19 +3,20 @@ import React, { useState } from "react";
 import { marked } from "marked";
 
 marked.setOptions({
-  breaks: false,
+    breaks: false,
 });
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import Hero from "@/app/components/hero";
 
 export default function PrivacyPolicy() {
 
-  const [language, setLanguage] = useState("en");
+    const [language, setLanguage] = useState("en");
 
-const translations = {
-  en: {
-    title: "General Terms and Conditions",
-    content: `
+    const translations = {
+        en: {
+            title: "General Terms and Conditions",
+            content: `
 ### General Terms and Conditions
 GTC
 
@@ -115,10 +116,10 @@ The contract between VINFERNIA UG (haftungsbeschränkt) & Co.KG and the customer
 
 If the customer is an entrepreneur, the place of jurisdiction for all disputes arising from this contract is the registered office of VINFERNIA UG (haftungsbeschränkt) & Co.KG.
 `
-  },
-  de: {
-    title: "Allgemeine Geschäftsbedingungen",
-    content: `
+        },
+        de: {
+            title: "Allgemeine Geschäftsbedingungen",
+            content: `
 ### Allgemeine Geschäftsbedingungen
 AGB
 
@@ -224,43 +225,46 @@ Der Vertrag zwischen der VINFERNIA UG (haftungsbeschränkt) & Co.KG und dem Best
 Ist der Besteller Unternehmer, so ist Gerichtsstand für alle Streitigkeiten aus diesem Vertrag der Geschäftssitz der VINFERNIA UG (haftungsbeschränkt) & Co.KG.
 
 `
-  }
-};
+        }
+    };
 
 
-  const currentTranslation = translations[language];
+    const currentTranslation = translations[language];
 
-return (
-    <div className="flex flex-col min-h-screen bg-slate-900">
-        <Header />
+    return (
+        <div className="flex flex-col min-h-screen bg-slate-900">
+            <Header />
+            <Hero
+                title="Terms and Conditions"
+                description="Please read our terms and conditions carefully."
+                dotPattern={{
+                    size: 2,
+                    spacing: 25,
+                    color: "255, 255, 255",
+                    opacity: 0.1
+                }}
+            />
 
-        <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
-            <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
-                <button
-                    onClick={() => setLanguage(language === "en" ? "de" : "en")}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg transition mb-4"
-                >
-                    {language === "en" ? "Deutsch" : "English"}
-                </button>
-                <h1 className="text-2xl font-bold mb-6">{currentTranslation.title}</h1>
-                <div className="prose text-white text-base leading-relaxed max-w-4xl">
-                    {currentTranslation.content.split("\n").map((line, index) => {
-                        if (line.startsWith("### ")) {
-                            return <h3 key={index} className="text-xl font-semibold mt-4">{line.replace("### ", "")}</h3>;
-                        } else if (line.startsWith("#### ")) {
-                            return <h4 key={index} className="text-lg font-medium mt-3">{line.replace("#### ", "")}</h4>;
-                        } else if (line.trim() === "") {
-                            return <br key={index} />;
-                        } else {
-                            return <p key={index}>{line}</p>;
-                        }
-                    })}
+            <div className="flex-grow flex items-center justify-center min-h-[90vh] pb-40">
+                <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
+                    <div className="prose text-white text-base leading-relaxed max-w-4xl">
+                        {currentTranslation.content.split("\n").map((line, index) => {
+                            if (line.startsWith("### ")) {
+                                return <h3 key={index} className="text-xl font-semibold mt-4">{line.replace("### ", "")}</h3>;
+                            } else if (line.startsWith("#### ")) {
+                                return <h4 key={index} className="text-lg font-medium mt-3">{line.replace("#### ", "")}</h4>;
+                            } else if (line.trim() === "") {
+                                return <br key={index} />;
+                            } else {
+                                return <p key={index}>{line}</p>;
+                            }
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <Footer />
-    </div>
-);
+            <Footer />
+        </div>
+    );
 
 }

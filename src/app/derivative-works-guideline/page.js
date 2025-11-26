@@ -2,6 +2,7 @@
 import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import Hero from "@/app/components/hero";
 
 export default function DerivativeWorksGuidelines() {
     const content = `
@@ -54,9 +55,19 @@ These overall guidelines are subject to change without notice. Please ensure tha
         <div className="flex flex-col min-h-screen bg-slate-900">
             <Header />
 
+                    <Hero
+                        title="Derivative Works Guidelines"
+                        description="Guidelines for creating derivative works based on our content."
+                        dotPattern={{
+                            size: 2,
+                            spacing: 25,
+                            color: "255, 255, 255",
+                            opacity: 0.1
+                        }}
+                    />
+
             <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
                 <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
-                    <h1 className="text-2xl font-bold mb-6">Derivative Works Guidelines</h1>
                     <div className="prose text-white text-base leading-relaxed max-w-4xl">
                         {content.split("\n").map((line, index) => {
                             if (line.startsWith("### ")) {

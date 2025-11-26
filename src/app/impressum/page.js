@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { marked } from "marked";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
+import Hero from "@/app/components/hero";
 
 marked.setOptions({
     breaks: false,
@@ -18,9 +19,9 @@ export default function PrivacyPolicy() {
     ];
 
     const translations = {
-    en: {
-        title: "Imprint",
-        content: `
+        en: {
+            title: "Imprint",
+            content: `
 ### Imprint
 
 VINFERNIA UG (haftungsbeschränkt)& Co.KG  
@@ -52,10 +53,10 @@ Handelsregisternummer: HRA 12303
 
 **Notifications of legal violations:** If you become aware of any legal violations on our website, please notify us. We will remove any illegal content and links immediately upon becoming aware of them.
 `
-    },
-    de: {
-        title: "Impressum",
-        content: `
+        },
+        de: {
+            title: "Impressum",
+            content: `
 ### Impressum
 
 VINFERNIA UG (haftungsbeschränkt)& Co.KG  
@@ -87,14 +88,25 @@ Handelsregisternummer: HRA 12303
 
 **Hinweise auf Rechtsverstöße:** Sollten Sie auf Rechtsverstöße innerhalb unseres Internetauftritts aufmerksam werden, bitten wir Sie, uns dies mitzuteilen. Wir werden rechtswidrige Inhalte und Links nach Bekanntwerden umgehend entfernen.
 `
-    }
-};
+        }
+    };
 
     const currentTranslation = translations[language];
 
     return (
         <div className="flex flex-col min-h-screen bg-slate-900">
             <Header />
+
+            <Hero
+                title="Impressum"
+                description="Legal disclosure and imprint information."
+                dotPattern={{
+                    size: 2,
+                    spacing: 25,
+                    color: "255, 255, 255",
+                    opacity: 0.1
+                }}
+            />
 
             {/* Language Toggle Button with Popup */}
             <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50">
@@ -125,7 +137,7 @@ Handelsregisternummer: HRA 12303
                     <div className="absolute left-16 top-1/2 -translate-y-1/2 bg-slate-800 rounded-2xl shadow-2xl p-4 min-w-[200px]">
                         {/* Triangle pointer */}
                         <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-8 border-t-transparent border-b-8 border-b-transparent border-r-8 border-r-slate-800"></div>
-                        
+
                         <div className="space-y-2">
                             {languages.map((lang) => (
                                 <button
@@ -134,11 +146,10 @@ Handelsregisternummer: HRA 12303
                                         setLanguage(lang.code);
                                         setIsPopupOpen(false);
                                     }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${
-                                        language === lang.code
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all ${language === lang.code
                                             ? "bg-blue-600 text-white shadow-md"
                                             : "bg-slate-700 text-gray-300 hover:bg-slate-600"
-                                    }`}
+                                        }`}
                                 >
                                     <span className="text-xl">{lang.flag}</span>
                                     <span className="font-medium text-sm">{lang.name}</span>
@@ -157,7 +168,7 @@ Handelsregisternummer: HRA 12303
                 />
             )}
 
-            <div className="flex-grow flex items-center justify-center min-h-[90vh] pt-40 pb-40">
+            <div className="flex-grow flex items-center justify-center min-h-[90vh] pb-40">
                 <div className="flex flex-col justify-center items-center w-full px-4 md:px-8">
                     <h1 className="text-2xl font-bold mb-6">{currentTranslation.title}</h1>
                     <div className="prose text-white text-base leading-relaxed max-w-4xl">

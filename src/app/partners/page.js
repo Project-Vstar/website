@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Header from "@/app/components/header";
+import Hero from "@/app/components/hero";
 import Footer from "@/app/components/footer";
 
 export default function VStarPage() {
@@ -8,12 +9,16 @@ export default function VStarPage() {
     <div className="flex flex-col min-h-screen bg-slate-900">
       <Header />
 
-      <div className="text-white text-4xl font-bold flex-grow flex items-center justify-center min-h-[50vh]">
-        <div className="flex flex-col justify-center items-center">
-          <p className="p-4">Partners</p>
-          <p className="p-4  text-md">About partners...</p>
-        </div>
-      </div>
+      <Hero 
+        title="Our Trusted Partners"
+        description="We collaborate with industry leaders to bring you the best services."
+        dotPattern={{
+          size: 2,
+          spacing: 25,
+          color: "255, 255, 255",
+          opacity: 0.1
+        }}
+      />
 
       <div className="bg-slate-900 py-20 px-8">
         <div className="max-w-6xl mx-auto text-center">
