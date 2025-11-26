@@ -9,22 +9,21 @@ export default function TalentPage() {
     const signatureColor = "#FBE575";
 
     const themeColors = {
-        schedule: "#FBE575",
-        recommended: "#FBE575",
-        recent: "#FBE575",
+        schedule: "#918448ff",
+        recommended: "#c7ac25ff",
+        recent: "#ceb537ff",
     };
 
     const talentData = {
-        name: "Dee",
+        name: "Lockhart",
         nameJapanese: "Japanese name here? holollive inspo",
         tagline: "Tagline if applicable",
-        biography: `Lockhart biography here. meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow meow.`,
-
+        biography: `Placeholder. biography here. `,
         outfits: [
-            { id: 0, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", thumbnail: "/path/to/thumb1.png", name: "Default" },
-            { id: 1, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", thumbnail: "/path/to/thumb2.png", name: "Mask" },
-            { id: 2, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", thumbnail: "/path/to/thumb3.png", name: "Other" },
-            { id: 3, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", thumbnail: "/path/to/thumb3.png", name: "Other Mask" },
+            { id: 0, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", name: "Default" },
+            { id: 1, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", name: "Mask" },
+            { id: 2, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", name: "Other" },
+            { id: 3, image: "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", name: "Other Mask" },
         ],
 
         links: [
@@ -123,101 +122,129 @@ export default function TalentPage() {
     };
 
     return (
-        <div className="flex flex-col min-h-screen bg-gradient-to-b from-yellow-900 via-white-900 to-black">
+        <div className="flex flex-col min-h-screen bg-black">
             <Header />
 
-            <main className="flex-grow">
-                <section className="relative min-h-screen flex items-center justify-center py-20 px-4">
-                    <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-center">
-
-                        <div className="relative flex items-center justify-center">
-                            <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
-                                {talentData.outfits.map((outfit) => (
-                                    <button
-                                        key={outfit.id}
-                                        onClick={() => setSelectedOutfit(outfit.id)}
-                                        className={`w-16 h-16 rounded-4xl overflow-hidden border-2 transition-all ${selectedOutfit === outfit.id
+            <main className="flex-grow pt-0">
+                <div className="relative bg-stone-800">
+                    <div
+    //                     className="absolute inset-0 z-0 pointer-events-none"
+    //                     style={{
+    //                         backgroundImage: `
+    //    linear-gradient(to right, #adadadff 1px, transparent 1px),
+    //    linear-gradient(to bottom, #8b8b8bff 1px, transparent 1px),
+    //    radial-gradient(circle 600px at 0% 200px, #feffc5ff, transparent),     /* Left */
+    //    radial-gradient(circle 600px at 100% 200px, #feffc5ff, transparent),  /* Right */
+    //    radial-gradient(circle 600px at 50% 0px, #feffc5ff, transparent),     /* Top */
+    //    radial-gradient(circle 600px at 50% 100%, #feffc5ff, transparent)     /* Bottom */
+    //  `,
+    //                         backgroundSize: `
+    //    96px 64px,    
+    //    96px 64px,    
+    //    100% 100%,    
+    //    100% 100%,
+    //    100% 100%,
+    //    100% 100%
+    //  `,
+    //                     }}
+                    />
+                    <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
+                        <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-center">
+                            <div className="relative flex items-center justify-center">
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
+                                    {talentData.outfits.map((outfit) => (
+                                        <button
+                                            key={outfit.id}
+                                            onClick={() => setSelectedOutfit(outfit.id)}
+                                            className={`w-16 h-16 rounded-4xl overflow-hidden z--50 border-2 transition-all ${selectedOutfit === outfit.id
                                                 ? "scale-110"
                                                 : "border-gray-600 opacity-60 hover:opacity-100"
-                                            }`}
-                                        style={{
-                                            borderColor: selectedOutfit === outfit.id ? signatureColor : undefined,
-                                            boxShadow: selectedOutfit === outfit.id ? `0 0 20px ${signatureColor}80` : undefined,
-                                        }}
-                                    >
-                                        <img
-                                            src={outfit.thumbnail}
-                                            alt={outfit.name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </button>
-                                ))}
+                                                }`}
+                                            style={{
+                                                borderColor: selectedOutfit === outfit.id ? signatureColor : undefined,
+                                                boxShadow: selectedOutfit === outfit.id ? `0 0 20px ${signatureColor}80` : undefined,
+                                            }}
+                                        >
+                                            <img
+                                                src={outfit.image}
+                                                alt={outfit.name}
+                                                className="w-full h-full object-cover"
+                                                style={{
+                                                    objectPosition: "center -34%",
+                                                    transform: 'scale(4)'
+                                                }}
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div className="relative w-full max-w-md aspect-[3/4]">
+                                    <img
+                                        src={talentData.outfits[selectedOutfit].image}
+                                        alt={talentData.name}
+                                        className="w-full h-256 object-contain drop-shadow-2xl transition-all duration-300"
+                                    />
+                                </div>
                             </div>
 
-                            <div className="relative w-full max-w-md aspect-[3/4]">
-                                <img
-                                    src={talentData.outfits[selectedOutfit].image}
-                                    alt={talentData.name}
-                                    className="w-full h-full object-contain drop-shadow-2xl transition-all duration-300"
-                                />
-                            </div>
-                        </div>
+                            <div className="space-y-8">
+                                <div>
+                                    <h1 className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2" style={{ borderColor: signatureColor }}>
+                                        <div className="drop-shadow-lg/50">
+                                            {talentData.name}
+                                        </div>
+                                    </h1>
+                                    <p className="text-2xl mb-4" style={{ color: signatureColor }}>
+                                        {talentData.nameJapanese}
+                                    </p>
+                                    <p className="text-xl text-gray-300 italic">"{talentData.tagline}"</p>
+                                </div>
 
-                        <div className="space-y-8">
-                            <div>
-                                <h1 className="text-5xl lg:text-6xl font-bold text-white mb-2">
-                                    {talentData.name}
-                                </h1>
-                                <p className="text-2xl mb-4" style={{ color: signatureColor }}>
-                                    {talentData.nameJapanese}
-                                </p>
-                                <p className="text-xl text-gray-300 italic">"{talentData.tagline}"</p>
-                            </div>
+                                <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                                    <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>
+                                        About
+                                    </h2>
+                                    <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                                        {talentData.biography}
+                                    </p>
+                                </div>
 
-                            <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-white/10">
-                                <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>
-                                    About
-                                </h2>
-                                <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                                    {talentData.biography}
-                                </p>
-                            </div>
+                                <div className="flex flex-wrap gap-4">
+                                    {talentData.links.map((link, index) => (
+                                        <a
+                                            key={index}
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 px-6 py-3 rounded-full text-black font-semibold transition-all hover:scale-105 shadow-lg hover:brightness-110"
+                                            style={{
+                                                background: `linear-gradient(to right, ${signatureColor}, ${signatureColor}dd)`
+                                            }}
+                                        >
+                                            <span className="text-xl">{link.icon}</span>
+                                            {link.platform}
+                                        </a>
+                                    ))}
+                                </div>
 
-                            <div className="flex flex-wrap gap-4">
-                                {talentData.links.map((link, index) => (
-                                    <a
-                                        key={index}
-                                        href={link.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 px-6 py-3 rounded-full text-black font-semibold transition-all hover:scale-105 shadow-lg hover:brightness-110"
-                                        style={{
-                                            background: `linear-gradient(to right, ${signatureColor}, ${signatureColor}dd)`
-                                        }}
-                                    >
-                                        <span className="text-xl">{link.icon}</span>
-                                        {link.platform}
-                                    </a>
-                                ))}
-                            </div>
-
-                            <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-white/10">
-                                <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>
-                                    Featured Video
-                                </h2>
-                                <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
-                                    <iframe
-                                        className="w-full h-full"
-                                        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                                        title="Featured Video"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    ></iframe>
+                                <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+                                    <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>
+                                        Featured Video
+                                    </h2>
+                                    <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
+                                        <iframe
+                                            className="w-full h-full"
+                                            src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                                            title="Featured Video"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
 
                 <section
                     className="py-20 px-4 relative"
@@ -460,10 +487,10 @@ export default function TalentPage() {
                         </a>
                     </div>
                 </section>
-            </main>
+            </main >
 
             <Footer />
-        </div>
+        </div >
     );
 }
 
