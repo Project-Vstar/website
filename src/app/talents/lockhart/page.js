@@ -7,9 +7,9 @@ export default function TalentPage() {
     const [selectedOutfit, setSelectedOutfit] = useState(0);
     const [activePersona, setActivePersona] = useState("lockhart");
 
-    // Dr. Lockhart's signature color - warm white/cream
+
     const lockhartColor = "#F5F0E1";
-    // The Other's signature color - deep poison green
+
     const otherColor = "#1B4D3E";
 
     const signatureColor = activePersona === "lockhart" ? lockhartColor : otherColor;
@@ -33,7 +33,6 @@ export default function TalentPage() {
 
     const currentTheme = themeColors[activePersona];
 
-    // Dr. Lockhart Data
     const lockhartData = {
         name: "Dr. Lockhart",
         nameJapanese: "ロクハート先生",
@@ -96,7 +95,6 @@ A mask that carries admiration from the people but has the power to shake the hi
         }
     };
 
-    // The Other Data
     const otherData = {
         name: "The Other",
         nameJapanese: "ザー・アザー",
@@ -161,7 +159,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
 
     const talentData = activePersona === "lockhart" ? lockhartData : otherData;
 
-    // Reset outfit selection when switching personas
     const handlePersonaSwitch = () => {
         setActivePersona(prev => prev === "lockhart" ? "other" : "lockhart");
         setSelectedOutfit(0);
@@ -174,7 +171,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
         >
             <Header />
 
-            {/* Persona Switch Bird Button - Fixed Position */}
             <button
                 onClick={handlePersonaSwitch}
                 className="fixed bottom-8 left-8 z-50 w-24 h-24 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 group"
@@ -194,12 +190,10 @@ Whispers have begun to circulate within The Order that the White Raven does not 
             </button>
 
             <main className="flex-grow pt-0">
-                {/* Hero Section with Background Image */}
                 <div 
                     className="relative transition-all duration-700"
                     style={{ backgroundColor: currentTheme.background }}
                 >
-                    {/* Background Image Layer */}
                     <div
                         className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-700"
                         style={{
@@ -209,7 +203,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                             backgroundRepeat: 'no-repeat',
                         }}
                     />
-                    {/* Dark Overlay for readability */}
                     <div 
                         className="absolute inset-0 z-0 pointer-events-none transition-all duration-700"
                         style={{
@@ -218,7 +211,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                                 : `linear-gradient(to bottom, rgba(0,15,10,0.8) 0%, rgba(5,10,8,0.95) 100%)`,
                         }}
                     />
-                    {/* Vignette Effect */}
                     <div 
                         className="absolute inset-0 z-0 pointer-events-none"
                         style={{
@@ -228,9 +220,7 @@ Whispers have begun to circulate within The Order that the White Raven does not 
 
                     <section className="relative z-10 min-h-screen flex items-center justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-center">
-                            {/* Character Display */}
                             <div className="relative flex items-center justify-center h-[700px]">
-                                {/* Outfit Selector - Centered vertically in container */}
                                 <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10">
                                     {talentData.outfits.map((outfit) => (
                                         <button
@@ -259,7 +249,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                                     ))}
                                 </div>
 
-                                {/* Main Character Image - Fixed size container */}
                                 <div className="relative w-full h-full flex items-center justify-center">
                                     <img
                                         src={talentData.outfits[selectedOutfit]?.image}
@@ -275,9 +264,7 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                                 </div>
                             </div>
 
-                            {/* Info Panel */}
                             <div className="space-y-8">
-                                {/* Name & Tagline */}
                                 <div>
                                     <h1 
                                         className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2 transition-all duration-500"
@@ -299,7 +286,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                                     <p className="text-xl text-gray-300 italic">"{talentData.tagline}"</p>
                                 </div>
 
-                                {/* About Section */}
                                 <div 
                                     className="backdrop-blur-sm rounded-lg p-6 border transition-all duration-500"
                                     style={{
@@ -318,7 +304,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                                     </p>
                                 </div>
 
-                                {/* Social Links */}
                                 <div className="flex flex-wrap gap-4">
                                     {talentData.links.map((link, index) => (
                                         <a
@@ -345,7 +330,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                                     ))}
                                 </div>
 
-                                {/* Featured Video */}
                                 <div 
                                     className="backdrop-blur-sm rounded-lg p-6 border transition-all duration-500"
                                     style={{
@@ -374,7 +358,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                     </section>
                 </div>
 
-                {/* Recent Videos Section */}
                 <section
                     className="py-20 px-4 relative transition-all duration-700"
                     style={{
@@ -436,7 +419,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                     </div>
                 </section>
 
-                {/* Data Section */}
                 <section className="py-20 px-4 transition-all duration-700">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-4xl font-bold text-white text-center mb-12">DATA</h2>
@@ -525,7 +507,6 @@ Whispers have begun to circulate within The Order that the White Raven does not 
                     </div>
                 </section>
 
-                {/* Back Button */}
                 <section className="py-12 px-4">
                     <div className="max-w-6xl mx-auto text-center">
                         <a
