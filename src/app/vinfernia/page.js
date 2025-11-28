@@ -8,7 +8,7 @@ import { EmblaCarousel } from "../components/carousel_vinfernia";
 export default function VStarPage() {
   const talents = [
     { name: "Dee", image: "VINFERNIA/VINFERNIA/Genmate Banner/DeeBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/DeeChar.png", href: "/talents/dee" },
-    { name: "DreamyDiino", image: "VINFERNIA/VINFERNIA/Genmate Banner/DiinoBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/DiinoChar.png", href: "/talents/dreamydiino" },
+    { name: "DreamyDiino", image: "VINFERNIA/VINFERNIA/Genmate Banner/DiinoBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/DiinoChar.png", href: "/talents/DreamyDiino" },
     { name: "Gomifuyu", image: "VINFERNIA/VINFERNIA/Genmate Banner/GomiBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/GomiChar.png", href: "/talents/gomifuyu" },
     { name: "Lee Valentine", image: "VINFERNIA/VINFERNIA/Genmate Banner/LeeBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/LeeChar.png", href: "/talents/leevalentine" },
     { name: "Lockhart", image: "VINFERNIA/VINFERNIA/Genmate Banner/LockBG.png", char: "VINFERNIA/VINFERNIA/Genmate Banner/LockChar.png", href: "/talents/lockhart" },
