@@ -8,7 +8,7 @@ const Header = () => {
     const [desktopMenuOpen, setDesktopMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 w-full z-10 bg-linear-to-t from-white/0 via-black/0 via-30% via-black/5 via-60% via-black/10 via-75% to-black/15">
+        <header className="fixed top-0 left-0 w-full z-40 bg-linear-to-t from-white/0 via-black/0 via-30% via-black/5 via-60% via-black/10 via-75% to-black/15">
             <nav className="flex items-center justify-between p-4 bg-transparent bg-linear-to-t from-white/0 via-black/0 via-30% via-black/5 via-60% via-red/10 via-75% to-black/15">
                 <Link href="/" className="hidden md:flex items-center pl-50">
                     <div className="p-50 bg-white/30 backdrop-blur-md border-1 border-white rounded-4xl px-5 py-1 flex gap-2">
