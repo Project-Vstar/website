@@ -45,7 +45,7 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-500 rounded-full blur-[120px] opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }} />
           
           <div className="relative z-10 flex flex-col items-center">
-            <img src="/VSTAR.png" alt="VSTAR Logo" className="w-48 h-48 mb-6" />
+            <img src="/VSTAR/VSTAR.png" alt="VSTAR Logo" className="w-48 h-48 mb-6" />
             <h1 className="text-4xl font-bold text-white tracking-widest">VSTAR PROJECT</h1>
           </div>
         </div>
