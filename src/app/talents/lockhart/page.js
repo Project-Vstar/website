@@ -152,8 +152,8 @@ A mask that carries admiration from the people but has the power to shake the hi
     links: [
         { platform: "/Lockhart_VT", url: "https://twitch.tv/lockhart_vt", icon: "/brands/Twitch.png" },
         { platform: "/Lockhart_VT", url: "https://youtube.com/@Lockhart_VT", icon: "/brands/YouTube.png" },
-        { platform: "@Lockhart_VT", url: "https://tiktok.com/@Lockhart_VT", icon: "/brands/TikTok.png" },
-        { platform: "@Lockhart_VT", url: "https://x.com/Lockhart_VT", icon: "/brands/X.png" },
+        { platform: "@Lockhart_VT", url: "https://tiktok.com/@Lockhart_VT", icon: "/brands/tiktok.png" },
+        { platform: "@Lockhart_VT", url: "https://x.com/Lockhart_VT", icon: "/brands/x_black.png" },
     ],
     featuredVideoId: "cjlUxgYMhfM",
     videos: [
@@ -200,8 +200,8 @@ Whispers have begun to circulate within The Order that the White Raven does not 
     links: [
         { platform: "/Lockhart_VT", url: "https://twitch.tv/lockhart_vt", icon: "/brands/Twitch.png" },
         { platform: "/Lockhart_VT", url: "https://youtube.com/@Lockhart_VT", icon: "/brands/YouTube.png" },
-        { platform: "@Lockhart_VT", url: "https://tiktok.com/@Lockhart_VT", icon: "/brands/TikTok.png" },
-        { platform: "@Lockhart_VT", url: "https://x.com/Lockhart_VT", icon: "/brands/X.png" },
+        { platform: "@Lockhart_VT", url: "https://tiktok.com/@Lockhart_VT", icon: "/brands/tiktok.png" },
+        { platform: "@Lockhart_VT", url: "https://x.com/Lockhart_VT", icon: "/brands/x_black.png" },
     ],
     featuredVideoId: "cjlUxgYMhfM",
     videos: [
