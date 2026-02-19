@@ -315,7 +315,7 @@ export default function DeePage() {
                     style={{ backgroundColor: themeColors.background }}
                 >
                     <div
-                        className="absolute inset-0 z-0 pointer-events-none"
+                        className="absolute inset-0 z-0 pointer-events-none brightness-55"
                         style={{
                             backgroundImage: `url('${deeData.backgroundImage}')`,
                             backgroundSize: 'cover',
@@ -377,11 +377,9 @@ export default function DeePage() {
                                         <div className="drop-shadow-lg">{deeData.name}</div>
                                     </h1>
                                     <p 
-                                        className="text-2xl mb-4" 
+                                        className="text-2xl mb-4 text-white text-shadow-lg/10" 
                                         style={{ 
-                                            background: `linear-gradient(to right, ${signatureColor}, ${themeColors.accentAlt})`,
                                             WebkitBackgroundClip: 'text',
-                                            WebkitTextFillColor: 'transparent',
                                             backgroundClip: 'text'
                                         }}
                                     >

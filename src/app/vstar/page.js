@@ -3,6 +3,7 @@ import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import Link from "next/link";
+import { EmblaCarousel } from "../components/carousel_vinfernia";
 
 export default function VStarPage() {
 
@@ -56,8 +57,8 @@ export default function VStarPage() {
         ))}
       </div>
 
-      <div className="flex min-h-screen text-black bg-gradient-to-br from-blue-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
-        <div className="w-1/4 flex items-center justify-center bg-gray-800">
+      <div className="flex flex-col-reverse md:flex-row min-h-screen text-black bg-gradient-to-br from-blue-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
+        <div className="w-full md:w-1/4 flex items-center justify-center bg-gray-800">
           <img src="/VSTAR/mfsdd_inverted_designsheet_standingonly_2.png" alt="Dee Ronny syn Łužycy in a suit, standing." className="object-cover h-full w-full" />
         </div>
 
@@ -88,15 +89,12 @@ export default function VStarPage() {
         </div>
       </div>
 
-      <div className="bg-slate-900 py-20 px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-white mb-4 tracking-wider">VSTAR MANGA</h2>
-          <p className="text-slate-400 text-xl mb-12">Coming Soon</p>
-              <div className="bg-slate-800 rounded-lg h-96 border-2 border-slate-700 hover:border-blue-500 transition-all duration-300 flex items-center justify-center">
-                <span className="text-slate-600 text-lg">Carousel</span>
-              </div>
+        <div className="bg-slate-900 py-20 px-8 min-h-[80vh]">
+          <div className="max-w-6xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-4 tracking-wider">VSTAR MANGA</h2>
+            <EmblaCarousel />
           </div>
-      </div>
+        </div>
 
       </main>
 
@@ -104,3 +102,8 @@ export default function VStarPage() {
     </div>
   );
 }
+
+<Style>
+
+  
+</Style>

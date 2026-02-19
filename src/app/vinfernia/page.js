@@ -59,8 +59,8 @@ export default function VStarPage() {
           ))}
         </div>
 
-        <div className="flex min-h-screen text-black bg-gradient-to-br from-red-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
-          <div className="w-1/4 flex items-center justify-center bg-gray-800">
+        <div className="flex flex-col-reverse md:flex-row min-h-screen text-black bg-gradient-to-br from-red-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
+          <div className="w-full md:w-1/4 flex items-center justify-center bg-gray-800">
             <img src="/VSTAR/mfsdd_inverted_designsheet_standingonly_2.png" alt="Dee Ronny syn Łužycy in a suit, standing." className="object-cover h-full w-full" />
           </div>
 
