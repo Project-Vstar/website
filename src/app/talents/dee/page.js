@@ -349,16 +349,15 @@ export default function DeePage() {
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
                             
-                            <div className="relative flex items-center justify-center h-[1000px] overflow-visible">
+                            <div className="relative flex items-center justify-center h-[900px] overflow-visible">
                                 <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                     <img
                                         src="/VINFERNIA/VINFERNIA/Dee/Full_Model_Default.png"
                                         alt={deeData.name}
                                         className="w-auto object-contain transition-opacity duration-250"
                                         style={{
-                                            height: '100%',
-                                            maxHeight: 'none',
-                                            transform: 'scale(1.4)',
+                                            maxHeight: '900px',
+                                            transform: 'scale(1.9)',
                                             filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}40)`,
                                         }}
                                     />
