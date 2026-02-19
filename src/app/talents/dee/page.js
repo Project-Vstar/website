@@ -77,9 +77,8 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
     return (
         <button
             onClick={onClick}
-            className={`w-16 h-16 rounded-full overflow-hidden border-2 transition-transform duration-200 ${
-                isSelected ? "scale-110" : "border-gray-600 opacity-60 hover:opacity-100"
-            }`}
+            className={`w-16 h-16 rounded-full overflow-hidden border-2 transition-transform duration-200 ${isSelected ? "scale-110" : "border-gray-600 opacity-60 hover:opacity-100"
+                }`}
             style={{
                 borderColor: isSelected ? signatureColor : undefined,
                 boxShadow: isSelected ? `0 0 20px ${signatureColor}80` : undefined,
@@ -89,7 +88,10 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
                 src={outfit.image}
                 alt={outfit.name}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: "center -50%", transform: 'scale(4)' }}
+                style={{
+                    transform: 'scale(3) translateY(0%) translateX(2%)',
+                    transformOrigin: 'center top'
+                }}
             />
         </button>
     );
@@ -107,9 +109,9 @@ const SocialLink = memo(function SocialLink({ link, signatureColor }) {
                 color: "#1a1a1a",
             }}
         >
-            <img 
-                src={link.icon} 
-                alt={link.platform} 
+            <img
+                src={link.icon}
+                alt={link.platform}
                 className="w-5 h-5 object-contain"
             />
             {link.platform}
@@ -156,17 +158,17 @@ const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
                 className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-200">
-                <div 
+                <div
                     className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
                     style={{ backgroundColor: signatureColor }}
                 >
-                    <svg 
-                        className="w-6 h-6 ml-1" 
-                        fill="currentColor" 
+                    <svg
+                        className="w-6 h-6 ml-1"
+                        fill="currentColor"
                         viewBox="0 0 24 24"
                         style={{ color: '#1a1a1a' }}
                     >
-                        <path d="M8 5v14l11-7z"/>
+                        <path d="M8 5v14l11-7z" />
                     </svg>
                 </div>
             </div>
@@ -178,7 +180,7 @@ const ScheduleDay = memo(function ScheduleDay({ day, time, activity, signatureCo
     return (
         <div className="flex items-start gap-3 p-3 rounded-lg bg-black/20 border border-white/10 hover:border-opacity-30 transition-colors">
             <div className="flex-shrink-0">
-                <div 
+                <div
                     className="w-12 h-12 rounded-lg flex items-center justify-center font-bold"
                     style={{ backgroundColor: `${signatureColor}30`, color: signatureColor }}
                 >
@@ -227,29 +229,29 @@ You can be entertained or calmed, recover joy or energy. All specifically focuse
         { day: "Sunday", time: "14:00 CEST / 9pm JST / 5am PST", activity: "DND" },
     ],
     recommendedVideos: [
-        { 
-            id: 1, 
-            title: "Recommended Stream Highlight", 
-            thumbnail: `https://img.youtube.com/vi/bxDk4lLkpzU/maxresdefault.jpg`, 
-            url: "https://youtu.be/bxDk4lLkpzU", 
-            date: "Recent", 
-            views: "Watch now" 
+        {
+            id: 1,
+            title: "Recommended Stream Highlight",
+            thumbnail: `https://img.youtube.com/vi/bxDk4lLkpzU/maxresdefault.jpg`,
+            url: "https://youtu.be/bxDk4lLkpzU",
+            date: "Recent",
+            views: "Watch now"
         },
-        { 
-            id: 2, 
-            title: "Live Stream VOD", 
-            thumbnail: `https://img.youtube.com/vi/NeVjnxpdm_k/maxresdefault.jpg`, 
-            url: "https://youtube.com/live/NeVjnxpdm_k", 
-            date: "Recent", 
-            views: "Watch now" 
+        {
+            id: 2,
+            title: "Live Stream VOD",
+            thumbnail: `https://img.youtube.com/vi/NeVjnxpdm_k/maxresdefault.jpg`,
+            url: "https://youtube.com/live/NeVjnxpdm_k",
+            date: "Recent",
+            views: "Watch now"
         },
-        { 
-            id: 3, 
-            title: "TikTok Highlight", 
-            thumbnail: "/placeholder.jpg", 
-            url: "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505", 
-            date: "Recent", 
-            views: "Watch now" 
+        {
+            id: 3,
+            title: "TikTok Highlight",
+            thumbnail: "/placeholder.jpg",
+            url: "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505",
+            date: "Recent",
+            views: "Watch now"
         },
     ],
     videos: [
@@ -297,20 +299,20 @@ export default function DeePage() {
         setSelectedOutfit(id);
     }, []);
 
-    const currentOutfitImage = useMemo(() => 
+    const currentOutfitImage = useMemo(() =>
         deeData.outfits[selectedOutfit]?.image,
         [selectedOutfit]
     );
 
     return (
-        <div 
+        <div
             className="flex flex-col min-h-screen"
             style={{ backgroundColor: themeColors.background }}
         >
             <Header />
 
             <main className="flex-grow pt-0">
-                <div 
+                <div
                     className="relative"
                     style={{ backgroundColor: themeColors.background }}
                 >
@@ -324,22 +326,22 @@ export default function DeePage() {
                             opacity: 1,
                         }}
                     />
-                    
-                    <div 
+
+                    <div
                         className="absolute inset-0 z-0 pointer-events-none opacity-40"
                         style={{
                             background: `linear-gradient(to bottom, rgba(26,26,26,0.7) 50%, rgba(26,26,26,0.9) 100%)`,
                         }}
                     />
-                    
-                    <div 
+
+                    <div
                         className="absolute inset-0 z-0 pointer-events-none"
                         style={{
                             background: `radial-gradient(ellipse at center, transparent 40%, ${themeColors.background} 100%)`,
                         }}
                     />
 
-                    <div 
+                    <div
                         className="absolute bottom-0 left-0 right-0 h-40 z-[1] pointer-events-none"
                         style={{
                             background: `linear-gradient(to bottom, transparent 0%, ${themeColors.background}90 60%, ${themeColors.background} 100%)`,
@@ -348,7 +350,7 @@ export default function DeePage() {
 
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
-                            
+
                             <div className="relative flex items-center justify-center h-[900px] overflow-visible">
                                 <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                     <img
@@ -366,18 +368,18 @@ export default function DeePage() {
 
                             <div className="space-y-8">
                                 <div>
-                                    <h1 
+                                    <h1
                                         className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
-                                        style={{ 
+                                        style={{
                                             borderImage: `linear-gradient(to right, ${signatureColor}, ${themeColors.accentAlt}) 1`,
                                             textShadow: `0 0 15px ${themeColors.accent}40`,
                                         }}
                                     >
                                         <div className="drop-shadow-lg">{deeData.name}</div>
                                     </h1>
-                                    <p 
-                                        className="text-2xl mb-4 text-white text-shadow-lg/10" 
-                                        style={{ 
+                                    <p
+                                        className="text-2xl mb-4 text-white text-shadow-lg/10"
+                                        style={{
                                             WebkitBackgroundClip: 'text',
                                             backgroundClip: 'text'
                                         }}
@@ -387,15 +389,15 @@ export default function DeePage() {
                                     <p className="text-xl text-gray-300 italic">"{deeData.tagline}"</p>
                                 </div>
 
-                                <div 
+                                <div
                                     className="backdrop-blur-sm rounded-lg p-6 border"
                                     style={{
                                         backgroundColor: `${signatureColor}10`,
                                         borderColor: `${signatureColor}30`,
                                     }}
                                 >
-                                    <h2 
-                                        className="text-2xl font-semibold mb-4" 
+                                    <h2
+                                        className="text-2xl font-semibold mb-4"
                                         style={{ color: signatureColor }}
                                     >
                                         About
@@ -422,36 +424,36 @@ export default function DeePage() {
                 <section className="py-20 px-4">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
-                            <div 
+                            <div
                                 className="backdrop-blur-sm rounded-lg p-6 border"
                                 style={{
                                     backgroundColor: `${signatureColor}10`,
                                     borderColor: `${signatureColor}30`,
                                 }}
                             >
-                                <h2 
-                                    className="text-2xl font-semibold mb-4" 
+                                <h2
+                                    className="text-2xl font-semibold mb-4"
                                     style={{ color: signatureColor }}
                                 >
                                     Featured Video
                                 </h2>
                                 <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
-                                    <YouTubeFacade 
-                                        videoId={deeData.featuredVideoId} 
+                                    <YouTubeFacade
+                                        videoId={deeData.featuredVideoId}
                                         signatureColor={signatureColor}
                                     />
                                 </div>
                             </div>
 
-                            <div 
+                            <div
                                 className="backdrop-blur-sm rounded-lg p-6 border"
                                 style={{
                                     backgroundColor: `${signatureColor}10`,
                                     borderColor: `${signatureColor}30`,
                                 }}
                             >
-                                <h2 
-                                    className="text-2xl font-semibold mb-4" 
+                                <h2
+                                    className="text-2xl font-semibold mb-4"
                                     style={{ color: signatureColor }}
                                 >
                                     Stream Schedule
@@ -478,7 +480,7 @@ export default function DeePage() {
                         background: `linear-gradient(135deg, ${themeColors.recommended}20 0%, ${themeColors.recommended}10 100%)`
                     }}
                 >
-                    <div 
+                    <div
                         className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
                         style={{
                             background: `linear-gradient(to top, transparent 0%, ${themeColors.background}80 70%, ${themeColors.background} 100%)`,
@@ -513,9 +515,9 @@ export default function DeePage() {
                         </h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                             {deeData.videos.map((video) => (
-                                <VideoCard 
-                                    key={video.id} 
-                                    video={video} 
+                                <VideoCard
+                                    key={video.id}
+                                    video={video}
                                     signatureColor={signatureColor}
                                 />
                             ))}
@@ -563,7 +565,7 @@ export default function DeePage() {
                                             style={{
                                                 height: '100%',
                                                 maxHeight: 'none',
-                                                transform: 'scale(1.4)',
+                                                transform: 'scale(1.9) translateX(1%)',
                                                 filter: `drop-shadow(0 0 25px ${themeColors.accent}40)`,
                                             }}
                                         />
@@ -582,11 +584,11 @@ export default function DeePage() {
                                 >
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <DataItem label="Birthday" value={deeData.data.birthday} color={signatureColor} />
-                                        
+
                                         <div className="md:col-span-2">
                                             <DataItem label="Debut Stream" value={deeData.data.debutStream} color={signatureColor} />
                                         </div>
-                                        
+
                                         <DataItem label="Height" value={deeData.data.height} color={signatureColor} />
                                         <DataItem label="Unit" value={deeData.data.unit} color={signatureColor} />
 
@@ -668,7 +670,7 @@ export default function DeePage() {
                                         <div className="md:col-span-2">
                                             <DataItem label="Hobbies" value={deeData.data.hobbies} color={signatureColor} />
                                         </div>
-                                        
+
                                         <div className="md:col-span-2">
                                             <DataItem label="Likes" value={deeData.data.likes} color={signatureColor} />
                                         </div>
