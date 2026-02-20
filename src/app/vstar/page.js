@@ -102,8 +102,3 @@ export default function VStarPage() {
     </div>
   );
 }
-
-<Style>
-
-  
-</Style>
