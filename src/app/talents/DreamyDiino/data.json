@@ -1,0 +1,57 @@
+{
+  "name": "DreamyDiino",
+  "nameJapanese": "Goddess of Dreams",
+  "tagline": "Easy now, just rest your eyes. Whatever happens next, I've got you.",
+  "biography": "Lana has existed for eons, dutifully weaving dreams and balancing realms across the cosmos. But eternity can become monotonous, even for a goddess. One day, tired of her divine routine, she created an astral clone of herself to handle her celestial responsibilities… and wandered off.\n\nTraversing the dreams of those she weaves them for to learn more about the world, she was particularly drawn to planet Earth. Interested by the small planet, she chose to learn all about it, playing with time to study each and every creature. She even took a dinosaur egg and magically altered it, creating a tiny immortal Dinosaur to keep her company, named Nuggie.\n\nWatching the growth of the human race, and seeing complex emotions grow as the humans change, she decided that she too wishes to experience life on earth, and decided to keep on her human form as she mingles with the world of the living- curing the eternal loneliness. Yet, at times, she still takes on her job, giving the astral clone time to recharge. Not that it is a living creature anyways…\n\nIt is so that she learns about the fragility of humans, the complexity of them and all other creatures around on planet earth, discovering that she too is capable of forming complex relationships.",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/DreamyDiino/Ds_bg.png",
+  "outfits": [
+    { "id": 0, "image": "/VINFERNIA/VINFERNIA/DreamyDiino/LanaVtuberPNG.png", "name": "Default" }
+  ],
+  "links": [
+    { "platform": "Twitch",  "url": "https://twitch.tv/DreamyDiino" },
+    { "platform": "YouTube", "url": "https://youtube.com/@DreamyDiino" },
+    { "platform": "TikTok",  "url": "https://tiktok.com/@DreamyDiino" },
+    { "platform": "X",       "url": "https://x.com/DreamyDiino" }
+  ],
+  "featuredVideoId": null,
+  "recommendedVideos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA", "views": "0" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA", "views": "0" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA", "views": "0" }
+  ],
+  "videos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+  ],
+  "data": {
+    "birthday": "March 31st",
+    "debutStream": "January 27th, 2025",
+    "height": "6'1\"",
+    "unit": "Vinfernia Gen 0",
+    "designer": { "name": "Miss_Pudra", "url": "#" },
+    "modelArtist": { "name": "Piyoriin", "url": "#" },
+    "dream": "To experience human life and form connections to others",
+    "fanName": "Dreamers",
+    "mascot": "Nuggie",
+    "hashtags": { "stream": "#DiinosDream", "fanArt": "#DiinoArt", "clips": "#DreamyClips" },
+    "catchphrases": [
+      "My my, you have quite the interesting dreams",
+      "You want me to shapeshift? Maybe if you ask nicely.",
+      "No, you may not pet Nuggie. He bites."
+    ],
+    "regularStreams": "Modded Minecraft Monday, Variety",
+    "hobbies": "Drawing, Observing people, Stargazing, Traversing dreams",
+    "likes": "Nuggie, Boba tea, Sleeping, Learning about creatures, Singing",
+    "specialSkills": "Weaving dreams, Shapeshifting, Interdimensional traveling"
+  },
+  "theme": {
+    "accent":      "#C9A84C",
+    "accentAlt":   "#5B8F8A",
+    "background":  "#0C0E0D",
+    "featured":    "#101412",
+    "recommended": "#161A18",
+    "recent":      "#101412"
+  }
+}

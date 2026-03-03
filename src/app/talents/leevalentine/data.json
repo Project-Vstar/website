@@ -1,0 +1,54 @@
+{
+  "name": "Lee Valentine",
+  "nameJapanese": "Your friendly neighborhood demon VTuber!",
+  "biography": "Lee Valentine is a demon VTuber who streams a variety of content with a focus on horror games and Identity V. Known for their love of all things spooky and their passion for cosplay, Lee creates a welcoming space for their community of IMPs.\n\nWith a dream of one day being noticed by Mafumafu and a deep appreciation for horror, yaoi, Omori, and Pokemon, Lee brings an energetic and passionate presence to every stream.",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/Lee/Lee_bg.png",
+  "outfits": [
+    { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lee/Leevt.png", "name": "Default Outfit" }
+  ],
+  "links": [
+    { "platform": "Linktree", "url": "https://linktr.ee/leevalentinevt" },
+    { "platform": "Twitch",   "url": "https://www.twitch.tv/leevalentine_vt" },
+    { "platform": "YouTube",  "url": "https://www.youtube.com/@LeeValentine_VT" },
+    { "platform": "X",        "url": "https://x.com/leevalentine_vt" },
+    { "platform": "TikTok",   "url": "https://www.tiktok.com/@leevalentinevt" }
+  ],
+  "featuredVideoId": "dQw4w9WgXcQ",
+  "recommendedVideos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA", "views": "0" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA", "views": "0" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA", "views": "0" }
+  ],
+  "videos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+  ],
+  "data": {
+    "birthday": "July 7th",
+    "debutStream": "TBA",
+    "height": "5'3\" (1.63m)",
+    "unit": "Vinfernia Gen 0",
+    "artist":      { "name": "ShrimpyMaki", "url": "https://x.com/ShrimpyMaki" },
+    "modelArtist": { "name": "Piorinn",     "url": "https://x.com/piyoriinchan" },
+    "rigger":      { "name": "M00nyboy",    "url": "https://x.com/m00nyboy" },
+    "dream": "One day I'll be noticed by Mafumafu, trust?",
+    "fanName": "IMPS",
+    "hashtags": {
+      "fanArt": "#ArtistLeec",
+      "stream": "TBA",
+      "clips":  "TBA"
+    },
+    "regularStreams": "IdentityV, Horror Games",
+    "hobbies": "Cosplay, Playing Games",
+    "likes": "Horror Things, Yaoi, Omori, Pokemon"
+  },
+  "theme": {
+    "accent":      "#B57EE8",
+    "secondary":   "#E8B5D8",
+    "background":  "#0a0510",
+    "recommended": "#8B5FBF",
+    "recent":      "#6B4A8F"
+  }
+}

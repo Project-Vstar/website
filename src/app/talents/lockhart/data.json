@@ -1,0 +1,100 @@
+{
+  "lockhart": {
+    "name": "Dr. Lockhart",
+    "nameJapanese": "ロクハート先生",
+    "tagline": "There you are, Patient. Right on time. Now tell me your affliction.",
+    "biography": "Dr. Sean Lockhart is one of The Order's most skilled doctors, known for saving the hamlet of Black Hollow that was doomed to be cremated. His success allowed him to take part in The Rite of Binding earning him the Mask of the White Raven, a sacred omen not seen since the founding days of The Order.\n\nA mask that carries admiration from the people but has the power to shake the hierarchy of The Order itself. Accompanied by his loyal companion Poe, Lockhart wanders this plague stricken land to heal and protect his beloved patients from the horrors that remain unseen, and to uphold the ideals of an Order that has lost its way and grows more corrupt by the day…\n\n…though those that have spent time around the doctor swear that his reflection does not always match the man who casts it.",
+    "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_BG.png",
+    "outfits": [
+      { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", "name": "Default" },
+      { "id": 1, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", "name": "Mask" }
+    ],
+    "links": [
+      { "platform": "Twitch",  "url": "https://twitch.tv/lockhart_vt" },
+      { "platform": "YouTube", "url": "https://youtube.com/@Lockhart_VT" },
+      { "platform": "TikTok",  "url": "https://tiktok.com/@Lockhart_VT" },
+      { "platform": "X",       "url": "https://x.com/Lockhart_VT" }
+    ],
+    "featuredVideoId": "cjlUxgYMhfM",
+    "videos": [
+      { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+      { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+      { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+      { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+    ],
+    "data": {
+      "birthday": "October 3rd",
+      "debutStream": "June 21st, 2025",
+      "height": "5'11\"",
+      "unit": "Vinfernia Gen 0",
+      "illustrator": { "name": "Piorinn", "url": "#" },
+      "dream": "Provide a safe place for all my patients",
+      "fanName": "Patients",
+      "hashtags": { "stream": "#LockhartLive", "fanArt": "#LockArted", "clips": "#DosesofLockhart" },
+      "catchphrases": [
+        "Good Evening Patient",
+        "Get that apple away from me",
+        "What are your symptoms?"
+      ],
+      "regularStreams": "Tilted Tuesdays, 日本語の勉強, DnD",
+      "hobbies": "Journaling, Collecting Feathers, Brewing Herbal Remedies, Stargazing, Collecting Small Oddities",
+      "likes": "Fresh Tea, Orderly Workspaces, Old Music Boxes, Herbal Scents, Poe",
+      "specialSkills": "Plague Diagnostics, Silent Movement, High Emotional Regulation"
+    }
+  },
+  "other": {
+    "name": "The Other",
+    "nameJapanese": "ザー・アザー",
+    "tagline": "Don't be shy, Patient. Come closer, let me get a closer look.",
+    "biography": "The Other came into existence the night Lockhart's serum fractured his mind, a second self that indulges in everything the Doctor denies himself.\n\nThe Other protects their precious patients with a passion that borders obsession, stopping at nothing to keep their hearts beating. Slipping in and out of control over Lockhart's body whenever the doctor's spirit weakens, through exhaustion, emotion, or on the rare occasion, permission.\n\nWhispers have begun to circulate within The Order that the White Raven does not work alone.",
+    "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Other_BG.png",
+    "outfits": [
+      { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", "name": "Other Default" },
+      { "id": 1, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", "name": "Other Mask" }
+    ],
+    "links": [
+      { "platform": "Twitch",  "url": "https://twitch.tv/lockhart_vt" },
+      { "platform": "YouTube", "url": "https://youtube.com/@Lockhart_VT" },
+      { "platform": "TikTok",  "url": "https://tiktok.com/@Lockhart_VT" },
+      { "platform": "X",       "url": "https://x.com/Lockhart_VT" }
+    ],
+    "featuredVideoId": "cjlUxgYMhfM",
+    "videos": [
+      { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+      { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+      { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
+      { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+    ],
+    "data": {
+      "birthday": "June 21st",
+      "debutStream": "June 21st, 2025",
+      "height": "5'11\"",
+      "unit": "Vinfernia Gen 0",
+      "illustrator": { "name": "Piorinn", "url": "#" },
+      "dream": "To keep every patient alive, no matter the cost.",
+      "fanName": "Patients",
+      "hashtags": { "stream": "#LockhartLive", "fanArt": "#LockArted", "clips": "#DosesofLockhart" },
+      "catchphrases": [
+        "My, aren't you a lovely disaster",
+        "Don't flinch, this is my favourite part",
+        "Try not to die on me, it would ruin my night"
+      ],
+      "regularStreams": "Tilted Tuesdays, 日本語の勉強, DnD",
+      "hobbies": "Annotating Lockhart's Journals, Mixing Potent Concoctions, Studying Poe, Admiring their Reflection, Night Walks in Plague Filled Towns",
+      "likes": "Strong Tea with Too Much Honey, Chaotic Workspaces, The Smell of Alcohol and Iron, Their Own Voice, Poe",
+      "specialSkills": "Unrestrained Adaptability, Rapid Reflexes, Pain Tolerance"
+    }
+  },
+  "theme": {
+    "lockhart": {
+      "accent":     "#F5F0E1",
+      "background": "#1a1a1a",
+      "recent":     "#6E6E5A"
+    },
+    "other": {
+      "accent":     "#1B4D3E",
+      "background": "#050a08",
+      "recent":     "#2A4A3A"
+    }
+  }
+}
