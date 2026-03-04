@@ -6,9 +6,13 @@ import { SocialLinks } from "@/app/components/SocialLinks";
 import VideoCard from "@/app/components/Videocard";
 import { BackToTalentsButton } from "@/app/components/backtotalentsbutton";
 import dreamyDiinoData from "./data.json";
+import ScrollToDataButton from "@/app/components/ScrollToDataButton";
 
 const themeColors = dreamyDiinoData.theme;
 
+// ---------------------------------------------------------------------------
+// DataItem
+// ---------------------------------------------------------------------------
 const DataItem = memo(function DataItem({ label, value, color }) {
     return (
         <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
@@ -20,6 +24,9 @@ const DataItem = memo(function DataItem({ label, value, color }) {
     );
 });
 
+// ---------------------------------------------------------------------------
+// YouTubeFacade
+// ---------------------------------------------------------------------------
 const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const handleClick = useCallback(() => { setIsLoaded(true); }, []);
@@ -27,7 +34,7 @@ const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
     if (!videoId) {
         return (
             <div className="w-full h-full flex items-center justify-center bg-gray-800">
-                <p className="text-gray-400 text-lg">Featured video coming soon!</p>
+                <p className="text-gray-400 text-lg">Channel section coming soon!</p>
             </div>
         );
     }
@@ -36,7 +43,7 @@ const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
             <iframe
                 className="w-full h-full"
                 src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                title="Featured Video"
+                title="Channel Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
             />
@@ -59,6 +66,9 @@ const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
     );
 });
 
+// ---------------------------------------------------------------------------
+// OutfitButton
+// ---------------------------------------------------------------------------
 const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureColor, onClick }) {
     return (
         <button
@@ -79,6 +89,9 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
     );
 });
 
+// ---------------------------------------------------------------------------
+// Page
+// ---------------------------------------------------------------------------
 export default function DreamyDiinoPage() {
     const [selectedOutfit, setSelectedOutfit] = useState(0);
     const signatureColor = themeColors.accent;
@@ -97,6 +110,7 @@ export default function DreamyDiinoPage() {
 
             <main className="flex-grow pt-0">
 
+                {/* ── HERO ─────────────────────────────────────────────────── */}
                 <div className="relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute inset-0 z-0 pointer-events-none"
@@ -115,6 +129,7 @@ export default function DreamyDiinoPage() {
                         className="absolute inset-0 z-0 pointer-events-none"
                         style={{ background: `radial-gradient(ellipse at center, transparent 40%, ${themeColors.background} 100%)` }}
                     />
+                    {/* Hero → Channel fade */}
                     <div
                         className="absolute bottom-0 left-0 right-0 h-40 z-[1] pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.featured}90 60%, ${themeColors.featured} 100%)` }}
@@ -123,6 +138,7 @@ export default function DreamyDiinoPage() {
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
+                            {/* Model image */}
                             <div className="relative flex items-center justify-center h-[700px] overflow-visible">
                                 <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                     <img
@@ -137,20 +153,34 @@ export default function DreamyDiinoPage() {
                                 </div>
                             </div>
 
+                            {/* Right column */}
                             <div className="space-y-8">
+
+                                {/* Gen logo + name block */}
                                 <div>
+                                    {/* Gen logo — top of name block, links to /talents */}
+                                    {dreamyDiinoData.genLogo && (
+                                        <a href="/talents" className="inline-block mb-3 opacity-70 hover:opacity-100 transition-opacity duration-200">
+                                            <img src={dreamyDiinoData.genLogo} alt="Gen Logo" className="h-10 w-auto" />
+                                        </a>
+                                    )}
+
                                     <h1
                                         className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
                                         style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{dreamyDiinoData.name}</div>
                                     </h1>
+
+                                    {/* Title (replaces JP name) */}
                                     <p className="text-2xl mb-4" style={{ color: signatureColor }}>
-                                        {dreamyDiinoData.nameJapanese}
+                                        {dreamyDiinoData.title}
                                     </p>
+
                                     <p className="text-xl text-gray-300 italic">"{dreamyDiinoData.tagline}"</p>
                                 </div>
 
+                                {/* About */}
                                 <div
                                     className="backdrop-blur-sm rounded-lg p-6 border"
                                     style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
@@ -161,23 +191,41 @@ export default function DreamyDiinoPage() {
                                     </p>
                                 </div>
 
+                                {/* Scroll-to-data button — above social links */}
+                                <ScrollToDataButton signatureColor={signatureColor} />
+
+                                {/* Social links — Twitch & X only */}
                                 <SocialLinks links={dreamyDiinoData.links} signatureColor={signatureColor} />
 
-                                <div
-                                    className="backdrop-blur-sm rounded-lg p-6 border"
-                                    style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
-                                >
-                                    <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>Featured Video</h2>
-                                    <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
-                                        <YouTubeFacade videoId={dreamyDiinoData.featuredVideoId} signatureColor={signatureColor} />
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
                     </section>
                 </div>
 
+                {/* ── CHANNEL (was Featured Video) ─────────────────────────── */}
+                <section
+                    className="py-16 px-4 relative"
+                    style={{ backgroundColor: themeColors.featured }}
+                >
+                    {/* Fade out bottom into recommended */}
+                    <div
+                        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+                        style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.recommended} 100%)` }}
+                    />
+                    <div className="max-w-3xl mx-auto relative z-10">
+                        <h2 className="text-3xl font-bold text-white text-center mb-8" style={{ color: signatureColor }}>Channel</h2>
+                        <div
+                            className="backdrop-blur-sm rounded-lg border overflow-hidden"
+                            style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
+                        >
+                            <div className="aspect-video bg-gray-800">
+                                <YouTubeFacade videoId={dreamyDiinoData.featuredVideoId} signatureColor={signatureColor} />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── RECOMMENDED VIDEOS ───────────────────────────────────── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
@@ -193,6 +241,7 @@ export default function DreamyDiinoPage() {
                     </div>
                 </section>
 
+                {/* ── RECENT VIDEOS ────────────────────────────────────────── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recent }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
@@ -219,14 +268,31 @@ export default function DreamyDiinoPage() {
                     </div>
                 </section>
 
+                {/* ── LORE ─────────────────────────────────────────────────── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, ${themeColors.recent} 0%, ${themeColors.background} 100%)` }}
                     />
+                    <div className="max-w-4xl mx-auto relative z-10">
+                        <div
+                            className="backdrop-blur-sm rounded-lg p-6 border"
+                            style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
+                        >
+                            <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>Lore</h2>
+                            <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                                {dreamyDiinoData.lore}
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── MODEL + DATA ─────────────────────────────────────────── */}
+                <section id="data-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
 
+                            {/* Model viewer */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
                                 <div className="relative flex items-center justify-center h-[700px] overflow-visible">
@@ -255,6 +321,7 @@ export default function DreamyDiinoPage() {
                                 </div>
                             </div>
 
+                            {/* Data */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
                                 <div
@@ -266,7 +333,7 @@ export default function DreamyDiinoPage() {
                                 >
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <DataItem label="Birthday" value={dreamyDiinoData.data.birthday} color={signatureColor} />
-                                        <DataItem label="Debut Stream" value={dreamyDiinoData.data.debutStream} color={signatureColor} />
+                                        <DataItem label="Oshi Mark" value={dreamyDiinoData.oshiMark} color={signatureColor} />
                                         <DataItem label="Height" value={dreamyDiinoData.data.height} color={signatureColor} />
                                         <DataItem label="Unit" value={dreamyDiinoData.data.unit} color={signatureColor} />
 
@@ -339,6 +406,34 @@ export default function DreamyDiinoPage() {
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── MEMBER NAVIGATION ────────────────────────────────────── */}
+                <section className="py-12 px-4 relative" style={{ backgroundColor: themeColors.background }}>
+                    <div
+                        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+                        style={{ backgroundColor: `${signatureColor}20` }}
+                    />
+                    <div className="max-w-4xl mx-auto text-center">
+                        <p className="text-gray-500 text-sm uppercase tracking-widest mb-6">Meet the Others</p>
+                        <div className="flex flex-wrap gap-4 justify-center">
+                            {/* Placeholder member links — populate as pages are built */}
+                            {[
+                                { name: "Member Name", href: "#" },
+                                { name: "Member Name", href: "#" },
+                                { name: "Member Name", href: "#" },
+                            ].map((member, i) => (
+                                <a
+                                    key={i}
+                                    href={member.href}
+                                    className="px-6 py-2 rounded-full border backdrop-blur-sm text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:brightness-110"
+                                    style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "rgba(255,255,255,0.05)" }}
+                                >
+                                    {member.name}
+                                </a>
+                            ))}
                         </div>
                     </div>
                 </section>

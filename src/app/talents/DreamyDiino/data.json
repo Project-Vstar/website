@@ -1,17 +1,18 @@
 {
   "name": "DreamyDiino",
-  "nameJapanese": "Goddess of Dreams",
+  "title": "Goddess of Dreams",
   "tagline": "Easy now, just rest your eyes. Whatever happens next, I've got you.",
-  "biography": "Lana has existed for eons, dutifully weaving dreams and balancing realms across the cosmos. But eternity can become monotonous, even for a goddess. One day, tired of her divine routine, she created an astral clone of herself to handle her celestial responsibilities… and wandered off.\n\nTraversing the dreams of those she weaves them for to learn more about the world, she was particularly drawn to planet Earth. Interested by the small planet, she chose to learn all about it, playing with time to study each and every creature. She even took a dinosaur egg and magically altered it, creating a tiny immortal Dinosaur to keep her company, named Nuggie.\n\nWatching the growth of the human race, and seeing complex emotions grow as the humans change, she decided that she too wishes to experience life on earth, and decided to keep on her human form as she mingles with the world of the living- curing the eternal loneliness. Yet, at times, she still takes on her job, giving the astral clone time to recharge. Not that it is a living creature anyways…\n\nIt is so that she learns about the fragility of humans, the complexity of them and all other creatures around on planet earth, discovering that she too is capable of forming complex relationships.",
+  "biography": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  "lore": "Lana has existed for eons, dutifully weaving dreams and balancing realms across the cosmos. But eternity can become monotonous, even for a goddess. One day, tired of her divine routine, she created an astral clone of herself to handle her celestial responsibilities… and wandered off.\n\nTraversing the dreams of those she weaves them for to learn more about the world, she was particularly drawn to planet Earth. Interested by the small planet, she chose to learn all about it, playing with time to study each and every creature. She even took a dinosaur egg and magically altered it, creating a tiny immortal Dinosaur to keep her company, named Nuggie.\n\nWatching the growth of the human race, and seeing complex emotions grow as the humans change, she decided that she too wishes to experience life on earth, and decided to keep on her human form as she mingles with the world of the living- curing the eternal loneliness. Yet, at times, she still takes on her job, giving the astral clone time to recharge. Not that it is a living creature anyways…\n\nIt is so that she learns about the fragility of humans, the complexity of them and all other creatures around on planet earth, discovering that she too is capable of forming complex relationships.",
+  "oshiMark": "🌙✨💤",
   "backgroundImage": "/VINFERNIA/VINFERNIA/DreamyDiino/Ds_bg.png",
+  "genLogo": "/VINFERNIA/VINFERNIA/gen-logo.png",
   "outfits": [
     { "id": 0, "image": "/VINFERNIA/VINFERNIA/DreamyDiino/LanaVtuberPNG.png", "name": "Default" }
   ],
   "links": [
-    { "platform": "Twitch",  "url": "https://twitch.tv/DreamyDiino" },
-    { "platform": "YouTube", "url": "https://youtube.com/@DreamyDiino" },
-    { "platform": "TikTok",  "url": "https://tiktok.com/@DreamyDiino" },
-    { "platform": "X",       "url": "https://x.com/DreamyDiino" }
+    { "platform": "Twitch", "url": "https://twitch.tv/DreamyDiino" },
+    { "platform": "X",      "url": "https://x.com/DreamyDiino" }
   ],
   "featuredVideoId": null,
   "recommendedVideos": [
@@ -27,7 +28,6 @@
   ],
   "data": {
     "birthday": "March 31st",
-    "debutStream": "January 27th, 2025",
     "height": "6'1\"",
     "unit": "Vinfernia Gen 0",
     "designer": { "name": "Miss_Pudra", "url": "#" },
