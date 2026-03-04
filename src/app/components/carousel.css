@@ -1,0 +1,52 @@
+.embla {
+  overflow: hidden;
+  max-width: 100%;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.embla__buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  max-width: 800px; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.embla__button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 1rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.embla__button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.embla__button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.embla__button__svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
