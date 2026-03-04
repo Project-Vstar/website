@@ -34,7 +34,7 @@ export default function VStarPage() {
               <img src="/Partners/Odoo.png" alt="Partner 3" className="object-contain h-16 p-1" />
             </a>
             <a href="#" className="flex items-center justify-center bg-gray-500 rounded-lg h-32" >
-              <img src="Ppartners/PremierInn.svg" alt="Partner 4" className="object-contain h-16 p-1" />
+              <img src="Partners/PremierInn.svg" alt="Partner 4" className="object-contain h-16 p-1" />
             </a>
             <a href="#" className="flex items-center justify-center bg-gray-500 rounded-lg h-32" >
               <img src="/Partners/Vodafone.png" alt="Partner 5" className="object-contain h-16 p-1" />
