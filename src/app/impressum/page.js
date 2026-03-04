@@ -20,7 +20,6 @@ export default function PrivacyPolicy() {
 
     const translations = {
         en: {
-            title: "Imprint",
             content: `
 ### Imprint
 
