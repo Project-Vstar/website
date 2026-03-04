@@ -208,7 +208,7 @@ export default function HomePage() {
           <h2 className="font-oswald text-2xl text-center mb-12 opacity-50 tracking-[0.2em] uppercase">Organisation</h2>
           <div className="relative group">
             <div className="absolute inset-0 bg-blue-500/10 blur-[100px] pointer-events-none" />
-            <div className="bg-blue-950/20 border border-blue-900/20 p-8 rounded-3xl backdrop-blur-sm">
+            <div className=" p-8 rounded-3xl backdrop-blur-sm">
               <OrgChart />
             </div>
             <p className="md:hidden text-center text-[10px] text-slate-500 mt-4 uppercase tracking-widest">
