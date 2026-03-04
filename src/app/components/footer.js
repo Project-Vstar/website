@@ -11,7 +11,7 @@ const Footer = () => {
         <footer className="w-full bg-[#080a09] text-white border-t border-white/5">
             <div className="max-w-7xl mx-auto px-8 py-16">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
-                    
+
                     {/* Brand Section */}
                     <div className="lg:col-span-1">
                         <Link href="/" className="inline-block mb-6">
@@ -33,8 +33,8 @@ const Footer = () => {
                         <span className={sectionLabelStyle}>Navigation</span>
                         <nav className="space-y-2">
                             <Link href="/" className={linkStyle}>Home</Link>
-                            <Link href="/vstar" className={linkStyle}>VSTAR</Link>
-                            <Link href="/vinfernia" className={linkStyle}>Vinfernia</Link>
+                            <Link href="/talents" className={linkStyle}>Talents</Link>
+                            <Link href="/lore" className={linkStyle}>Lore</Link>
                             <Link href="/Articles" className={linkStyle}>Articles</Link>
                         </nav>
                     </div>
