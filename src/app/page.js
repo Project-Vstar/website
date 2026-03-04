@@ -220,13 +220,6 @@ export default function HomePage() {
 
       <Footer />
 
-      {/* ── Trademark notice ──────────────────────────────────────────── */}
-      <div className="border-t border-white/5 py-4 px-6 text-center">
-        <p className="text-[11px] text-slate-600 leading-relaxed">
-          VINFERNIA and VSTAR - Virtual Star Entertainment are trademarks of VSTAR - Virtual Star Entertainment Holding UG (haftungsbeschränkt)
-        </p>
-      </div>
-
     </div>
   );
 }

@@ -1,14 +1,28 @@
+/* eslint-disable react/prop-types */
 "use client";
 import React, { useState, useMemo, useCallback, memo } from "react";
+import Link from "next/link";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { SocialLinks } from "@/app/components/SocialLinks";
 import VideoCard from "@/app/components/Videocard";
 import { BackToTalentsButton } from "@/app/components/backtotalentsbutton";
 import dreamyDiinoData from "./data.json";
+import talentsData from "@/app/talents/data.json";
 import ScrollToDataButton from "@/app/components/ScrollToDataButton";
 
 const themeColors = dreamyDiinoData.theme;
+
+// ---------------------------------------------------------------------------
+// Darken hex helper (same as talents page)
+// ---------------------------------------------------------------------------
+function darkenHex(hex, amount = 40) {
+    const n = parseInt(hex.replace("#", ""), 16);
+    const r = Math.max(0, (n >> 16) - amount);
+    const g = Math.max(0, ((n >> 8) & 0xff) - amount);
+    const b = Math.max(0, (n & 0xff) - amount);
+    return `rgb(${r},${g},${b})`;
+}
 
 // ---------------------------------------------------------------------------
 // DataItem
@@ -90,11 +104,125 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
 });
 
 // ---------------------------------------------------------------------------
+// GenmateTalentCard — mirrors TalentCard from the talents page
+// ---------------------------------------------------------------------------
+const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig }) {
+    const [hovered, setHovered] = useState(false);
+    const theme = talent.themeColor || "#334155";
+    const dark = darkenHex(theme, 50);
+    const glow = `0 0 28px ${theme}99, 0 0 8px ${theme}55`;
+
+    return (
+        <Link
+            href={talent.href}
+            className="group flex flex-col items-center"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            {/* Square card */}
+            <div
+                className="relative overflow-hidden rounded-2xl"
+                style={{
+                    width: "180px",
+                    height: "180px",
+                    backgroundColor: theme,
+                    boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
+                    transform: hovered ? "scale(1.07)" : "scale(1)",
+                    transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
+                }}
+            >
+                {/* Group logo watermark — layer 1 */}
+                {groupConfig?.logo && (
+                    <img
+                        src={groupConfig.logo}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute pointer-events-none select-none"
+                        style={{
+                            width: "130%",
+                            height: "130%",
+                            top: "-15%",
+                            left: "-15%",
+                            objectFit: "contain",
+                            opacity: 0.12,
+                            filter: "brightness(0) invert(0)",
+                            mixBlendMode: "multiply",
+                        }}
+                    />
+                )}
+
+                {/* Group logo watermark — layer 2 (darker tint) */}
+                {groupConfig?.logo && (
+                    <img
+                        src={groupConfig.logo}
+                        alt=""
+                        aria-hidden="true"
+                        className="absolute pointer-events-none select-none"
+                        style={{
+                            width: "130%",
+                            height: "130%",
+                            top: "-15%",
+                            left: "-15%",
+                            objectFit: "contain",
+                            opacity: 0.18,
+                            filter: "brightness(0)",
+                        }}
+                    />
+                )}
+
+                {/* Character art */}
+                <img
+                    src={talent.char}
+                    alt={talent.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{
+                        objectPosition: talent.objectPosition || "50% 20%",
+                        transform: `scale(${hovered
+                            ? (talent.imageScale || 1) * 1.08 + 0.08
+                            : (talent.imageScale || 1) * 1.08
+                            })`,
+                        transition: "transform 0.4s ease",
+                    }}
+                />
+
+                {/* Hover vignette */}
+                <div
+                    className="absolute inset-0 rounded-2xl"
+                    style={{
+                        background: `radial-gradient(ellipse at center, transparent 40%, ${dark}88 100%)`,
+                        opacity: hovered ? 1 : 0,
+                        transition: "opacity 0.3s ease",
+                    }}
+                />
+            </div>
+
+            {/* Name */}
+            <p
+                className="mt-3 text-sm font-semibold text-center tracking-wide text-slate-200 transition-all duration-300"
+                style={{
+                    textShadow: hovered
+                        ? `0 0 8px ${theme}, 0 0 20px ${theme}88`
+                        : "none",
+                }}
+            >
+                {talent.name}
+            </p>
+        </Link>
+    );
+});
+
+// ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
 export default function DreamyDiinoPage() {
     const [selectedOutfit, setSelectedOutfit] = useState(0);
     const signatureColor = themeColors.accent;
+
+    // Genmates: same group, excluding self and staff
+    const genmates = talentsData.talents.filter(
+        (t) => t.group === "vinfernia" && t.name !== dreamyDiinoData.name
+    );
+    const vinferniaGroupConfig = talentsData.groups.find((g) => g.id === "vinfernia");
 
     const handleOutfitClick = useCallback((id) => { setSelectedOutfit(id); }, []);
 
@@ -158,7 +286,6 @@ export default function DreamyDiinoPage() {
 
                                 {/* Gen logo + name block */}
                                 <div>
-                                    {/* Gen logo — top of name block, links to /talents */}
                                     {dreamyDiinoData.genLogo && (
                                         <a href="/talents" className="inline-block mb-3 opacity-70 hover:opacity-100 transition-opacity duration-200">
                                             <img src={dreamyDiinoData.genLogo} alt="Gen Logo" className="h-10 w-auto" />
@@ -172,12 +299,11 @@ export default function DreamyDiinoPage() {
                                         <div className="drop-shadow-lg">{dreamyDiinoData.name}</div>
                                     </h1>
 
-                                    {/* Title (replaces JP name) */}
                                     <p className="text-2xl mb-4" style={{ color: signatureColor }}>
                                         {dreamyDiinoData.title}
                                     </p>
 
-                                    <p className="text-xl text-gray-300 italic">"{dreamyDiinoData.tagline}"</p>
+                                    <p className="text-xl text-gray-300 italic">&quot;{dreamyDiinoData.tagline}&quot;</p>
                                 </div>
 
                                 {/* About */}
@@ -191,10 +317,8 @@ export default function DreamyDiinoPage() {
                                     </p>
                                 </div>
 
-                                {/* Scroll-to-data button — above social links */}
                                 <ScrollToDataButton signatureColor={signatureColor} />
 
-                                {/* Social links — Twitch & X only */}
                                 <SocialLinks links={dreamyDiinoData.links} signatureColor={signatureColor} />
 
                             </div>
@@ -202,15 +326,14 @@ export default function DreamyDiinoPage() {
                     </section>
                 </div>
 
-                {/* ── CHANNEL (was Featured Video) ─────────────────────────── */}
+                {/* ── CHANNEL ──────────────────────────────────────────────── */}
                 <section
                     className="py-16 px-4 relative"
                     style={{ backgroundColor: themeColors.featured }}
                 >
-                    {/* Fade out bottom into recommended */}
                     <div
-                        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.recommended} 100%)` }}
+                        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.featured}00 0%, ${themeColors.recommended} 100%)` }}
                     />
                     <div className="max-w-3xl mx-auto relative z-10">
                         <h2 className="text-3xl font-bold text-white text-center mb-8" style={{ color: signatureColor }}>Channel</h2>
@@ -227,10 +350,6 @@ export default function DreamyDiinoPage() {
 
                 {/* ── RECOMMENDED VIDEOS ───────────────────────────────────── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
-                    <div
-                        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
-                        style={{ background: `linear-gradient(to bottom, ${themeColors.featured} 0%, ${themeColors.recommended} 100%)` }}
-                    />
                     <div className="max-w-6xl mx-auto relative z-0">
                         <h2 className="text-4xl font-bold text-white text-center mb-12">Recommended Videos</h2>
                         <div className="grid md:grid-cols-3 gap-6">
@@ -296,17 +415,22 @@ export default function DreamyDiinoPage() {
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
                                 <div className="relative flex items-center justify-center h-[700px] overflow-visible">
-                                    <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
-                                        {dreamyDiinoData.outfits.map((outfit) => (
-                                            <OutfitButton
-                                                key={outfit.id}
-                                                outfit={outfit}
-                                                isSelected={selectedOutfit === outfit.id}
-                                                signatureColor={signatureColor}
-                                                onClick={() => handleOutfitClick(outfit.id)}
-                                            />
-                                        ))}
-                                    </div>
+
+                                    {/* Outfit picker — only shown when there are multiple outfits */}
+                                    {dreamyDiinoData.outfits.length > 1 && (
+                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
+                                            {dreamyDiinoData.outfits.map((outfit) => (
+                                                <OutfitButton
+                                                    key={outfit.id}
+                                                    outfit={outfit}
+                                                    isSelected={selectedOutfit === outfit.id}
+                                                    signatureColor={signatureColor}
+                                                    onClick={() => handleOutfitClick(outfit.id)}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+
                                     <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                         <img
                                             src={currentOutfitImage}
@@ -385,7 +509,7 @@ export default function DreamyDiinoPage() {
                                                 <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Catchphrases</h3>
                                                 <ul className="space-y-1">
                                                     {dreamyDiinoData.data.catchphrases.map((phrase, index) => (
-                                                        <li key={index} className="text-white italic">"{phrase}"</li>
+                                                        <li key={index} className="text-white italic">&quot;{phrase}&quot;</li>
                                                     ))}
                                                 </ul>
                                             </div>
@@ -416,23 +540,15 @@ export default function DreamyDiinoPage() {
                         className="absolute top-0 left-0 right-0 h-px pointer-events-none"
                         style={{ backgroundColor: `${signatureColor}20` }}
                     />
-                    <div className="max-w-4xl mx-auto text-center">
-                        <p className="text-gray-500 text-sm uppercase tracking-widest mb-6">Meet the Others</p>
-                        <div className="flex flex-wrap gap-4 justify-center">
-                            {/* Placeholder member links — populate as pages are built */}
-                            {[
-                                { name: "Member Name", href: "#" },
-                                { name: "Member Name", href: "#" },
-                                { name: "Member Name", href: "#" },
-                            ].map((member, i) => (
-                                <a
-                                    key={i}
-                                    href={member.href}
-                                    className="px-6 py-2 rounded-full border backdrop-blur-sm text-sm font-semibold text-white transition-all duration-200 hover:scale-105 hover:brightness-110"
-                                    style={{ borderColor: "rgba(255,255,255,0.15)", backgroundColor: "rgba(255,255,255,0.05)" }}
-                                >
-                                    {member.name}
-                                </a>
+                    <div className="max-w-6xl mx-auto text-center">
+                        <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
+                        <div className="flex flex-wrap gap-8 justify-center">
+                            {genmates.map((talent) => (
+                                <GenmateTalentCard
+                                    key={talent.name}
+                                    talent={talent}
+                                    groupConfig={vinferniaGroupConfig}
+                                />
                             ))}
                         </div>
                     </div>

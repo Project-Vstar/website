@@ -176,9 +176,8 @@ const Header = () => {
             <header
                 className="fixed top-0 left-0 w-full z-40 transition-all duration-400"
                 style={{
-background: scrolled ? "rgba(15, 23, 42, 0.8)" : "linear-gradient(to bottom, rgba(15, 23, 42, 0.4), transparent)",
-backdropFilter: "blur(12px)",
-borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid transparent",
+                    background: scrolled ? "rgba(0, 0, 0, 0.3)" : "transparent", backdropFilter: "blur(12px)",
+                    borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid transparent",
                 }}
             >
                 <nav className="flex items-center justify-between px-6 py-3 relative">
@@ -207,11 +206,11 @@ borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid trans
                                 but the menu itself is positioned relative to the btn. 
                                 By adding right-0 here, it aligns with the btn's right edge. */}
                             <div className={`absolute top-11.5 right-0 mt-4 backdrop-blur-xl rounded-2xl p-6 min-w-[420px] transition-all duration-300 ${desktopMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
-                                 style={{ 
-                                     background: "rgba(8,10,9,0.85)", 
-                                     border: "1px solid rgba(255,255,255,0.12)",
-                                     boxShadow: "0 20px 40px rgba(0,0,0,0.4)" 
-                                 }}>
+                                style={{
+                                    background: "rgba(8,10,9,0.85)",
+                                    border: "1px solid rgba(255,255,255,0.12)",
+                                    boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+                                }}>
                                 <div className="grid grid-cols-3 gap-3">
                                     {navItems.map(({ href, label }) => (
                                         <Link key={href} href={href} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
