@@ -324,7 +324,7 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                         transform: `scale(${hovered
                             ? (talent.imageScale || 1) * 1.08 + 0.08
                             : (talent.imageScale || 1) * 1.08
-                        })`,
+                            })`,
                         transition: "transform 0.4s ease",
                     }}
                 />
@@ -416,8 +416,13 @@ export default function DreamyDiinoPage() {
                             <div className="space-y-8">
                                 <div>
                                     {dreamyDiinoData.genLogo && (
-                                        <a href="/talents" className="inline-block mb-3 opacity-70 hover:opacity-100 transition-opacity duration-200">
-                                            <img src={dreamyDiinoData.genLogo} alt="Gen Logo" className="h-10 w-auto" />
+                                        <a href="/talents" className="inline-block mb-1 opacity-70 hover:opacity-100 transition-opacity duration-200">
+                                            <img
+                                                src={dreamyDiinoData.genLogo}
+                                                alt="Gen Logo"
+                                                className="h-10 w-auto"
+                                                style={{ filter: `drop-shadow(0 0 8px ${signatureColor}90)` }}
+                                            />
                                         </a>
                                     )}
                                     <h1
