@@ -141,6 +141,36 @@ function TalentCard({ talent, primaryGroupLogo }) {
   );
 }
 
+// ─── Animated card wrapper ───────────────────────────────────────────────────
+function AnimatedCard({ children, index }) {
+  return (
+    <div
+      style={{
+        animation: "cardEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both",
+        animationDelay: `${index * 35}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// ─── Talent grid (keyed component so filter changes trigger remount + animation) ─
+function TalentGrid({ filteredTalents, getPrimaryLogoForTalent }) {
+  return (
+    <div className="flex flex-wrap justify-center gap-8">
+      {filteredTalents.map((talent, i) => (
+        <AnimatedCard key={talent.name} index={i}>
+          <TalentCard
+            talent={talent}
+            primaryGroupLogo={getPrimaryLogoForTalent(talent)}
+          />
+        </AnimatedCard>
+      ))}
+    </div>
+  );
+}
+
 // ─── Filter pill ─────────────────────────────────────────────────────────────
 function FilterPill({ label, glowStyle, isActive, onClick }) {
   const style = getGroupStyle(glowStyle);
@@ -296,15 +326,11 @@ export default function TalentsPage() {
               No talents in this group yet.
             </p>
           ) : (
-            <div className="flex flex-wrap justify-center gap-8">
-              {filteredTalents.map((talent) => (
-                <TalentCard
-                  key={talent.name}
-                  talent={talent}
-                  primaryGroupLogo={getPrimaryLogoForTalent(talent)}
-                />
-              ))}
-            </div>
+            <TalentGrid
+              key={activeSub ?? activeGen}
+              filteredTalents={filteredTalents}
+              getPrimaryLogoForTalent={getPrimaryLogoForTalent}
+            />
           )}
         </section>
 
