@@ -21,7 +21,7 @@ const LORE_SECTIONS = [
     imageScale: 2.2,
     title: "The Lore of VINFERNIA",
     paragraphs: [
-      "This is the beginning of the Lore of VINFERNIA — it will change over time with the contribution of every generation.",
+      "This is the beginning of the Lore of VINFERNIA - it will change over time with the contribution of every generation.",
       "Being saved by the soldiers showed Dee and his family the nightmare that the bombed-out city became. That is the day the little boy swore to himself to do everything he can to bring peace and happiness to the world.",
       "After a successful career in Espionage, he gets transferred to the State Security as a Spyhunter in 1960. In 1965, he is given supervision over the \"Kurjawje\" Project.",
       "With the device in hand, he set out to found his own organization to conquer the world and fulfill his dream:",
@@ -43,7 +43,7 @@ const LORE_SECTIONS = [
     imageScale: 1.2,
     title: "The Lore of VSTAR",
     paragraphs: [
-      "This is the beginning of the lore of VSTAR — it will evolve over time with contributions from every generation.",
+      "This is the beginning of the lore of VSTAR - it will evolve over time with contributions from every generation.",
       "Dee Ronny syn Łužycy was born to Dejan and Deniza syn Łužycy. He joined the Diplomatic Service (as a spy) in 1956. After a successful career in espionage and becoming the most hunted spy in the West, he was transferred to the State Security as a spy hunter in 1960.",
       "In 1965, he was given supervision over the \"Kurjawje\" Project (Kurjawje = Mist, as in the mists of time).",
       "In 1966, scientists of the Drježdźany Socialist Republic invented a device for time travel under the political supervision of Plukovník (Lt. Colonel) Dee Ronny syn Łužycy of the State Security Agency.",
@@ -174,15 +174,12 @@ export default function LorePage() {
 
         {/* ── Hero ── */}
         <section className="w-full text-center px-6 pt-16 pb-12 bg-gradient-to-b from-slate-950 to-slate-900">
-          <p className="font-oswald text-xs tracking-[0.4em] uppercase text-white/30 mb-4">
-            Origins &amp; History
-          </p>
           <h1 className="font-oswald text-5xl sm:text-6xl font-bold tracking-wide mb-4 text-white uppercase">
             The Lore
           </h1>
           <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
-            The story behind <span className="text-red-400 font-semibold">VINFERNIA</span> and{" "}
-            <span className="text-blue-400 font-semibold">VSTAR</span> — a world of espionage,
+            The story behind VINFERNIA and{" "}
+            VSTAR - a world of espionage,
             fractured timelines, and the relentless pursuit of peace.
           </p>
         </section>
@@ -196,15 +193,11 @@ export default function LorePage() {
         <section className="bg-slate-950 py-24 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <p className="font-oswald text-xs tracking-[0.4em] uppercase text-white/30 mb-3">
-                Illustrated Stories
-              </p>
               <h2 className="font-oswald text-4xl font-bold text-white uppercase tracking-wide mb-3">
                 Manga
               </h2>
               <p className="text-slate-500 text-sm max-w-md mx-auto">
-                Original stories featuring VINFERNIA, VSTAR, and individual talents — use the filters
-                to browse by faction.
+                Original stories featuring VINFERNIA, VSTAR, and individual talents!
               </p>
             </div>
 

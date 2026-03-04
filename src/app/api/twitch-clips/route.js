@@ -3,8 +3,8 @@
 // Fetches recent clips for a Twitch channel using the Helix API.
 //
 // Required env vars (set in .env.local):
-//   TWITCH_CLIENT_ID     — your Twitch app client ID
-//   TWITCH_CLIENT_SECRET — your Twitch app client secret
+//   TWITCH_CLIENT_ID     -  your Twitch app client ID
+//   TWITCH_CLIENT_SECRET - your Twitch app client secret
 //
 // Usage: GET /api/twitch-clips?channel=DreamyDiino&limit=4
 

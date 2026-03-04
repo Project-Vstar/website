@@ -26,7 +26,7 @@ function usePrevNextButtons(emblaApi) {
   return { prevBtnDisabled, nextBtnDisabled, onPrevButtonClick, onNextButtonClick };
 }
 
-// ─── Filter pill — mirrors the talents page style ────────────────────────────
+// ─── Filter pill - mirrors the talents page style ────────────────────────────
 function FilterPill({ label, glowColor, isActive, onClick }) {
   return (
     <button

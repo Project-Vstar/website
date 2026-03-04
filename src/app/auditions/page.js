@@ -260,7 +260,7 @@ export default function AuditionsPage() {
         "Our committee reviews your submitted audition materials.",
         "Within the next 2 months an e-mail will be sent to your provided address confirming your rejection or acceptance.",
       ],
-      note: "The committee only reviews your audition requirements. Any personal data — such as age, country of residence, or name — are not shared and are treated as strictly confidential.",
+      note: "The committee only reviews your audition requirements. Any personal data - such as age, country of residence, or name - are not shared and are treated as strictly confidential.",
     },
     {
       number: 2,
@@ -271,7 +271,7 @@ export default function AuditionsPage() {
         {
           main: "On the appointed date your interview with the Round 2 committee takes place.",
           sub: [
-            "This interview primarily serves to get a sense of you as a person and to determine who would work best alongside you — because what happens behind the scenes matters.",
+            "This interview primarily serves to get a sense of you as a person and to determine who would work best alongside you - because what happens behind the scenes matters.",
             "VINFERNIA and VSTAR are brands built on personality. We need to find people who can collaborate effectively as a team.",
           ],
         },
@@ -279,7 +279,7 @@ export default function AuditionsPage() {
           main: "Within 2 weeks of the interview you will receive one of the following:",
           sub: [
             "An invitation to Round 3.",
-            "A Stay of Audition — due to current company circumstances or existing group compositions, you may be accepted but your entry date delayed until the next generation can be built around you, or an intermediate generation can be formed.",
+            "A Stay of Audition due to current company circumstances or existing group compositions, you may be accepted but your entry date delayed until the next generation can be built around you, or an intermediate generation can be formed.",
             "A rejection.",
           ],
         },
@@ -294,12 +294,12 @@ export default function AuditionsPage() {
         {
           main: "It consists of three key meetings:",
           sub: [
-            "A one-on-one with the CEO — to get to know each other and for you to share your goals and expectations for your time in VINFERNIA / VSTAR.",
-            "A one-on-one with your personal manager — to get acquainted, set shared goals, and agree on working conditions.",
+            "A one-on-one with the CEO to get to know each other and for you to share your goals and expectations for your time in VINFERNIA / VSTAR.",
+            "A one-on-one with your personal manager to get acquainted, set shared goals, and agree on working conditions.",
             "Group meetings with your future gen-mates and colleagues so you know who to turn to when you need support.",
           ],
         },
-        "Based on your individual needs, various support programs will be offered — including health insurance, tax advisory, PMS support, mental health programs, regular check-ups, and work health & safety reviews.",
+        "Based on your individual needs, various support programs will be offered including health insurance, tax advisory, PMS support, mental health programs, regular check-ups, and work health & safety reviews.",
       ],
     },
   ];
@@ -344,7 +344,7 @@ export default function AuditionsPage() {
 
         <Hero
           title="Auditions"
-          description="Join VINFERNIA and VSTAR — and let your passion as an entertainer shine brightly."
+          description="Join VINFERNIA and VSTAR, and let your passion as an entertainer shine brightly."
           dotPattern={{ size: 2, spacing: 25, color: "255, 255, 255", opacity: 0.1 }}
         />
 
@@ -442,7 +442,7 @@ export default function AuditionsPage() {
                 }}
               >
                 Our goal is to create a worldwide community with a culture beloved the world
-                over — and we are looking for those who want to join us in fulfilling that
+                over, and we are looking for those who want to join us in fulfilling that
                 goal. We look forward to your application!
               </p>
               <footer
@@ -453,7 +453,7 @@ export default function AuditionsPage() {
                   fontStyle: "normal",
                 }}
               >
-                — VINFERNIA &amp; VSTAR
+                - VINFERNIA &amp; VSTAR
               </footer>
             </blockquote>
           </section>

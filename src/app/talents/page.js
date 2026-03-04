@@ -284,7 +284,7 @@ export default function TalentsPage() {
             ))}
           </div>
 
-          {/* Tier 2: Subgroups — smooth slide + fade via grid-template-rows trick */}
+          {/* Tier 2: Subgroups - smooth slide + fade via grid-template-rows trick */}
           <div
             style={{
               display: "grid",

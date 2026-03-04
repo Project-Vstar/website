@@ -67,7 +67,7 @@ const services = [
     items: [
       {
         label: "2D & 3D Streams",
-        body: "Gaming, singing, chatting, collabs — catch our talents live on YouTube, Twitch, X, and TikTok."
+        body: "Gaming, singing, chatting, collabs - catch our talents live on YouTube, Twitch, X, and TikTok."
       },
       {
         label: "3D Live Events",
@@ -95,11 +95,11 @@ const services = [
     items: [
       {
         label: "Stories & Manga",
-        body: "Original stories and manga featuring VINFERNIA and VSTAR talents — plus the occasional secret announcement you won't want to miss."
+        body: "Original stories and manga featuring VINFERNIA and VSTAR talents - plus the occasional secret announcement you won't want to miss."
       },
       {
         label: "What's Coming",
-        body: "We're working on a lot more — from video games to an animated series set in the world of VINFERNIA and VSTAR."
+        body: "We're working on a lot more - from video games to an animated series set in the world of VINFERNIA and VSTAR."
       }
     ]
   }
