@@ -54,7 +54,6 @@ Handelsregisternummer: HRA 12303
 `
         },
         de: {
-            title: "Impressum",
             content: `
 ### Impressum
 
