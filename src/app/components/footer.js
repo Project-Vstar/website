@@ -65,7 +65,6 @@ const Footer = () => {
                             <Link href="/impressum" className={linkStyle}>Impressum</Link>
                             <Link href="/privacy-policy" className={linkStyle}>Privacy Policy</Link>
                             <Link href="/terms" className={linkStyle}>Terms of Service</Link>
-                            <Link href="/data-protection-policy" className={linkStyle}>Data Protection</Link>
                         </nav>
                     </div>
                 </div>
