@@ -17,8 +17,8 @@ const FactionChooser = () => {
                         transition-all duration-300 ease-in-out
                         bg-[linear-gradient(to_bottom,theme(colors.blue.900),theme(colors.slate.900))]
                         border-2 border-blue-700/50`}
-                    onClick={() => (window.location.href = "/vstar")}
-                    onTouchStart={() => handleTouch("vstar")}
+                    onClick={() => (window.location.href = "/talents")}
+                    onTouchStart={() => handleTouch("talents")}
                 >
                     <div 
                         className="absolute top-0 left-0 w-full h-full opacity-20 bg-center bg-no-repeat bg-contain"
@@ -37,8 +37,8 @@ const FactionChooser = () => {
                         transition-all duration-300 ease-in-out
                         bg-[linear-gradient(to_top,theme(colors.red.900),theme(colors.slate.900))]
                         border-2 border-red-700/50`}
-                    onClick={() => (window.location.href = "/vinfernia")}
-                    onTouchStart={() => handleTouch("vinfernia")}
+                    onClick={() => (window.location.href = "/talents")}
+                    onTouchStart={() => handleTouch("talents")}
                 >
                     <div 
                         className="absolute top-0 left-0 w-full h-full opacity-20 bg-center bg-no-repeat bg-contain"
@@ -119,14 +119,14 @@ const FactionChooser = () => {
                     className="relative flex-1 cursor-pointer z-10"
                     onMouseEnter={() => setHovered("left")}
                     onMouseLeave={() => setHovered(null)}
-                    onClick={() => (window.location.href = "/vstar")}
+                    onClick={() => (window.location.href = "/talents")}
                 />
 
                 <div
                     className="relative flex-1 cursor-pointer z-10"
                     onMouseEnter={() => setHovered("right")}
                     onMouseLeave={() => setHovered(null)}
-                    onClick={() => (window.location.href = "/vinfernia")}
+                    onClick={() => (window.location.href = "/talents")}
                 />
             </div>
         </>
