@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 "use client";
-import React, { useState, useMemo, useCallback, memo } from "react";
+import React, { useState, useMemo, useCallback, memo, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
@@ -9,13 +9,11 @@ import VideoCard from "@/app/components/Videocard";
 import { BackToTalentsButton } from "@/app/components/backtotalentsbutton";
 import dreamyDiinoData from "./data.json";
 import talentsData from "@/app/talents/data.json";
-import ScrollToDataButton from "@/app/components/ScrollToDataButton";
 
 const themeColors = dreamyDiinoData.theme;
 
-// ---------------------------------------------------------------------------
-// Darken hex helper (same as talents page)
-// ---------------------------------------------------------------------------
+const TWITCH_CHANNEL = "DreamyDiino";
+
 function darkenHex(hex, amount = 40) {
     const n = parseInt(hex.replace("#", ""), 16);
     const r = Math.max(0, (n >> 16) - amount);
@@ -24,9 +22,101 @@ function darkenHex(hex, amount = 40) {
     return `rgb(${r},${g},${b})`;
 }
 
-// ---------------------------------------------------------------------------
-// DataItem
-// ---------------------------------------------------------------------------
+const swoopBtnStyles = (signatureColor) => `
+    .swoop-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: 1px solid color-mix(in srgb, ${signatureColor} 30%, transparent);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        overflow: hidden;
+        background: color-mix(in srgb, ${signatureColor} 10%, transparent);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        cursor: pointer;
+        min-width: 140px;
+    }
+    .swoop-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: ${signatureColor};
+        transform: translateX(-101%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+    }
+    .swoop-btn:hover::before {
+        transform: translateX(0);
+    }
+    .swoop-btn .swoop-chevron {
+        margin-left: auto;
+        font-size: 1.2rem;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        position: relative;
+        z-index: 1;
+        line-height: 1;
+    }
+    .swoop-btn:hover .swoop-chevron {
+        opacity: 1;
+    }
+    /* View Data: chevron swoops down */
+    .swoop-btn.swoop-down:hover .swoop-chevron {
+        transform: translateY(3px);
+    }
+    /* View All Clips: chevron swoops right */
+    .swoop-btn.swoop-right:hover .swoop-chevron {
+        transform: translateX(3px);
+    }
+`;
+
+function ScrollToLoreButton({ signatureColor }) {
+    const handleClick = useCallback(() => {
+        const el = document.getElementById("lore-section");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, []);
+
+    return (
+        <>
+            <style>{swoopBtnStyles(signatureColor)}</style>
+            <button
+                onClick={handleClick}
+                className="swoop-btn swoop-down"
+            >
+                <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
+                    View Data
+                </span>
+                <span className="swoop-chevron" style={{ transform: "rotate(90deg)" }}>›</span>
+            </button>
+        </>
+    );
+}
+
+function ViewAllClipsButton({ signatureColor, href }) {
+    return (
+        <>
+            <style>{swoopBtnStyles(signatureColor)}</style>
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="swoop-btn swoop-right"
+            >
+                <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
+                    View All Clips
+                </span>
+                <span className="swoop-chevron">›</span>
+            </a>
+        </>
+    );
+}
+
 const DataItem = memo(function DataItem({ label, value, color }) {
     return (
         <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
@@ -38,51 +128,124 @@ const DataItem = memo(function DataItem({ label, value, color }) {
     );
 });
 
-// ---------------------------------------------------------------------------
-// YouTubeFacade
-// ---------------------------------------------------------------------------
-const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const handleClick = useCallback(() => { setIsLoaded(true); }, []);
+const TwitchEmbed = memo(function TwitchEmbed({ channel, signatureColor }) {
+    const [hostname, setHostname] = useState("");
 
-    if (!videoId) {
+    useEffect(() => {
+        setHostname(window.location.hostname);
+    }, []);
+
+    if (!hostname) {
         return (
-            <div className="w-full h-full flex items-center justify-center bg-gray-800">
-                <p className="text-gray-400 text-lg">Channel section coming soon!</p>
+            <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: signatureColor }} />
             </div>
         );
     }
-    if (isLoaded) {
-        return (
-            <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                title="Channel Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            />
-        );
-    }
+
+    const src = `https://player.twitch.tv/?channel=${channel}&parent=${hostname}&autoplay=false`;
+
     return (
-        <button onClick={handleClick} className="relative w-full h-full group cursor-pointer bg-gray-900" aria-label="Play video">
-            <img src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} alt="Video thumbnail" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-200">
-                <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
-                    style={{ backgroundColor: signatureColor }}
-                >
-                    <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#0C0E0D" }}>
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
-                </div>
-            </div>
-        </button>
+        <iframe
+            className="w-full h-full"
+            src={src}
+            title={`${channel} Twitch Stream`}
+            allowFullScreen
+        />
     );
 });
 
-// ---------------------------------------------------------------------------
-// OutfitButton
-// ---------------------------------------------------------------------------
+const ClipCard = memo(function ClipCard({ clip, signatureColor, variant }) {
+    const isRecommended = variant === "recommended";
+    return (
+        <a
+            href={clip.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block rounded-lg overflow-hidden border transition-all duration-200 hover:scale-[1.02] hover:brightness-110"
+            style={{ borderColor: `${signatureColor}30`, backgroundColor: `${signatureColor}08` }}
+        >
+            <div className={`relative overflow-hidden ${isRecommended ? "aspect-video" : "aspect-video"} bg-gray-900`}>
+                <img
+                    src={clip.thumbnail}
+                    alt={clip.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                {clip.duration && (
+                    <span className="absolute bottom-2 right-2 text-xs font-mono bg-black/80 text-white px-1.5 py-0.5 rounded">
+                        {clip.duration}
+                    </span>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30">
+                    <div
+                        className="w-12 h-12 rounded-full flex items-center justify-center"
+                        style={{ backgroundColor: signatureColor }}
+                    >
+                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#0C0E0D" }}>
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div className="p-3">
+                <p className="text-white text-sm font-medium line-clamp-2 group-hover:text-opacity-90">{clip.title}</p>
+                {clip.views && (
+                    <p className="text-gray-400 text-xs mt-1">{clip.views} views · {clip.date}</p>
+                )}
+                {!clip.views && clip.date && (
+                    <p className="text-gray-400 text-xs mt-1">{clip.date}</p>
+                )}
+            </div>
+        </a>
+    );
+});
+
+function RecentClips({ signatureColor }) {
+    const [clips, setClips] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        fetch(`/api/twitch-clips?channel=${TWITCH_CHANNEL}&limit=4`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (data.clips && data.clips.length > 0) {
+                    setClips(data.clips);
+                } else {
+                    setError(true);
+                }
+            })
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center py-12">
+                <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: signatureColor }} />
+            </div>
+        );
+    }
+
+    if (error || clips.length === 0) {
+        return (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {dreamyDiinoData.videos.map((v) => (
+                    <VideoCard key={v.id} video={v} signatureColor={signatureColor} />
+                ))}
+            </div>
+        );
+    }
+
+    return (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {clips.map((clip) => (
+                <ClipCard key={clip.id} clip={clip} signatureColor={signatureColor} />
+            ))}
+        </div>
+    );
+}
+
 const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureColor, onClick }) {
     return (
         <button
@@ -103,9 +266,6 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
     );
 });
 
-// ---------------------------------------------------------------------------
-// GenmateTalentCard — mirrors TalentCard from the talents page
-// ---------------------------------------------------------------------------
 const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig }) {
     const [hovered, setHovered] = useState(false);
     const theme = talent.themeColor || "#334155";
@@ -119,7 +279,6 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
-            {/* Square card */}
             <div
                 className="relative overflow-hidden rounded-2xl"
                 style={{
@@ -131,7 +290,6 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                     transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
                 }}
             >
-                {/* Group logo watermark — layer 1 */}
                 {groupConfig?.logo && (
                     <img
                         src={groupConfig.logo}
@@ -139,19 +297,12 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                         aria-hidden="true"
                         className="absolute pointer-events-none select-none"
                         style={{
-                            width: "130%",
-                            height: "130%",
-                            top: "-15%",
-                            left: "-15%",
-                            objectFit: "contain",
-                            opacity: 0.12,
-                            filter: "brightness(0) invert(0)",
-                            mixBlendMode: "multiply",
+                            width: "130%", height: "130%", top: "-15%", left: "-15%",
+                            objectFit: "contain", opacity: 0.12,
+                            filter: "brightness(0) invert(0)", mixBlendMode: "multiply",
                         }}
                     />
                 )}
-
-                {/* Group logo watermark — layer 2 (darker tint) */}
                 {groupConfig?.logo && (
                     <img
                         src={groupConfig.logo}
@@ -159,18 +310,11 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                         aria-hidden="true"
                         className="absolute pointer-events-none select-none"
                         style={{
-                            width: "130%",
-                            height: "130%",
-                            top: "-15%",
-                            left: "-15%",
-                            objectFit: "contain",
-                            opacity: 0.18,
-                            filter: "brightness(0)",
+                            width: "130%", height: "130%", top: "-15%", left: "-15%",
+                            objectFit: "contain", opacity: 0.18, filter: "brightness(0)",
                         }}
                     />
                 )}
-
-                {/* Character art */}
                 <img
                     src={talent.char}
                     alt={talent.name}
@@ -180,12 +324,10 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                         transform: `scale(${hovered
                             ? (talent.imageScale || 1) * 1.08 + 0.08
                             : (talent.imageScale || 1) * 1.08
-                            })`,
+                        })`,
                         transition: "transform 0.4s ease",
                     }}
                 />
-
-                {/* Hover vignette */}
                 <div
                     className="absolute inset-0 rounded-2xl"
                     style={{
@@ -195,15 +337,9 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                     }}
                 />
             </div>
-
-            {/* Name */}
             <p
                 className="mt-3 text-sm font-semibold text-center tracking-wide text-slate-200 transition-all duration-300"
-                style={{
-                    textShadow: hovered
-                        ? `0 0 8px ${theme}, 0 0 20px ${theme}88`
-                        : "none",
-                }}
+                style={{ textShadow: hovered ? `0 0 8px ${theme}, 0 0 20px ${theme}88` : "none" }}
             >
                 {talent.name}
             </p>
@@ -211,18 +347,18 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
     );
 });
 
-// ---------------------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------------------
 export default function DreamyDiinoPage() {
     const [selectedOutfit, setSelectedOutfit] = useState(0);
     const signatureColor = themeColors.accent;
 
-    // Genmates: same group, excluding self and staff
     const genmates = talentsData.talents.filter(
-        (t) => t.group === "vinfernia" && t.name !== dreamyDiinoData.name
+        (t) =>
+            Array.isArray(t.groups)
+                ? t.groups.includes("vinfernia") && t.name !== dreamyDiinoData.name
+                : t.group === "vinfernia" && t.name !== dreamyDiinoData.name
     );
-    const vinferniaGroupConfig = talentsData.groups.find((g) => g.id === "vinfernia");
+
+    const vinferniaGroupConfig = talentsData.generations.find((g) => g.id === "vinfernia");
 
     const handleOutfitClick = useCallback((id) => { setSelectedOutfit(id); }, []);
 
@@ -233,12 +369,10 @@ export default function DreamyDiinoPage() {
 
     return (
         <div className="flex flex-col min-h-screen" style={{ backgroundColor: themeColors.background }}>
-
             <Header />
 
             <main className="flex-grow pt-0">
 
-                {/* ── HERO ─────────────────────────────────────────────────── */}
                 <div className="relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute inset-0 z-0 pointer-events-none"
@@ -257,7 +391,6 @@ export default function DreamyDiinoPage() {
                         className="absolute inset-0 z-0 pointer-events-none"
                         style={{ background: `radial-gradient(ellipse at center, transparent 40%, ${themeColors.background} 100%)` }}
                     />
-                    {/* Hero → Channel fade */}
                     <div
                         className="absolute bottom-0 left-0 right-0 h-40 z-[1] pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.featured}90 60%, ${themeColors.featured} 100%)` }}
@@ -266,7 +399,6 @@ export default function DreamyDiinoPage() {
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
-                            {/* Model image */}
                             <div className="relative flex items-center justify-center h-[700px] overflow-visible">
                                 <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                     <img
@@ -281,32 +413,25 @@ export default function DreamyDiinoPage() {
                                 </div>
                             </div>
 
-                            {/* Right column */}
                             <div className="space-y-8">
-
-                                {/* Gen logo + name block */}
                                 <div>
                                     {dreamyDiinoData.genLogo && (
                                         <a href="/talents" className="inline-block mb-3 opacity-70 hover:opacity-100 transition-opacity duration-200">
                                             <img src={dreamyDiinoData.genLogo} alt="Gen Logo" className="h-10 w-auto" />
                                         </a>
                                     )}
-
                                     <h1
                                         className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
                                         style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{dreamyDiinoData.name}</div>
                                     </h1>
-
                                     <p className="text-2xl mb-4" style={{ color: signatureColor }}>
                                         {dreamyDiinoData.title}
                                     </p>
-
                                     <p className="text-xl text-gray-300 italic">&quot;{dreamyDiinoData.tagline}&quot;</p>
                                 </div>
 
-                                {/* About */}
                                 <div
                                     className="backdrop-blur-sm rounded-lg p-6 border"
                                     style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
@@ -317,16 +442,16 @@ export default function DreamyDiinoPage() {
                                     </p>
                                 </div>
 
-                                <ScrollToDataButton signatureColor={signatureColor} />
-
                                 <SocialLinks links={dreamyDiinoData.links} signatureColor={signatureColor} />
 
+                                <div className="flex">
+                                    <ScrollToLoreButton signatureColor={signatureColor} />
+                                </div>
                             </div>
                         </div>
                     </section>
                 </div>
 
-                {/* ── CHANNEL ──────────────────────────────────────────────── */}
                 <section
                     className="py-16 px-4 relative"
                     style={{ backgroundColor: themeColors.featured }}
@@ -335,60 +460,53 @@ export default function DreamyDiinoPage() {
                         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, ${themeColors.featured}00 0%, ${themeColors.recommended} 100%)` }}
                     />
-                    <div className="max-w-3xl mx-auto relative z-10">
-                        <h2 className="text-3xl font-bold text-white text-center mb-8" style={{ color: signatureColor }}>Channel</h2>
+                    <div className="max-w-4xl mx-auto relative z-10">
+                        <h2 className="text-3xl font-bold text-white text-center mb-2" style={{ color: signatureColor }}>
+                            Live on Twitch
+                        </h2>
+                        <p className="text-gray-400 text-center text-sm mb-8">
+                            {TWITCH_CHANNEL} · <a href={`https://twitch.tv/${TWITCH_CHANNEL}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors" style={{ color: signatureColor }}>Open in Twitch ↗</a>
+                        </p>
                         <div
                             className="backdrop-blur-sm rounded-lg border overflow-hidden"
                             style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
                         >
                             <div className="aspect-video bg-gray-800">
-                                <YouTubeFacade videoId={dreamyDiinoData.featuredVideoId} signatureColor={signatureColor} />
+                                <TwitchEmbed channel={TWITCH_CHANNEL} signatureColor={signatureColor} />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* ── RECOMMENDED VIDEOS ───────────────────────────────────── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
                     <div className="max-w-6xl mx-auto relative z-0">
-                        <h2 className="text-4xl font-bold text-white text-center mb-12">Recommended Videos</h2>
+                        <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Clips</h2>
                         <div className="grid md:grid-cols-3 gap-6">
                             {dreamyDiinoData.recommendedVideos.map((video) => (
-                                <VideoCard key={video.id} video={video} signatureColor={signatureColor} variant="recommended" />
+                                <ClipCard key={video.id} clip={{ ...video, url: video.url || "#" }} signatureColor={signatureColor} variant="recommended" />
                             ))}
                         </div>
                     </div>
                 </section>
 
-                {/* ── RECENT VIDEOS ────────────────────────────────────────── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recent }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, ${themeColors.recommended} 0%, ${themeColors.recent} 100%)` }}
                     />
                     <div className="max-w-6xl mx-auto relative z-10">
-                        <h2 className="text-4xl font-bold text-white text-center mb-12">Recent Videos</h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {dreamyDiinoData.videos.map((video) => (
-                                <VideoCard key={video.id} video={video} signatureColor={signatureColor} />
-                            ))}
-                        </div>
-                        <div className="text-center mt-8">
-                            <a
-                                href="https://youtube.com/@DreamyDiino"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block px-8 py-3 rounded-full font-semibold transition-transform duration-200 hover:scale-105 shadow-lg hover:brightness-110"
-                                style={{ background: `linear-gradient(to right, ${signatureColor}, ${signatureColor}dd)`, color: "#0C0E0D" }}
-                            >
-                                View All Videos
-                            </a>
+                        <h2 className="text-4xl font-bold text-white text-center mb-12">Recent Clips</h2>
+                        <RecentClips signatureColor={signatureColor} />
+                        <div className="flex justify-center mt-8">
+                            <ViewAllClipsButton
+                                signatureColor={signatureColor}
+                                href={`https://twitch.tv/${TWITCH_CHANNEL}/clips`}
+                            />
                         </div>
                     </div>
                 </section>
 
-                {/* ── LORE ─────────────────────────────────────────────────── */}
-                <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
+                <section id="lore-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, ${themeColors.recent} 0%, ${themeColors.background} 100%)` }}
@@ -406,17 +524,13 @@ export default function DreamyDiinoPage() {
                     </div>
                 </section>
 
-                {/* ── MODEL + DATA ─────────────────────────────────────────── */}
                 <section id="data-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
 
-                            {/* Model viewer */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
                                 <div className="relative flex items-center justify-center h-[700px] overflow-visible">
-
-                                    {/* Outfit picker — only shown when there are multiple outfits */}
                                     {dreamyDiinoData.outfits.length > 1 && (
                                         <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
                                             {dreamyDiinoData.outfits.map((outfit) => (
@@ -430,7 +544,6 @@ export default function DreamyDiinoPage() {
                                             ))}
                                         </div>
                                     )}
-
                                     <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                         <img
                                             src={currentOutfitImage}
@@ -445,7 +558,6 @@ export default function DreamyDiinoPage() {
                                 </div>
                             </div>
 
-                            {/* Data */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
                                 <div
@@ -529,12 +641,10 @@ export default function DreamyDiinoPage() {
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </section>
 
-                {/* ── MEMBER NAVIGATION ────────────────────────────────────── */}
                 <section className="py-12 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-px pointer-events-none"

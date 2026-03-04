@@ -46,6 +46,7 @@ const internalBtnStyles = `
   .internal-link-btn:hover .chevron { transform: translateX(3px); opacity: 1; }
 `;
 
+// eslint-disable-next-line react/prop-types
 function GlassCard({ children, accentColor, borderColor }) {
   return (
     <div

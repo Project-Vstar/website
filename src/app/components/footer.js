@@ -78,6 +78,7 @@ const Footer = () => {
                     <div className="flex gap-8">
                         <span className="uppercase tracking-[0.3em] opacity-30">VSTAR PROJECT</span>
                     </div>
+                    <p> Website by Nine Lives Digital</p>
                 </div>
             </div>
         </footer>

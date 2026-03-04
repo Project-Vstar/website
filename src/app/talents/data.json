@@ -1,16 +1,14 @@
 {
-  "groups": [
+  "generations": [
     {
       "id": "all",
       "label": "All",
-      "accentColor": "white",
       "glowStyle": "static-white",
       "logo": null
     },
     {
       "id": "vstar",
       "label": "VStar",
-      "accentColor": "blue",
       "glowStyle": "blue",
       "logo": "/VSTAR/VSTAR.png",
       "logoAlt": "VStar Logo"
@@ -18,41 +16,35 @@
     {
       "id": "vinfernia",
       "label": "VINFERNIA",
-      "accentColor": "red",
       "glowStyle": "red",
       "logo": "/VINFERNIA/VINFERNIA/Vinfernia_White.png",
-      "logoAlt": "VINFERNIA Logo"
-    },
-    {
-      "id": "kairos",
-      "label": "KAIROS",
-      "accentColor": "white",
-      "glowStyle": "static-white",
-      "logo": "VINFERNIA/VINFERNIA/Kairos_blackNEW.png",
-      "logoAlt": "KAIROS Logo"
+      "logoAlt": "VINFERNIA Logo",
+      "subgroups": [
+        {
+          "id": null,
+          "label": "All",
+          "glowStyle": "static-white"
+        },
+        {
+          "id": "kairos",
+          "label": "KAIROS",
+          "glowStyle": "static-white",
+          "logo": "VINFERNIA/VINFERNIA/Kairos_blackNEW.png",
+          "logoAlt": "KAIROS Logo"
+        }
+      ]
     },
     {
       "id": "staff",
       "label": "Staff",
-      "accentColor": "slate",
       "glowStyle": "slate",
       "logo": null
     }
   ],
   "talents": [
     {
-      "name": "Dee",
-      "group": "staff",
-      "themeColor": "#4a5568",
-      "objectPosition": "50% 28%",
-      "imageScale": 1.0,
-      "image": "/VINFERNIA/VINFERNIA/Genmate Banner/DeeBG.png",
-      "char": "/VINFERNIA/VINFERNIA/Genmate Banner/DeeChar.png",
-      "href": "/talents/dee"
-    },
-    {
       "name": "DreamyDiino",
-      "group": "vinfernia",
+      "groups": ["vinfernia", "kairos", "staff"],
       "themeColor": "#2d6e4e",
       "objectPosition": "50% 30%",
       "imageScale": 1.16,
@@ -62,7 +54,7 @@
     },
     {
       "name": "Gomifuyu",
-      "group": "vinfernia",
+      "groups": ["vinfernia", "kairos"],
       "themeColor": "#8b3a3a",
       "objectPosition": "50% 36%",
       "imageScale": 1.08,
@@ -72,7 +64,7 @@
     },
     {
       "name": "Lee Valentine",
-      "group": "vinfernia",
+      "groups": ["vinfernia", "kairos"],
       "themeColor": "#6b3fa0",
       "objectPosition": "50% 29%",
       "imageScale": 1.09,
@@ -82,13 +74,23 @@
     },
     {
       "name": "Lockhart",
-      "group": "vinfernia",
+      "groups": ["vinfernia", "kairos"],
       "themeColor": "#4a6741",
       "objectPosition": "50% 27%",
       "imageScale": 1.0,
       "image": "/VINFERNIA/VINFERNIA/Genmate Banner/LockBG.png",
       "char": "/VINFERNIA/VINFERNIA/Genmate Banner/LockChar.png",
       "href": "/talents/lockhart"
+    },
+        {
+      "name": "Dee",
+      "groups": ["vinfernia", "staff"],
+      "themeColor": "#4a5568",
+      "objectPosition": "50% 28%",
+      "imageScale": 1.0,
+      "image": "/VINFERNIA/VINFERNIA/Genmate Banner/DeeBG.png",
+      "char": "/VINFERNIA/VINFERNIA/Genmate Banner/DeeChar.png",
+      "href": "/talents/dee"
     }
   ]
 }

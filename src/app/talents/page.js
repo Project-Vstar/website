@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
@@ -43,7 +44,7 @@ function getGroupStyle(glowStyle) {
 }
 
 // ─── Single talent card ──────────────────────────────────────────────────────
-function TalentCard({ talent, groupConfig }) {
+function TalentCard({ talent, primaryGroupLogo }) {
   const [hovered, setHovered] = useState(false);
   const theme = talent.themeColor || "#334155";
   const dark = darkenHex(theme, 50);
@@ -56,7 +57,6 @@ function TalentCard({ talent, groupConfig }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Square card */}
       <div
         className="relative overflow-hidden rounded-2xl"
         style={{
@@ -68,10 +68,9 @@ function TalentCard({ talent, groupConfig }) {
           transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
         }}
       >
-        {/* Group logo watermark */}
-        {groupConfig.logo && (
+        {primaryGroupLogo && (
           <img
-            src={groupConfig.logo}
+            src={primaryGroupLogo}
             alt=""
             aria-hidden="true"
             className="absolute pointer-events-none select-none"
@@ -82,16 +81,14 @@ function TalentCard({ talent, groupConfig }) {
               left: "-15%",
               objectFit: "contain",
               opacity: 0.12,
-              filter: `brightness(0) invert(0)`,
+              filter: "brightness(0) invert(0)",
               mixBlendMode: "multiply",
             }}
           />
         )}
-
-        {/* Darker tinted logo for more visible watermark on light themes */}
-        {groupConfig.logo && (
+        {primaryGroupLogo && (
           <img
-            src={groupConfig.logo}
+            src={primaryGroupLogo}
             alt=""
             aria-hidden="true"
             className="absolute pointer-events-none select-none"
@@ -107,22 +104,21 @@ function TalentCard({ talent, groupConfig }) {
           />
         )}
 
-        {/* Character art */}
         <img
           src={talent.char}
           alt={talent.name}
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             objectPosition: talent.objectPosition || "50% 20%",
-            transform: `scale(${hovered
-              ? (talent.imageScale || 1) * 1.08 + 0.08
-              : (talent.imageScale || 1) * 1.08
+            transform: `scale(${
+              hovered
+                ? (talent.imageScale || 1) * 1.08 + 0.08
+                : (talent.imageScale || 1) * 1.08
             })`,
             transition: "transform 0.4s ease",
           }}
         />
 
-        {/* Hover vignette */}
         <div
           className="absolute inset-0 rounded-2xl"
           style={{
@@ -133,13 +129,10 @@ function TalentCard({ talent, groupConfig }) {
         />
       </div>
 
-      {/* Name */}
       <p
         className="mt-3 text-sm font-semibold text-center tracking-wide text-slate-200 transition-all duration-300"
         style={{
-          textShadow: hovered
-            ? `0 0 8px ${theme}, 0 0 20px ${theme}88`
-            : "none",
+          textShadow: hovered ? `0 0 8px ${theme}, 0 0 20px ${theme}88` : "none",
         }}
       >
         {talent.name}
@@ -148,21 +141,54 @@ function TalentCard({ talent, groupConfig }) {
   );
 }
 
+// ─── Filter pill ─────────────────────────────────────────────────────────────
+function FilterPill({ label, glowStyle, isActive, onClick }) {
+  const style = getGroupStyle(glowStyle);
+  return (
+    <button
+      onClick={onClick}
+      className={`px-5 py-2 rounded-full text-sm font-semibold tracking-wider border transition-all duration-200 cursor-pointer ${
+        isActive ? style.pillActive : style.pillInactive
+      }`}
+      style={isActive ? { boxShadow: style.glow } : {}}
+    >
+      {label}
+    </button>
+  );
+}
+
 // ─── Page ────────────────────────────────────────────────────────────────────
 export default function TalentsPage() {
-  const [activeFilter, setActiveFilter] = useState("all");
-  const { groups, talents } = talentData;
+  const [activeGen, setActiveGen] = useState("all");
+  const [activeSub, setActiveSub] = useState(null);
 
-  const filteredTalents =
-    activeFilter === "all"
-      ? talents
-      : talents.filter((t) => t.group === activeFilter);
+  const { generations, talents } = talentData;
 
-  const getGroupConfig = (groupId) =>
-    groups.find((g) => g.id === groupId) || groups[0];
+  const activeGenObj = generations.find((g) => g.id === activeGen);
+  const subgroups = activeGenObj?.subgroups || null;
 
-  const heroGroups = groups.filter((g) =>
-    ["vstar", "vinfernia", "kairos"].includes(g.id)
+  function handleGenClick(genId) {
+    setActiveGen(genId);
+    setActiveSub(null);
+  }
+
+  const filteredTalents = talents.filter((t) => {
+    if (activeGen === "all") return true;
+    const talentGroups = t.groups || [];
+    if (activeSub) return talentGroups.includes(activeSub);
+    return talentGroups.includes(activeGen);
+  });
+
+  function getPrimaryLogoForTalent(talent) {
+    const talentGroups = talent.groups || [];
+    for (const gen of generations) {
+      if (gen.logo && talentGroups.includes(gen.id)) return gen.logo;
+    }
+    return null;
+  }
+
+  const heroGroups = generations.filter((g) =>
+    ["vstar", "vinfernia"].includes(g.id)
   );
 
   return (
@@ -212,26 +238,55 @@ export default function TalentsPage() {
           </p>
         </section>
 
-        {/* ── FILTER PILLS ──────────────────────────────────────────────── */}
-        <section className="w-full flex justify-center px-6 py-8 bg-slate-900 sticky top-0 z-10 border-b border-slate-800/60 backdrop-blur-sm">
+        {/* ── FILTER BAR ────────────────────────────────────────────────── */}
+        <section className="w-full flex flex-col items-center px-6 py-6 bg-slate-900 sticky top-0 z-10 border-b border-slate-800/60 backdrop-blur-sm gap-3">
+
+          {/* Tier 1: Generations */}
           <div className="flex flex-wrap gap-3 justify-center">
-            {groups.map((group) => {
-              const style = getGroupStyle(group.glowStyle);
-              const isActive = activeFilter === group.id;
-              return (
-                <button
-                  key={group.id}
-                  onClick={() => setActiveFilter(group.id)}
-                  className={`px-5 py-2 rounded-full text-sm font-semibold tracking-wider border transition-all duration-200 cursor-pointer ${
-                    isActive ? style.pillActive : style.pillInactive
-                  }`}
-                  style={isActive ? { boxShadow: style.glow } : {}}
-                >
-                  {group.label}
-                </button>
-              );
-            })}
+            {generations.map((gen) => (
+              <FilterPill
+                key={gen.id}
+                label={gen.label}
+                glowStyle={gen.glowStyle}
+                isActive={activeGen === gen.id}
+                onClick={() => handleGenClick(gen.id)}
+              />
+            ))}
           </div>
+
+          {/* Tier 2: Subgroups — smooth slide + fade via grid-template-rows trick */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateRows: subgroups ? "1fr" : "0fr",
+              opacity: subgroups ? 1 : 0,
+              transition:
+                "grid-template-rows 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease",
+              width: "100%",
+            }}
+          >
+            <div style={{ overflow: "hidden" }}>
+              <div className="flex flex-wrap gap-2 justify-center pt-3 pb-1">
+                <div className="w-full flex items-center gap-3 justify-center mb-2">
+                  <span className="h-px w-16 bg-slate-700" />
+                  <span className="text-xs text-slate-600 tracking-widest uppercase">
+                    Filter by group
+                  </span>
+                  <span className="h-px w-16 bg-slate-700" />
+                </div>
+                {subgroups?.map((sub) => (
+                  <FilterPill
+                    key={sub.id ?? "sub-all"}
+                    label={sub.label}
+                    glowStyle={sub.glowStyle}
+                    isActive={activeSub === sub.id}
+                    onClick={() => setActiveSub(sub.id)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
         </section>
 
         {/* ── TALENT GRID ───────────────────────────────────────────────── */}
@@ -242,16 +297,13 @@ export default function TalentsPage() {
             </p>
           ) : (
             <div className="flex flex-wrap justify-center gap-8">
-              {filteredTalents.map((talent) => {
-                const groupConfig = getGroupConfig(talent.group);
-                return (
-                  <TalentCard
-                    key={talent.name}
-                    talent={talent}
-                    groupConfig={groupConfig}
-                  />
-                );
-              })}
+              {filteredTalents.map((talent) => (
+                <TalentCard
+                  key={talent.name}
+                  talent={talent}
+                  primaryGroupLogo={getPrimaryLogoForTalent(talent)}
+                />
+              ))}
             </div>
           )}
         </section>
