@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
 "use client";
 
 const backButtonStyles = `
@@ -54,7 +56,7 @@ export function BackToTalentsButton({ signatureColor, hoverTextColor }) {
             <section className="py-12 px-4">
                 <div className="max-w-6xl mx-auto text-center">
                     <a
-                        href="/vinfernia"
+                        href="/talents"
                         className="back-to-talents-btn"
                         style={{
                             "--hover-color": signatureColor,
@@ -62,7 +64,7 @@ export function BackToTalentsButton({ signatureColor, hoverTextColor }) {
                         }}
                     >
                         <span className="back-chevron" style={{ position: "relative", zIndex: 1 }}>‹</span>
-                        <span style={{ position: "relative", zIndex: 1 }}>Back to Vinfernia Talents</span>
+                        <span style={{ position: "relative", zIndex: 1 }}>Back to Talents</span>
                     </a>
                 </div>
             </section>
