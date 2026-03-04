@@ -106,8 +106,8 @@ const services = [
 ];
 
 const staff = [
-  { img: "/company/dee-staff.png", role: "CEO & Management Lead", name: "Dee Ronny", color: "#60a5fa" },
-  { img: "/company/diino-staff.png", role: "Art Director", name: "DreamyDiino", color: "#c084fc" }
+  { img: "/Company/dee-staff.png", role: "CEO & Management Lead", name: "Dee Ronny", color: "#60a5fa" },
+  { img: "/Company/diino-staff.png", role: "Art Director", name: "DreamyDiino", color: "#c084fc" }
 ];
 
 const officialChannelLinks = [
