@@ -9,7 +9,6 @@ import { EmblaCarousel } from "@/app/components/carousel_vinfernia";
 const LORE_SECTIONS = [
   {
     id: "vinfernia",
-    faction: "VINFERNIA",
     factionColor: "#f87171",
     factionBg: "rgba(127,29,29,0.25)",
     gradientFrom: "rgba(127,29,29,0.3)",
@@ -31,7 +30,6 @@ const LORE_SECTIONS = [
   },
   {
     id: "vstar",
-    faction: "VSTAR",
     factionColor: "#60a5fa",
     factionBg: "rgba(30,58,138,0.25)",
     gradientFrom: "rgba(30,58,138,0.3)",
@@ -61,16 +59,6 @@ function LoreSection({ section }) {
   const textContent = (
     <div className="flex flex-col justify-center py-8 md:py-16 max-w-xl">
       <div className="inline-block mb-5">
-        <span
-          className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] uppercase border"
-          style={{
-            backgroundColor: section.factionBg,
-            borderColor: `${section.factionColor}40`,
-            color: section.factionColor,
-          }}
-        >
-          {section.faction}
-        </span>
       </div>
 
       <h2 className="font-oswald text-4xl md:text-5xl font-bold mb-8 tracking-wide text-white leading-tight">
