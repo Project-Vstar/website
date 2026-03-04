@@ -24,11 +24,8 @@ const Header = () => {
                         <Link href="/" className="font-bold font-oswald text-white hover:text-gray-300 px-4 py-2 rounded-xl transition-all">
                             Home
                         </Link>
-                        <Link href="/vstar" className="font-bold font-oswald text-white hover:text-gray-300 px-4 py-2 rounded-lg transition-all">
-                            VSTAR
-                        </Link>
-                        <Link href="/vinfernia" className="font-bold font-oswald text-white hover:text-gray-300 px-4 py-2 rounded-lg transition-all">
-                            VINFERNIA
+                        <Link href="/talents" className="font-bold font-oswald text-white hover:text-gray-300 px-4 py-2 rounded-lg transition-all">
+                            Talents
                         </Link>
                     </div>
 
