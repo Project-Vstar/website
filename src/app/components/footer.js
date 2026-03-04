@@ -76,7 +76,7 @@ const Footer = () => {
                 <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-gray-500 tracking-wider">
                     <p>© 2025 VINFERNIA UG (haftungsbeschränkt) & Co. KG</p>
                     <div className="flex gap-8">
-                        <span className="uppercase tracking-[0.3em] opacity-30">VSTAR PROJECT</span>
+                        {/* <span className="uppercase tracking-[0.3em] opacity-30">VSTAR PROJECT</span> */}
                     </div>
                     <p> Website by Nine Lives Digital</p>
                 </div>
