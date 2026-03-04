@@ -11,7 +11,7 @@ export default function BusinessPartnerArea() {
 
       <Hero
         title="Business Partner Area"
-        description="Exclusive resources and information for our business partners."
+        description="Resources and information for our business partners."
         dotPattern={{
           size: 2,
           spacing: 25,
@@ -20,17 +20,9 @@ export default function BusinessPartnerArea() {
         }}
       />
 
-      <div className="text-white text-4xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
+      <div className="text-white text-2xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
         <div className="flex flex-col justify-center items-center">
-          <p className="p-4">Section 2</p>
-          <p className="p-4">Additional content for Section 2.</p>
-        </div>
-      </div>
-
-      <div className="text-white text-4xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
-        <div className="flex flex-col justify-center items-center">
-          <p className="p-4">Section 3</p>
-          <p className="p-4">Additional content for Section 3.</p>
+          <p className="p-4">WIP</p>
         </div>
       </div>
 

@@ -35,7 +35,7 @@ const Footer = () => {
                             <Link href="/" className={linkStyle}>Home</Link>
                             <Link href="/talents" className={linkStyle}>Talents</Link>
                             <Link href="/lore" className={linkStyle}>Lore</Link>
-                            <Link href="/Articles" className={linkStyle}>Articles</Link>
+                            <Link href="/articles" className={linkStyle}>Articles</Link>
                         </nav>
                     </div>
 
@@ -54,7 +54,6 @@ const Footer = () => {
                         <nav className="space-y-2">
                             <Link href="/auditions" className={linkStyle}>Auditions</Link>
                             <Link href="/press" className={linkStyle}>Press Kit</Link>
-                            <Link href="/supporter-guideline" className={linkStyle}>Guidelines</Link>
                             <Link href="/derivative-works-guideline" className={linkStyle}>Derivative Works</Link>
                         </nav>
                     </div>
