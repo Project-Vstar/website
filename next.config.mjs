@@ -3,10 +3,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-    experimental: {
-    turbo: {
-      resolveExtensions: ['.js', '.jsx', '.json'],
-    },
+  turbopack: {
+    resolveExtensions: ['.js', '.jsx', '.json'],
   },
 };
 
