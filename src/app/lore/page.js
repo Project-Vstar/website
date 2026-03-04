@@ -1,100 +1,216 @@
+/* eslint-disable react/prop-types */
 "use client";
 import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { EmblaCarousel } from "@/app/components/carousel_vinfernia";
 
-export default function LorePage() {
-  return (
-    <div className="flex flex-col min-h-screen bg-slate-900">
-      <Header />
+// ─── Lore section data ───────────────────────────────────────────────────────
+const LORE_SECTIONS = [
+  {
+    id: "vinfernia",
+    faction: "VINFERNIA",
+    factionColor: "#f87171",
+    factionBg: "rgba(127,29,29,0.25)",
+    gradientFrom: "rgba(127,29,29,0.3)",
+    gradientVia: "rgba(15,23,42,0.95)",
+    gradientTo: "rgba(2,6,23,1)",
+    image: "/VINFERNIA/VINFERNIA/Dee/Full_Model_Default.png",
+    imageAlt: "Dee Ronny syn Łužycy, standing.",
+    imageRight: false,
+    imageScale: 2.2,
+    title: "The Lore of VINFERNIA",
+    paragraphs: [
+      "This is the beginning of the Lore of VINFERNIA — it will change over time with the contribution of every generation.",
+      "Being saved by the soldiers showed Dee and his family the nightmare that the bombed-out city became. That is the day the little boy swore to himself to do everything he can to bring peace and happiness to the world.",
+      "After a successful career in Espionage, he gets transferred to the State Security as a Spyhunter in 1960. In 1965, he is given supervision over the \"Kurjawje\" Project.",
+      "With the device in hand, he set out to found his own organization to conquer the world and fulfill his dream:",
+    ],
+    accent: "Bringing happiness and peace all over the world.",
+    accentColor: "#f87171",
+  },
+  {
+    id: "vstar",
+    faction: "VSTAR",
+    factionColor: "#60a5fa",
+    factionBg: "rgba(30,58,138,0.25)",
+    gradientFrom: "rgba(30,58,138,0.3)",
+    gradientVia: "rgba(15,23,42,0.95)",
+    gradientTo: "rgba(2,6,23,1)",
+    image: "/VSTAR/mfsdd_inverted_designsheet_standingonly_2.png",
+    imageAlt: "Dee Ronny syn Łužycy, standing.",
+    imageRight: true,
+    imageScale: 1.2,
+    title: "The Lore of VSTAR",
+    paragraphs: [
+      "This is the beginning of the lore of VSTAR — it will evolve over time with contributions from every generation.",
+      "Dee Ronny syn Łužycy was born to Dejan and Deniza syn Łužycy. He joined the Diplomatic Service (as a spy) in 1956. After a successful career in espionage and becoming the most hunted spy in the West, he was transferred to the State Security as a spy hunter in 1960.",
+      "In 1965, he was given supervision over the \"Kurjawje\" Project (Kurjawje = Mist, as in the mists of time).",
+      "In 1966, scientists of the Drježdźany Socialist Republic invented a device for time travel under the political supervision of Plukovník (Lt. Colonel) Dee Ronny syn Łužycy of the State Security Agency.",
+      "However, something went wrong... An evil that lurks in every person was split away. 60 years later, that evil is found...",
+    ],
+    accent: "VINFERNIA must be defeated.",
+    accentColor: "#60a5fa",
+  },
+];
 
-      <main className="flex-grow flex flex-col text-white pt-40 pb-40">
+// ─── Single lore block ───────────────────────────────────────────────────────
+function LoreSection({ section }) {
+  const scale = section.imageScale ?? 1.0;
 
-        {/* ── LORE SECTION ─────────────────────────────────────────────── */}
-        <div className="flex flex-col-reverse md:flex-row min-h-screen text-black bg-gradient-to-br from-red-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
-
-          {/* Character image */}
-          <div className="w-full md:w-1/4 flex items-center justify-center bg-gray-800">
-            <img
-              src="/VSTAR/mfsdd_inverted_designsheet_standingonly_2.png"
-              alt="Dee Ronny syn Łužycy in a suit, standing."
-              className="object-cover h-full w-full"
-            />
-          </div>
-
-          {/* Lore text */}
-          <div className="flex flex-col justify-center text-white">
-            <div className="inline-block mb-4">
-              <span className="bg-red-900 text-red-300 px-4 py-2 rounded-full text-sm font-semibold tracking-wider">
-                VINFERNIA
-              </span>
-            </div>
-            <h2 className="text-5xl font-bold mb-8 tracking-wide">THE LORE OF VINFERNIA</h2>
-            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
-              <p>
-                This is the beginning of the Lore of VINFERNIA - it will change over time and
-                contribution of every gen.
-              </p>
-              <p>
-                Being saved by the soldiers showed Dee and his family the nightmare that the
-                bombed-out city became. That is the day the little boy swore to himself to do
-                everything he can to bring peace and happiness to the world.
-              </p>
-              <p>
-                After a successful career in Espionage, he gets transferred to the State Security
-                as a Spyhunter in 1960. In 1965, he is given supervision over the
-                &quot;Kurjawje&quot; Project.
-              </p>
-              <p>
-                With the device in hand, he set out to found his own organization to conquer the
-                world and fulfill his dream:
-              </p>
-              <p className="text-red-400 font-semibold">
-                Bringing happiness and peace all over the world.
-              </p>
-            </div>
-          </div>
-        </div>
-
-              <div className="flex flex-col-reverse md:flex-row min-h-screen text-black bg-gradient-to-br from-blue-950 via-slate-900 to-slate-950 px-8 py-16 items-center gap-12">
-        <div className="w-full md:w-1/4 flex items-center justify-center bg-gray-800">
-          <img src="/VSTAR/mfsdd_inverted_designsheet_standingonly_2.png" alt="Dee Ronny syn Łužycy in a suit, standing." className="object-cover h-full w-full" />
-        </div>
-
-        <div className="flex flex-col justify-center text-white">
-          <div className="inline-block mb-4">
-            <span className="bg-blue-900 text-blue-300 px-4 py-2 rounded-full text-sm font-semibold tracking-wider">VSTAR</span>
-          </div>
-          <h2 className="text-5xl font-bold mb-8 tracking-wide">THE LORE OF VSTAR</h2>
-          <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
-            <p>
-              This is the beginning of the lore of VSTAR - it will evolve over time with contributions from every generation.
-            </p>
-            <p>
-              Dee Ronny syn Łužycy was born to Dejan and Deniza syn Łužycy. He joined the Diplomatic Service (as a spy) in 1956. After a successful career in espionage and becoming the most hunted spy in the West, he was transferred to the State Security as a spy hunter in 1960.
-            </p>
-            <p>
-              In 1965, he was given supervision over the "Kurjawje" Project (Kurjawje = Mist, as in the mists of time).
-            </p>
-            <p>
-              In 1966, scientists of the Drježdźany Socialist Republic invented a device for time travel under the political supervision of Plukovník (Lt. Colonel) Dee Ronny syn Łužycy of the State Security Agency.
-            </p>
-            <p>
-              However, something went wrong... An evil that lurks in every person was split away. 60 years later, that evil is found...</p>
-            <p className="text-blue-400 font-semibold">
-              VINFERNIA must be defeated.
-            </p>
-          </div>
-        </div>
+  const textContent = (
+    <div className="flex flex-col justify-center py-8 md:py-16 max-w-xl">
+      <div className="inline-block mb-5">
+        <span
+          className="px-4 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] uppercase border"
+          style={{
+            backgroundColor: section.factionBg,
+            borderColor: `${section.factionColor}40`,
+            color: section.factionColor,
+          }}
+        >
+          {section.faction}
+        </span>
       </div>
 
-        <div className="bg-slate-900 py-20 px-8 min-h-[80vh]">
-          <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-white mb-4 tracking-wider">VSTAR MANGA</h2>
-            <EmblaCarousel />
+      <h2 className="font-oswald text-4xl md:text-5xl font-bold mb-8 tracking-wide text-white leading-tight">
+        {section.title}
+      </h2>
+
+      <div className="space-y-5 text-base text-slate-300 leading-relaxed">
+        {section.paragraphs.map((p, i) => (
+          <p key={i}>{p}</p>
+        ))}
+        <p className="font-semibold text-lg" style={{ color: section.accentColor }}>
+          {section.accent}
+        </p>
+      </div>
+    </div>
+  );
+
+  return (
+    // overflow-hidden → overflowX hidden only, so transform scale can grow upward freely
+    <section className="relative w-full" style={{ overflowX: "hidden" }}>
+      {/* Gradient background */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, ${section.gradientFrom} 0%, ${section.gradientVia} 50%, ${section.gradientTo} 100%)`,
+        }}
+      />
+      {/* Subtle top separator */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+        style={{ backgroundColor: `${section.factionColor}20` }}
+      />
+
+      {/* ── Mobile ghost image ── */}
+      <div
+        className="md:hidden absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `url(${section.image})`,
+          backgroundSize: `auto ${90 * scale}%`,
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: section.imageRight ? "110% bottom" : "-10% bottom",
+          opacity: 0.13,
+          WebkitMaskImage: `linear-gradient(to bottom, transparent 0%, black 25%, black 60%, transparent 100%),
+                            linear-gradient(to ${section.imageRight ? "left" : "right"}, transparent 0%, black 40%)`,
+          WebkitMaskComposite: "destination-in",
+          maskImage: `linear-gradient(to bottom, transparent 0%, black 25%, black 60%, transparent 100%),
+                      linear-gradient(to ${section.imageRight ? "left" : "right"}, transparent 0%, black 40%)`,
+          maskComposite: "intersect",
+        }}
+      />
+      {/* Faction glow on mobile */}
+      <div
+        className="md:hidden absolute bottom-0 pointer-events-none w-48 h-64 blur-[80px]"
+        style={{
+          backgroundColor: `${section.factionColor}15`,
+          [section.imageRight ? "right" : "left"]: "-2rem",
+        }}
+      />
+
+      <div
+        className="relative z-10 max-w-6xl mx-auto px-8 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-16"
+        style={{ flexDirection: section.imageRight ? undefined : "row-reverse" }}
+      >
+        {/* Desktop image column */}
+        <div className="hidden md:flex md:w-2/5 flex-shrink-0 items-end justify-center overflow-visible">
+          <div
+            className="relative flex items-end justify-center overflow-visible"
+            style={{ minHeight: "380px", width: "100%" }}
+          >
+            <div
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-2/3 rounded-full blur-[80px] pointer-events-none"
+              style={{ backgroundColor: `${section.factionColor}18` }}
+            />
+            <img
+              src={section.image}
+              alt={section.imageAlt}
+              className="relative z-10 h-auto object-contain"
+              style={{
+                maxHeight: "480px",
+                transform: `scale(${scale})`,
+                transformOrigin: "bottom center",
+              }}
+            />
           </div>
         </div>
+
+        {/* Text */}
+        <div className="flex-1">{textContent}</div>
+      </div>
+    </section>
+  );
+}
+
+// ─── Page ────────────────────────────────────────────────────────────────────
+export default function LorePage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-slate-950">
+      <Header />
+
+      <main className="flex-grow flex flex-col text-white pt-24">
+
+        {/* ── Hero ── */}
+        <section className="w-full text-center px-6 pt-16 pb-12 bg-gradient-to-b from-slate-950 to-slate-900">
+          <p className="font-oswald text-xs tracking-[0.4em] uppercase text-white/30 mb-4">
+            Origins &amp; History
+          </p>
+          <h1 className="font-oswald text-5xl sm:text-6xl font-bold tracking-wide mb-4 text-white uppercase">
+            The Lore
+          </h1>
+          <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
+            The story behind <span className="text-red-400 font-semibold">VINFERNIA</span> and{" "}
+            <span className="text-blue-400 font-semibold">VSTAR</span> — a world of espionage,
+            fractured timelines, and the relentless pursuit of peace.
+          </p>
+        </section>
+
+        {/* ── Lore sections ── */}
+        {LORE_SECTIONS.map((section) => (
+          <LoreSection key={section.id} section={section} />
+        ))}
+
+        {/* ── Manga viewer ── */}
+        <section className="bg-slate-950 py-24 px-6 border-t border-white/5">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <p className="font-oswald text-xs tracking-[0.4em] uppercase text-white/30 mb-3">
+                Illustrated Stories
+              </p>
+              <h2 className="font-oswald text-4xl font-bold text-white uppercase tracking-wide mb-3">
+                Manga
+              </h2>
+              <p className="text-slate-500 text-sm max-w-md mx-auto">
+                Original stories featuring VINFERNIA, VSTAR, and individual talents — use the filters
+                to browse by faction.
+              </p>
+            </div>
+
+            <EmblaCarousel />
+          </div>
+        </section>
 
       </main>
 
