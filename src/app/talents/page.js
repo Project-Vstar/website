@@ -155,7 +155,7 @@ function AnimatedCard({ children, index }) {
   );
 }
 
-// ─── Talent grid (keyed component so filter changes trigger remount + animation) ─
+// ─── Talent grid ─────────────────────────────────────────────────────────────
 function TalentGrid({ filteredTalents, getPrimaryLogoForTalent }) {
   return (
     <div className="flex flex-wrap justify-center gap-8">
@@ -191,15 +191,26 @@ function FilterPill({ label, glowStyle, isActive, onClick }) {
 export default function TalentsPage() {
   const [activeGen, setActiveGen] = useState("all");
   const [activeSub, setActiveSub] = useState(null);
+  const [gridKey, setGridKey] = useState("all");
+  const [gridVisible, setGridVisible] = useState(true);
 
   const { generations, talents } = talentData;
 
   const activeGenObj = generations.find((g) => g.id === activeGen);
   const subgroups = activeGenObj?.subgroups || null;
 
+  function switchGrid(newGen, newSub) {
+    setGridVisible(false);
+    setTimeout(() => {
+      setActiveGen(newGen);
+      setActiveSub(newSub);
+      setGridKey(`${newGen}-${newSub}`);
+      setGridVisible(true);
+    }, 200);
+  }
+
   function handleGenClick(genId) {
-    setActiveGen(genId);
-    setActiveSub(null);
+    switchGrid(genId, null);
   }
 
   const filteredTalents = talents.filter((t) => {
@@ -227,45 +238,43 @@ export default function TalentsPage() {
 
       <main className="flex-grow flex flex-col items-center text-white">
 
-        {/* ── HERO ──────────────────────────────────────────────────────── */}
-        <section className="w-full flex flex-col items-center justify-center pt-48 pb-20 px-6 text-center bg-gradient-to-b from-slate-950 to-slate-900">
-          <div className="flex items-center justify-center gap-8 sm:gap-12 mb-12 flex-wrap">
-            {heroGroups.map((group, i) => {
-              const style = getGroupStyle(group.glowStyle);
-              return (
-                <React.Fragment key={group.id}>
-                  {i > 0 && (
-                    <span className="text-slate-600 text-3xl font-thin select-none">×</span>
-                  )}
-                  {group.logo ? (
-                    <img
-                      src={group.logo}
-                      alt={group.logoAlt}
-                      className="w-24 h-24 object-contain"
-                      style={{ filter: `drop-shadow(${style.glow})` }}
-                    />
-                  ) : (
-                    <div
-                      className="w-24 h-24 flex items-center justify-center border border-white/20 rounded-xl"
-                      style={{ boxShadow: style.glow }}
-                    >
-                      <span className="text-xs font-bold tracking-widest text-white/60 uppercase">
-                        {group.label}
-                      </span>
-                    </div>
-                  )}
-                </React.Fragment>
-              );
-            })}
+        {/* ── HERO — compact inline banner ──────────────────────────────── */}
+        <section className="w-full flex items-center justify-between pt-28 pb-5 px-10 sm:px-16 bg-gradient-to-b from-slate-950 to-slate-900 border-b border-slate-800/50">
+
+          {/* Left logo — VStar */}
+          {heroGroups[0]?.logo ? (
+            <img
+              src={heroGroups[0].logo}
+              alt={heroGroups[0].logoAlt}
+              className="w-10 h-10 sm:w-14 sm:h-14 object-contain shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200"
+              style={{ filter: "drop-shadow(0 0 8px rgba(96,165,250,0.55))" }}
+            />
+          ) : (
+            <div className="w-10 sm:w-14 shrink-0" />
+          )}
+
+          {/* Centre */}
+          <div className="flex flex-col items-center text-center px-6">
+            <h1 className="text-xl sm:text-2xl font-bold tracking-widest uppercase text-white">
+              Our Talents
+            </h1>
+            <p className="text-slate-500 text-xs tracking-widest mt-0.5 uppercase">
+              VStar · VINFERNIA · KAIROS
+            </p>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-wide mb-4">Our Talents</h1>
-          <p className="text-slate-400 text-lg max-w-xl leading-relaxed">
-            Meet the creators, performers, and staff behind{" "}
-            <span className="text-white font-semibold">VStar</span>,{" "}
-            <span className="text-red-400 font-semibold">VINFERNIA</span>, and{" "}
-            <span className="text-white font-semibold">KAIROS</span>.
-          </p>
+          {/* Right logo — VINFERNIA */}
+          {heroGroups[1]?.logo ? (
+            <img
+              src={heroGroups[1].logo}
+              alt={heroGroups[1].logoAlt}
+              className="w-10 h-10 sm:w-14 sm:h-14 object-contain shrink-0 opacity-80 hover:opacity-100 transition-opacity duration-200"
+              style={{ filter: "drop-shadow(0 0 8px rgba(248,113,113,0.55))" }}
+            />
+          ) : (
+            <div className="w-10 sm:w-14 shrink-0" />
+          )}
+
         </section>
 
         {/* ── FILTER BAR ────────────────────────────────────────────────── */}
@@ -284,7 +293,7 @@ export default function TalentsPage() {
             ))}
           </div>
 
-          {/* Tier 2: Subgroups - smooth slide + fade via grid-template-rows trick */}
+          {/* Tier 2: Subgroups */}
           <div
             style={{
               display: "grid",
@@ -310,7 +319,7 @@ export default function TalentsPage() {
                     label={sub.label}
                     glowStyle={sub.glowStyle}
                     isActive={activeSub === sub.id}
-                    onClick={() => setActiveSub(sub.id)}
+                    onClick={() => switchGrid(activeGen, sub.id)}
                   />
                 ))}
               </div>
@@ -320,17 +329,24 @@ export default function TalentsPage() {
         </section>
 
         {/* ── TALENT GRID ───────────────────────────────────────────────── */}
-        <section className="w-full max-w-6xl px-6 py-20 mx-auto">
+        <section className="w-full max-w-6xl px-6 py-20 mx-auto min-h-[60vh] transition-all duration-500 ease-in-out">
           {filteredTalents.length === 0 ? (
             <p className="text-center text-slate-500 text-lg mt-12">
               No talents in this group yet.
             </p>
           ) : (
-            <TalentGrid
-              key={activeSub ?? activeGen}
-              filteredTalents={filteredTalents}
-              getPrimaryLogoForTalent={getPrimaryLogoForTalent}
-            />
+            <div
+              style={{
+                opacity: gridVisible ? 1 : 0,
+                transition: "opacity 0.2s ease",
+              }}
+            >
+              <TalentGrid
+                key={gridKey}
+                filteredTalents={filteredTalents}
+                getPrimaryLogoForTalent={getPrimaryLogoForTalent}
+              />
+            </div>
           )}
         </section>
 

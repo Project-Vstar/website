@@ -1,7 +1,7 @@
 "use client";
 import { memo } from "react";
 
-const socialLinkStyles = `
+export const socialLinkStyles = `
     .social-link-btn {
         position: relative;
         display: inline-flex;
