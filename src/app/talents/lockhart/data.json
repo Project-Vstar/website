@@ -1,10 +1,14 @@
 {
   "lockhart": {
     "name": "Dr. Lockhart",
+    "title": "The Doctor with a Fractured Mind",
     "nameJapanese": "ロクハート先生",
     "tagline": "There you are, Patient. Right on time. Now tell me your affliction.",
-    "biography": "Dr. Sean Lockhart is one of The Order's most skilled doctors, known for saving the hamlet of Black Hollow that was doomed to be cremated. His success allowed him to take part in The Rite of Binding earning him the Mask of the White Raven, a sacred omen not seen since the founding days of The Order.\n\nA mask that carries admiration from the people but has the power to shake the hierarchy of The Order itself. Accompanied by his loyal companion Poe, Lockhart wanders this plague stricken land to heal and protect his beloved patients from the horrors that remain unseen, and to uphold the ideals of an Order that has lost its way and grows more corrupt by the day…\n\n…though those that have spent time around the doctor swear that his reflection does not always match the man who casts it.",
+    "oshiMark": "🩺🪶🕯️",
+    "biography": "Lockhart is a Plague Doctor themed VTuber who streams a variety of content. His main focus is game streaming, but you'll also find him doing language study, reaction content, and exploring the lore of his favourite games.\n\nWhen you tune in, you'll either be greeted by the friendly Doctor or his more unhinged other side — but that's down to the choice of his dear patients. His goal is to create a community where anyone can hang out and not be afraid to let their 'Other' side show.\n\nSo tune on in, take a seat. The Doctor will see you soon.",
+    "lore": "Dr. Sean Lockhart is one of The Order's most skilled doctors, known for saving the hamlet of Black Hollow that was doomed to be cremated. His success allowed him to take part in The Rite of Binding earning him the Mask of the White Raven, a sacred omen not seen since the founding days of The Order.\n\nA mask that carries admiration from the people but has the power to shake the hierarchy of The Order itself. Accompanied by his loyal companion Poe, Lockhart wanders this plague stricken land to heal and protect his beloved patients from the horrors that remain unseen, and to uphold the ideals of an Order that has lost its way and grows more corrupt by the day…\n\n…though those that have spent time around the doctor swear that his reflection does not always match the man who casts it.",
     "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_BG.png",
+    "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
     "outfits": [
       { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", "name": "Default" },
       { "id": 1, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", "name": "Mask" }
@@ -15,7 +19,32 @@
       { "platform": "TikTok",  "url": "https://tiktok.com/@Lockhart_VT" },
       { "platform": "X",       "url": "https://x.com/Lockhart_VT" }
     ],
-    "featuredVideoId": "cjlUxgYMhfM",
+    "recommendedVideos": [
+      {
+        "id": 1,
+        "title": "TODO: Add video title",
+        "thumbnail": "https://img.youtube.com/vi/cjlUxgYMhfM/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=cjlUxgYMhfM",
+        "date": "TBA",
+        "views": ""
+      },
+      {
+        "id": 2,
+        "title": "TODO: Add video title",
+        "thumbnail": "https://img.youtube.com/vi/pGrw-4fxgVg/maxresdefault.jpg",
+        "url": "https://youtu.be/pGrw-4fxgVg",
+        "date": "TBA",
+        "views": ""
+      },
+      {
+        "id": 3,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA",
+        "views": ""
+      }
+    ],
     "videos": [
       { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
       { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
@@ -44,10 +73,14 @@
   },
   "other": {
     "name": "The Other",
+    "title": "The Doctor with a Fractured Mind",
     "nameJapanese": "ザー・アザー",
     "tagline": "Don't be shy, Patient. Come closer, let me get a closer look.",
-    "biography": "The Other came into existence the night Lockhart's serum fractured his mind, a second self that indulges in everything the Doctor denies himself.\n\nThe Other protects their precious patients with a passion that borders obsession, stopping at nothing to keep their hearts beating. Slipping in and out of control over Lockhart's body whenever the doctor's spirit weakens, through exhaustion, emotion, or on the rare occasion, permission.\n\nWhispers have begun to circulate within The Order that the White Raven does not work alone.",
+    "oshiMark": "🩺🪶🕯️",
+    "biography": "Lockhart is a Plague Doctor themed VTuber who streams a variety of content. His main focus is game streaming, but you'll also find him doing language study, reaction content, and exploring the lore of his favourite games.\n\nWhen you tune in, you'll either be greeted by the friendly Doctor or his more unhinged other side — but that's down to the choice of his dear patients. His goal is to create a community where anyone can hang out and not be afraid to let their 'Other' side show.\n\nSo tune on in, take a seat. The Doctor will see you soon.",
+    "lore": "The Other came into existence the night Lockhart's serum fractured his mind, a second self that indulges in everything the Doctor denies himself.\n\nThe Other protects their precious patients with a passion that borders obsession, stopping at nothing to keep their hearts beating. Slipping in and out of control over Lockhart's body whenever the doctor's spirit weakens, through exhaustion, emotion, or on the rare occasion, permission.\n\nWhispers have begun to circulate within The Order that the White Raven does not work alone.",
     "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Other_BG.png",
+    "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
     "outfits": [
       { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", "name": "Other Default" },
       { "id": 1, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", "name": "Other Mask" }
@@ -58,7 +91,32 @@
       { "platform": "TikTok",  "url": "https://tiktok.com/@Lockhart_VT" },
       { "platform": "X",       "url": "https://x.com/Lockhart_VT" }
     ],
-    "featuredVideoId": "cjlUxgYMhfM",
+    "recommendedVideos": [
+      {
+        "id": 1,
+        "title": "TODO: Add video title",
+        "thumbnail": "https://img.youtube.com/vi/cjlUxgYMhfM/maxresdefault.jpg",
+        "url": "https://www.youtube.com/watch?v=cjlUxgYMhfM",
+        "date": "TBA",
+        "views": ""
+      },
+      {
+        "id": 2,
+        "title": "TODO: Add video title",
+        "thumbnail": "https://img.youtube.com/vi/pGrw-4fxgVg/maxresdefault.jpg",
+        "url": "https://youtu.be/pGrw-4fxgVg",
+        "date": "TBA",
+        "views": ""
+      },
+      {
+        "id": 3,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA",
+        "views": ""
+      }
+    ],
     "videos": [
       { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
       { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
@@ -87,14 +145,18 @@
   },
   "theme": {
     "lockhart": {
-      "accent":     "#F5F0E1",
-      "background": "#1a1a1a",
-      "recent":     "#6E6E5A"
+      "accent":      "#F5F0E1",
+      "background":  "#1a1a1a",
+      "featured":    "#141414",
+      "recommended": "#1f1f1f",
+      "recent":      "#141414"
     },
     "other": {
-      "accent":     "#1B4D3E",
-      "background": "#050a08",
-      "recent":     "#2A4A3A"
+      "accent":      "#1B4D3E",
+      "background":  "#050a08",
+      "featured":    "#070d0a",
+      "recommended": "#0d1510",
+      "recent":      "#070d0a"
     }
   }
 }
