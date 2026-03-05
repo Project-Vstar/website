@@ -5,6 +5,16 @@ import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { EmblaCarousel } from "@/app/components/carousel_vinfernia";
 
+const styles = `
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: heroFadeUp 0.9s ease forwards; }
+  .fade-1 { animation-delay: 0.1s; }
+  .fade-2 { animation-delay: 0.3s; }
+`;
+
 // ─── Lore section data ───────────────────────────────────────────────────────
 const LORE_SECTIONS = [
   {
@@ -61,7 +71,7 @@ function LoreSection({ section }) {
       <div className="inline-block mb-5">
       </div>
 
-      <h2 className="font-oswald text-4xl md:text-5xl font-bold mb-8 tracking-wide text-white leading-tight">
+      <h2 className=" font-oswald text-4xl md:text-5xl font-bold mb-8 tracking-wide text-white leading-tight">
         {section.title}
       </h2>
 
@@ -156,16 +166,17 @@ function LoreSection({ section }) {
 export default function LorePage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-950">
+      <style>{styles}</style>
       <Header />
 
       <main className="flex-grow flex flex-col text-white pt-24">
 
         {/* ── Hero ── */}
         <section className="w-full text-center px-6 pt-16 pb-12 bg-gradient-to-b from-slate-950 to-slate-900">
-          <h1 className="font-oswald text-5xl sm:text-6xl font-bold tracking-wide mb-4 text-white uppercase">
+          <h1 className=" fade-up fade-1 font-oswald text-5xl sm:text-6xl font-bold tracking-wide mb-4 text-white uppercase">
             The Lore
           </h1>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="fade-up fade-2text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
             The story behind VINFERNIA and{" "}
             VSTAR - a world of espionage,
             fractured timelines, and the relentless pursuit of peace.

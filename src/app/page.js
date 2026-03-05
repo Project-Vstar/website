@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import OrgChart from "@/app/components/orgchart";
@@ -51,8 +52,12 @@ function GlassCard({ children, accentColor, borderColor }) {
 // ── Staff card ────────────────────────────────────────────────────────────
 function StaffCard({ member }) {
   return (
-    <Link href={member.href} className="staff-card group flex flex-col items-center" style={{ "--glow": member.color }}>
-      <div className="staff-card__frame w-44 h-48 rounded-2xl overflow-hidden mb-6 border border-white/20 transition-all duration-300 group-hover:-translate-y-3">
+    <Link
+      href={member.href}
+      className="staff-card group flex flex-col items-center transition-transform duration-300 hover:-translate-y-1"
+      style={{ "--glow": member.color }}
+    >
+      <div className="staff-card__frame w-44 h-48 rounded-2xl overflow-hidden mb-6 border border-white/20 transition-all duration-300">
         <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
       </div>
       <p className="font-oswald text-[10px] font-bold uppercase tracking-widest mb-1 transition-colors duration-200" style={{ color: member.color }}>{member.role}</p>
@@ -96,7 +101,7 @@ const services = [
 
 const staff = [
   { img: "/Company/dee-staff.png", role: "CEO & Management Lead", name: "Dee Ronny", color: "#60a5fa", href: "/talents/dee" },
-  { img: "/Company/diino-staff.png", role: "Art Director", name: "DreamyDiino", color: "#c084fc", href: "/talents/dreamydiino" }
+  { img: "/Company/diino-staff.png", role: "Art Director", name: "DreamyDiino", color: "#C9A84C", href: "/talents/dreamydiino" }
 ];
 
 const officialChannelLinks = [
@@ -202,7 +207,7 @@ export default function HomePage() {
 
           {/* CTAs */}
           <div className="hero-fade hero-fade-4 relative z-10 flex flex-wrap gap-4 justify-center">
-            <AgencyButton href="/vinfernia">Meet the Talents</AgencyButton>
+            <AgencyButton href="/talents">Meet the Talents</AgencyButton>
             <AgencyButton href="#what-we-do">What We Do</AgencyButton>
           </div>
 
@@ -241,7 +246,7 @@ export default function HomePage() {
           <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Roster</p>
           <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase mb-4">Our Talents</h2>
           <p className="text-slate-400 mb-10 text-sm max-w-md mx-auto">Meet the personalities behind our flagship divisions.</p>
-          <AgencyButton href="/vinfernia">Go to Talents</AgencyButton>
+          <AgencyButton href="/talents">Go to Talents</AgencyButton>
         </section>
 
         {/* ── The Company ───────────────────────────────────────────────── */}

@@ -286,8 +286,7 @@ const Header = () => {
                     </div>
 
                     <div className="mt-auto pb-4 border-t border-white/5 pt-6 flex justify-between items-center">
-                        <p className="font-oswald text-[9px] text-white/15 tracking-[0.4em] uppercase">Vinfernia // Protocol 1.0</p>
-                        <div className="w-2 h-2 rounded-full bg-green-500/40 animate-pulse" />
+                        <p className="font-oswald text-[9px] text-white/15 tracking-[0.4em] uppercase">VStar Project // Nine Lives Digital</p>
                     </div>
                 </div>
             </header >

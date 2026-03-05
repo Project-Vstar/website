@@ -2,25 +2,32 @@
 import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
-import Hero from "@/app/components/hero";
+import WipSection from "../components/wippage";
 
-export default function VStarPage() {
+const styles = `
+  @keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { opacity: 0; animation: heroFadeUp 0.9s ease forwards; }
+  .fade-1 { animation-delay: 0.1s; }
+  .fade-2 { animation-delay: 0.3s; }
+`;
+
+export default function AboutPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-900">
+    <div className="flex flex-col min-h-screen bg-slate-900 text-white">
+      <style>{styles}</style>
       <Header />
 
-                    <Hero
-                        title="About"
-                        description="Learn more about our organization and mission."
-                        dotPattern={{
-                            size: 2,
-                            spacing: 25,
-                            color: "255, 255, 255",
-                            opacity: 0.1
-                        }}
-                    />
+      {/* ── Page Header ───────────────────────────────────────────────── */}
+      <section className="bg-gradient-to-b from-slate-950 to-slate-900 border-b border-white/5 pt-32 pb-20 px-6 text-center">
+        <h1 className=" font-oswald text-5xl md:text-7xl font-bold uppercase leading-tight">About</h1>
+      </section>
 
-    <Footer />
+      <WipSection />
+
+      <Footer />
     </div>
   );
 }
