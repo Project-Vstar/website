@@ -35,7 +35,7 @@
     {
       "id": 1,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA",
       "views": "0"
@@ -43,7 +43,7 @@
     {
       "id": 2,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA",
       "views": "0"
@@ -51,7 +51,7 @@
     {
       "id": 3,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA",
       "views": "0"
@@ -61,28 +61,28 @@
     {
       "id": 1,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA"
     },
     {
       "id": 2,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA"
     },
     {
       "id": 3,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA"
     },
     {
       "id": 4,
       "title": "Coming Soon",
-      "thumbnail": "/placeholder.jpg",
+      "thumbnail": "/placeholder.png",
       "url": "#",
       "date": "TBA"
     }

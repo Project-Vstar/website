@@ -28,13 +28,13 @@
   "recommendedVideos": [
     { "id": 1, "title": "Recommended Stream Highlight", "thumbnail": "https://img.youtube.com/vi/bxDk4lLkpzU/maxresdefault.jpg", "url": "https://youtu.be/bxDk4lLkpzU", "date": "Recent", "views": "Watch now" },
     { "id": 2, "title": "Live Stream VOD", "thumbnail": "https://img.youtube.com/vi/NeVjnxpdm_k/maxresdefault.jpg", "url": "https://youtube.com/live/NeVjnxpdm_k", "date": "Recent", "views": "Watch now" },
-    { "id": 3, "title": "TikTok Highlight", "thumbnail": "/placeholder.jpg", "url": "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505", "date": "Recent", "views": "Watch now" }
+    { "id": 3, "title": "TikTok Highlight", "thumbnail": "/placeholder.png", "url": "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505", "date": "Recent", "views": "Watch now" }
   ],
   "videos": [
-    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" }
   ],
   "data": {
     "birthday": "June 6th",
