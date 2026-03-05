@@ -309,7 +309,7 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
                         transform: `scale(${hovered
                             ? (talent.imageScale || 1) * 1.08 + 0.08
                             : (talent.imageScale || 1) * 1.08
-                        })`,
+                            })`,
                         transition: "transform 0.4s ease",
                     }}
                 />
@@ -582,7 +582,7 @@ export default function LockhartPage() {
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
                                 <div className="relative flex items-center justify-center h-[700px] overflow-visible">
                                     {talentData.outfits.length > 1 && (
-                                        <div className={`absolute top-1/2 -translate-y-1/2 flex flex-col gap-3 z-10 ${isLockhart ? "left-0" : "left-0 lg:right-0 lg:left-auto"}`}>
+                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
                                             {talentData.outfits.map((outfit) => (
                                                 <OutfitButton
                                                     key={outfit.id}
