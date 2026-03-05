@@ -3,6 +3,7 @@ import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import Hero from "@/app/components/hero";
+import WipSection from "../components/wippage";
 
 export default function BusinessPartnerArea() {
   return (
@@ -20,11 +21,7 @@ export default function BusinessPartnerArea() {
         }}
       />
 
-      <div className="text-white text-2xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
-        <div className="flex flex-col justify-center items-center">
-          <p className="p-4">WIP</p>
-        </div>
-      </div>
+      <WipSection />
 
 
       <Footer />
