@@ -12,10 +12,7 @@
   ],
   "links": [
     { "platform": "Twitch", "url": "https://twitch.tv/deeronnysynluzycy" },
-    { "platform": "YouTube", "url": "https://youtube.com/@MfSDD" },
-    { "platform": "TikTok", "url": "https://tiktok.com/@deeronnysynluzycy" },
-    { "platform": "X", "url": "https://x.com/MysteryForS_DD" },
-    { "platform": "Instagram", "url": "https://instagram.com/deeronnysynlucyzy" }
+    { "platform": "X", "url": "https://x.com/MysteryForS_DD" }
   ],
   "featuredVideoId": "bxDk4lLkpzU",
   "schedule": [
@@ -28,7 +25,7 @@
   "recommendedVideos": [
     { "id": 1, "title": "Recommended Stream Highlight", "thumbnail": "https://img.youtube.com/vi/bxDk4lLkpzU/maxresdefault.jpg", "url": "https://youtu.be/bxDk4lLkpzU", "date": "Recent", "views": "Watch now" },
     { "id": 2, "title": "Live Stream VOD", "thumbnail": "https://img.youtube.com/vi/NeVjnxpdm_k/maxresdefault.jpg", "url": "https://youtube.com/live/NeVjnxpdm_k", "date": "Recent", "views": "Watch now" },
-    { "id": 3, "title": "TikTok Highlight", "thumbnail": "/placeholder.png", "url": "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505", "date": "Recent", "views": "Watch now" }
+    { "id": 3, "title": "Coming soon!", "thumbnail": "/placeholder.png", "url": "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505", "date": "Recent", "views": "Watch now" }
   ],
   "videos": [
     { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
