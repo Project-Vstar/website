@@ -204,8 +204,8 @@ export default function HomePage() {
         </section>
 
         {/* ── Organisation ──────────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-6 py-20">
-          <h2 className="font-oswald text-2xl text-center mb-12 opacity-50 tracking-[0.2em] uppercase">Organisation</h2>
+        <section className="max-w-6xl mx-auto px-6 py-20 text-center">
+          <h2 className="font-oswald text-3xl font-bold mb-4 uppercase">Organisation</h2>
           <div className="relative group">
             <div className="absolute inset-0 bg-blue-500/10 blur-[100px] pointer-events-none" />
             <div className=" p-8 rounded-3xl backdrop-blur-sm">
