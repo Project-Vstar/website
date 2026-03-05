@@ -135,9 +135,25 @@ const Chevrons = ({ open }) => (
 const PAGE_LABELS = {
     "/": "Home",
     "/talents": "Talents",
+    "/talents/dee": "Dee Ronny",
+    "/talents/dreamydiino": "DreamyDiino",
+    "/talents/gomifuyu": "Gomifuyu",
+    "/talents/leevalentine": "Lee Valentine",
+    "/talents/lockhart": "Lockhart",
     "/lore": "Lore",
     "/about": "About",
     "/partners": "Partners",
+    "/auditions": "Auditions",
+    "/faq": "FAQ",
+    "/articles": "Articles",
+    "/member-area": "Members' Area",
+    "/businesspartner-area": "Partners",
+    "/press": "Press Kit",
+    "/derivative-works-guideline": "Derivative Works",
+    "/impressum": "Impressum",
+    "/privacy-policy": "Privacy Policy",
+    "/terms": "Terms of Service",
+    "/cookies": "Cookies",
 };
 
 const Header = () => {
