@@ -3,12 +3,11 @@ import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import Hero from "@/app/components/hero";
+import WipSection from "../components/wippage";
 
-export default function BusinessPartnerArea() {
+export default function Articles() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-900">
-      <Header />
-
       <Hero
         title="Articles"
         description="Articles exploring the world of VINFERNIA and VSTAR."
@@ -19,14 +18,8 @@ export default function BusinessPartnerArea() {
           opacity: 0.1
         }}
       />
-
-      <div className="text-white text-2xl font-bold flex-grow flex items-center justify-center min-h-[90vh]">
-        <div className="flex flex-col justify-center items-center">
-          <p className="p-4">WIP</p>
-        </div>
-      </div>
-
-
+      <Header />
+      <WipSection />
       <Footer />
     </div>
   );

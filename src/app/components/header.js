@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 
 const headerStyles = `
     .nav-link-btn {
@@ -192,8 +193,11 @@ const Header = () => {
             <header
                 className="fixed top-0 left-0 w-full z-40 transition-all duration-400"
                 style={{
-                    background: scrolled ? "rgba(0, 0, 0, 0.3)" : "transparent", backdropFilter: "blur(12px)",
+                    background: scrolled ? "rgba(0, 0, 0, 0.3)" : "transparent",
+                    backdropFilter: scrolled ? "blur(12px)" : "none",
+                    WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
                     borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.1)" : "1px solid transparent",
+                    isolation: "isolate",
                 }}
             >
                 <nav className="flex items-center justify-between px-6 py-3 relative">
@@ -218,23 +222,29 @@ const Header = () => {
                             <button className="hamburger-btn" onClick={(e) => { e.stopPropagation(); setDesktopMenuOpen(!desktopMenuOpen); }}>
                                 <Chevrons open={desktopMenuOpen} />
                             </button>
-                            {/* ALIGNMENT FIX: Change right-0 to right-0 for container alignment, 
-                                but the menu itself is positioned relative to the btn. 
-                                By adding right-0 here, it aligns with the btn's right edge. */}
-                            <div className={`absolute top-11.5 right-0 mt-4 backdrop-blur-xl rounded-2xl p-6 min-w-[420px] transition-all duration-300 ${desktopMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
-                                style={{
-                                    background: "rgba(8,10,9,0.85)",
-                                    border: "1px solid rgba(255,255,255,0.12)",
-                                    boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
-                                }}>
-                                <div className="grid grid-cols-3 gap-3">
-                                    {navItems.map(({ href, label }) => (
-                                        <Link key={href} href={href} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
-                                            {label}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
+                            {typeof window !== "undefined" && createPortal(
+                                <div
+                                    className={`fixed top-[73px] right-6 backdrop-blur-xl rounded-2xl p-6 min-w-[420px] transition-all duration-300 ${desktopMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
+                                    style={{
+                                        zIndex: 9999,
+                                        background: "rgba(0, 0, 0, 0.5)",
+                                        padding: "20px",
+                                        backdropFilter: "blur(24px)",
+                                        WebkitBackdropFilter: "blur(24px)",
+                                        border: "1px solid rgba(255, 255, 255, 0.1)",
+                                        boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
+                                    }}
+                                >
+                                    <div className="grid grid-cols-3 gap-3">
+                                        {navItems.map(({ href, label }) => (
+                                            <Link key={href} href={href} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
+                                                {label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>,
+                                document.body
+                            )}
                         </div>
                     </div>
 
@@ -280,7 +290,7 @@ const Header = () => {
                         <div className="w-2 h-2 rounded-full bg-green-500/40 animate-pulse" />
                     </div>
                 </div>
-            </header>
+            </header >
         </>
     );
 };
