@@ -24,7 +24,7 @@ const Footer = () => {
                             />
                         </Link>
                         <p className="text-gray-500 text-xs leading-relaxed max-w-[200px]">
-                            Providing a premier platform for virtual talent and digital entertainment.
+                            Providing a platform for virtual talent and digital entertainment.
                         </p>
                     </div>
 

@@ -10,56 +10,107 @@
     "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_BG.png",
     "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
     "outfits": [
-      { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png", "name": "Default" },
-      { "id": 1, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png", "name": "Mask" }
+      {
+        "id": 0,
+        "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png",
+        "name": "Default"
+      },
+      {
+        "id": 1,
+        "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png",
+        "name": "Mask"
+      }
     ],
     "links": [
-      { "platform": "Twitch",  "url": "https://twitch.tv/lockhart_vt" },
-      { "platform": "YouTube", "url": "https://youtube.com/@Lockhart_VT" },
-      { "platform": "TikTok",  "url": "https://tiktok.com/@Lockhart_VT" },
-      { "platform": "X",       "url": "https://x.com/Lockhart_VT" }
+      {
+        "platform": "Twitch",
+        "url": "https://twitch.tv/lockhart_vt"
+      },
+      {
+        "platform": "YouTube",
+        "url": "https://youtube.com/@Lockhart_VT"
+      },
+      {
+        "platform": "TikTok",
+        "url": "https://tiktok.com/@Lockhart_VT"
+      },
+      {
+        "platform": "X",
+        "url": "https://x.com/Lockhart_VT"
+      }
     ],
     "recommendedVideos": [
       {
         "id": 1,
-        "title": "TODO: Add video title",
+        "title": "Can Lockhart Escape to Exit 8",
         "thumbnail": "https://img.youtube.com/vi/cjlUxgYMhfM/maxresdefault.jpg",
         "url": "https://www.youtube.com/watch?v=cjlUxgYMhfM",
-        "date": "TBA",
+        "date": "7 oct 2025",
         "views": ""
       },
       {
         "id": 2,
-        "title": "TODO: Add video title",
+        "title": "Would you trust Lockhart with your boba?",
         "thumbnail": "https://img.youtube.com/vi/pGrw-4fxgVg/maxresdefault.jpg",
         "url": "https://youtu.be/pGrw-4fxgVg",
-        "date": "TBA",
+        "date": "30 jun 2025",
         "views": ""
       },
       {
         "id": 3,
-        "title": "Coming Soon",
-        "thumbnail": "/placeholder.jpg",
+        "title": "Coming Soon!",
+        "thumbnail": "/placeholder.png",
         "url": "#",
         "date": "TBA",
         "views": ""
       }
     ],
     "videos": [
-      { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-      { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-      { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-      { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+      {
+        "id": 1,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      },
+      {
+        "id": 2,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      },
+      {
+        "id": 3,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      },
+      {
+        "id": 4,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      }
     ],
     "data": {
       "birthday": "October 3rd",
       "debutStream": "June 21st, 2025",
       "height": "5'11\"",
       "unit": "Vinfernia Gen 0",
-      "illustrator": { "name": "Piorinn", "url": "#" },
+      "illustrator": {
+        "name": "Piorinn",
+        "url": "#"
+      },
       "dream": "Provide a safe place for all my patients",
       "fanName": "Patients",
-      "hashtags": { "stream": "#LockhartLive", "fanArt": "#LockArted", "clips": "#DosesofLockhart" },
+      "hashtags": {
+        "stream": "#LockhartLive",
+        "fanArt": "#LockArted",
+        "clips": "#DosesofLockhart"
+      },
       "catchphrases": [
         "Good Evening Patient",
         "Get that apple away from me",
@@ -82,14 +133,34 @@
     "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Other_BG.png",
     "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
     "outfits": [
-      { "id": 0, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png", "name": "Other Default" },
-      { "id": 1, "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png", "name": "Other Mask" }
+      {
+        "id": 0,
+        "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png",
+        "name": "Other Default"
+      },
+      {
+        "id": 1,
+        "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png",
+        "name": "Other Mask"
+      }
     ],
     "links": [
-      { "platform": "Twitch",  "url": "https://twitch.tv/lockhart_vt" },
-      { "platform": "YouTube", "url": "https://youtube.com/@Lockhart_VT" },
-      { "platform": "TikTok",  "url": "https://tiktok.com/@Lockhart_VT" },
-      { "platform": "X",       "url": "https://x.com/Lockhart_VT" }
+      {
+        "platform": "Twitch",
+        "url": "https://twitch.tv/lockhart_vt"
+      },
+      {
+        "platform": "YouTube",
+        "url": "https://youtube.com/@Lockhart_VT"
+      },
+      {
+        "platform": "TikTok",
+        "url": "https://tiktok.com/@Lockhart_VT"
+      },
+      {
+        "platform": "X",
+        "url": "https://x.com/Lockhart_VT"
+      }
     ],
     "recommendedVideos": [
       {
@@ -118,20 +189,51 @@
       }
     ],
     "videos": [
-      { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-      { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-      { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" },
-      { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.jpg", "url": "#", "date": "TBA" }
+      {
+        "id": 1,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      },
+      {
+        "id": 2,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      },
+      {
+        "id": 3,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      },
+      {
+        "id": 4,
+        "title": "Coming Soon",
+        "thumbnail": "/placeholder.jpg",
+        "url": "#",
+        "date": "TBA"
+      }
     ],
     "data": {
       "birthday": "June 21st",
       "debutStream": "June 21st, 2025",
       "height": "5'11\"",
       "unit": "Vinfernia Gen 0",
-      "illustrator": { "name": "Piorinn", "url": "#" },
+      "illustrator": {
+        "name": "Piorinn",
+        "url": "#"
+      },
       "dream": "To keep every patient alive, no matter the cost.",
       "fanName": "Patients",
-      "hashtags": { "stream": "#LockhartLive", "fanArt": "#LockArted", "clips": "#DosesofLockhart" },
+      "hashtags": {
+        "stream": "#LockhartLive",
+        "fanArt": "#LockArted",
+        "clips": "#DosesofLockhart"
+      },
       "catchphrases": [
         "My, aren't you a lovely disaster",
         "Don't flinch, this is my favourite part",
@@ -145,18 +247,18 @@
   },
   "theme": {
     "lockhart": {
-      "accent":      "#F5F0E1",
-      "background":  "#1a1a1a",
-      "featured":    "#141414",
+      "accent": "#F5F0E1",
+      "background": "#1a1a1a",
+      "featured": "#141414",
       "recommended": "#1f1f1f",
-      "recent":      "#141414"
+      "recent": "#141414"
     },
     "other": {
-      "accent":      "#1B4D3E",
-      "background":  "#050a08",
-      "featured":    "#070d0a",
+      "accent": "#1B4D3E",
+      "background": "#050a08",
+      "featured": "#070d0a",
       "recommended": "#0d1510",
-      "recent":      "#070d0a"
+      "recent": "#070d0a"
     }
   }
 }
