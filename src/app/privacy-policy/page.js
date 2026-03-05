@@ -260,7 +260,7 @@ Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
 
       <Hero
         title="Privacy Policy"
-        description="Your privacy is important to us."
+        description=""
         dotPattern={{
           size: 2,
           spacing: 25,

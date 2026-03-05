@@ -57,7 +57,7 @@ These overall guidelines are subject to change without notice. Please ensure tha
 
                     <Hero
                         title="Derivative Works Guidelines"
-                        description="Guidelines for creating derivative works based on our content."
+                        description=""
                         dotPattern={{
                             size: 2,
                             spacing: 25,

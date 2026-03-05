@@ -10,7 +10,7 @@ export default function Articles() {
     <div className="flex flex-col min-h-screen bg-slate-900">
       <Hero
         title="Articles"
-        description="Articles exploring the world of VINFERNIA and VSTAR."
+        description=""
         dotPattern={{
           size: 2,
           spacing: 25,

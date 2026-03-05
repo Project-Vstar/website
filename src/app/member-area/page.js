@@ -12,7 +12,7 @@ export default function BusinessPartnerArea() {
 
       <Hero
         title="Members' Area"
-        description="Exclusive content for our members."
+        description=""
         dotPattern={{
           size: 2,
           spacing: 25,
