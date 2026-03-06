@@ -27,7 +27,7 @@ const LORE_SECTIONS = [
     image: "/VINFERNIA/VINFERNIA/Dee/Full_Model_Default.png",
     imageAlt: "Dee Ronny syn Łužycy, standing.",
     imageRight: false,
-    imageScale: 2.2,
+    imageScale: 1.2,
     title: "The Lore of VINFERNIA",
     paragraphs: [
       "This is the beginning of the Lore of VINFERNIA - it will change over time with the contribution of every generation.",
