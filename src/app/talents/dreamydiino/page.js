@@ -229,7 +229,7 @@ function RecentClips({ signatureColor }) {
 
     if (error || clips.length === 0) {
         return (
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {dreamyDiinoData.videos.map((v) => (
                     <VideoCard key={v.id} video={v} signatureColor={signatureColor} />
                 ))}
@@ -238,7 +238,7 @@ function RecentClips({ signatureColor }) {
     }
 
     return (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {clips.map((clip) => (
                 <ClipCard key={clip.id} clip={clip} signatureColor={signatureColor} />
             ))}
@@ -275,15 +275,13 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
     return (
         <Link
             href={talent.href}
-            className="group flex flex-col items-center"
+            className="group flex flex-col items-center w-full"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
             <div
-                className="relative overflow-hidden rounded-2xl"
+                className="relative overflow-hidden rounded-2xl w-full aspect-square"
                 style={{
-                    width: "180px",
-                    height: "180px",
                     backgroundColor: theme,
                     boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
                     transform: hovered ? "scale(1.07)" : "scale(1)",
@@ -399,7 +397,7 @@ export default function DreamyDiinoPage() {
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
-                            <div className="relative flex items-center justify-center h-[700px] overflow-visible">
+                            <div className="relative flex items-center justify-center h-[350px] sm:h-[500px] lg:h-[700px] overflow-visible">
                                 <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                     <img
                                         src="/VINFERNIA/VINFERNIA/DreamyDiino/DreamyDiinoPNG.png"
@@ -426,7 +424,7 @@ export default function DreamyDiinoPage() {
                                         </a>
                                     )}
                                     <h1
-                                        className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
+                                        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
                                         style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{dreamyDiinoData.name}</div>
@@ -486,7 +484,7 @@ export default function DreamyDiinoPage() {
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
                     <div className="max-w-6xl mx-auto relative z-0">
                         <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Clips</h2>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             {dreamyDiinoData.recommendedVideos.map((video) => (
                                 <ClipCard key={video.id} clip={{ ...video, url: video.url || "#" }} signatureColor={signatureColor} variant="recommended" />
                             ))}
@@ -535,9 +533,9 @@ export default function DreamyDiinoPage() {
 
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
-                                <div className="relative flex items-center justify-center h-[700px] overflow-visible">
+                                <div className="relative flex items-center justify-center h-[580px] sm:h-[620px] lg:h-[700px] overflow-hidden lg:overflow-visible">
                                     {dreamyDiinoData.outfits.length > 1 && (
-                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-0 flex-col gap-3 z-10">
                                             {dreamyDiinoData.outfits.map((outfit) => (
                                                 <OutfitButton
                                                     key={outfit.id}
@@ -549,7 +547,7 @@ export default function DreamyDiinoPage() {
                                             ))}
                                         </div>
                                     )}
-                                    <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+                                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden lg:overflow-visible">
                                         <img
                                             src={currentOutfitImage}
                                             alt={dreamyDiinoData.name}
@@ -561,12 +559,25 @@ export default function DreamyDiinoPage() {
                                         />
                                     </div>
                                 </div>
+                                {dreamyDiinoData.outfits.length > 1 && (
+                                    <div className="flex lg:hidden gap-3 justify-center mt-4">
+                                        {dreamyDiinoData.outfits.map((outfit) => (
+                                            <OutfitButton
+                                                key={outfit.id}
+                                                outfit={outfit}
+                                                isSelected={selectedOutfit === outfit.id}
+                                                signatureColor={signatureColor}
+                                                onClick={() => handleOutfitClick(outfit.id)}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
                                 <div
-                                    className="backdrop-blur-sm rounded-lg p-8 border w-full"
+                                    className="backdrop-blur-sm rounded-lg p-4 md:p-8 border w-full"
                                     style={{
                                         background: `linear-gradient(135deg, ${signatureColor}20, ${signatureColor}10)`,
                                         borderColor: `${signatureColor}30`,
@@ -657,7 +668,7 @@ export default function DreamyDiinoPage() {
                     />
                     <div className="max-w-6xl mx-auto text-center">
                         <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
-                        <div className="flex flex-wrap gap-8 justify-center">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto w-full">
                             {genmates.map((talent) => (
                                 <GenmateTalentCard
                                     key={talent.name}

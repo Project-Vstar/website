@@ -41,7 +41,7 @@ function AgencyButton({ href, children, swoopColor = "rgba(255,255,255,0.6)", te
 function GlassCard({ children, accentColor, borderColor }) {
   return (
     <div
-      className="backdrop-blur-sm rounded-2xl border p-8 flex flex-col h-full transition-transform duration-300 hover:-translate-y-1"
+      className="backdrop-blur-sm rounded-2xl border p-5 md:p-8 flex flex-col h-full transition-transform duration-300 hover:-translate-y-1"
       style={{ backgroundColor: accentColor, borderColor: borderColor }}
     >
       {children}
@@ -57,7 +57,7 @@ function StaffCard({ member }) {
       className="staff-card group flex flex-col items-center transition-transform duration-300 hover:-translate-y-1"
       style={{ "--glow": member.color }}
     >
-      <div className="staff-card__frame w-44 h-48 rounded-2xl overflow-hidden mb-6 border border-white/20 transition-all duration-300">
+      <div className="staff-card__frame w-36 h-40 md:w-44 md:h-48 rounded-2xl overflow-hidden mb-6 border border-white/20 transition-all duration-300">
         <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
       </div>
       <p className="font-oswald text-[10px] font-bold uppercase tracking-widest mb-1 transition-colors duration-200" style={{ color: member.color }}>{member.role}</p>
@@ -197,7 +197,7 @@ export default function HomePage() {
           <h1 className="hero-fade hero-fade-2 relative z-10 font-oswald font-bold uppercase tracking-tight leading-none mb-2"
             style={{ fontSize: "clamp(3rem, 10vw, 7rem)" }}>
             <span style={{ color: "#60a5fa" }}>VSTAR</span>
-            <span className="text-slate-600 mx-3 md:mx-5 font-thin">PROJECT</span>
+            <span className="text-gray-300 mx-3 md:mx-5 font-thin">PROJECT</span>
           </h1>
 
           {/* Tagline */}
@@ -211,13 +211,10 @@ export default function HomePage() {
             <AgencyButton href="#what-we-do">What We Do</AgencyButton>
           </div>
 
-          {/* Scroll hint */}
-          <div className="hero-fade hero-fade-4 absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 opacity-30">
-          </div>
         </section>
 
         {/* ── What We Do ────────────────────────────────────────────────── */}
-        <section id="what-we-do" className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-32 pb-24 px-6">
+        <section id="what-we-do" className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 md:pt-32 pb-24 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="mb-16">
               <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Services</p>
@@ -274,7 +271,7 @@ export default function HomePage() {
               <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Team</p>
               <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase">Staff</h2>
             </div>
-            <div className="flex flex-wrap justify-center gap-16 md:gap-24">
+            <div className="flex flex-wrap justify-center gap-10 md:gap-24">
               {staff.map((member) => (
                 <StaffCard key={member.name} member={member} />
               ))}
@@ -301,12 +298,9 @@ export default function HomePage() {
           <h2 className="font-oswald text-3xl font-bold uppercase mb-4">Organisation</h2>
           <div className="relative group">
             <div className="absolute inset-0 bg-blue-500/10 blur-[100px] pointer-events-none" />
-            <div className="p-8 rounded-3xl backdrop-blur-sm">
+            <div className="p-4 md:p-8 rounded-3xl backdrop-blur-sm overflow-x-auto">
               <OrgChart />
             </div>
-            <p className="md:hidden text-center text-[10px] text-slate-500 mt-4 uppercase tracking-widest">
-              ↔ Swipe to explore structure
-            </p>
           </div>
         </section>
 

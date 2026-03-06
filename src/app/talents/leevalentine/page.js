@@ -1,13 +1,111 @@
+/* eslint-disable react/prop-types */
 "use client";
-import React, { useState, useMemo, useCallback, memo } from "react";
+import React, { useState, useMemo, useCallback, memo, useEffect } from "react";
+import Link from "next/link";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { SocialLinks } from "@/app/components/SocialLinks";
 import VideoCard from "@/app/components/Videocard";
 import { BackToTalentsButton } from "@/app/components/backtotalentsbutton";
 import leeValentineData from "./data.json";
+import talentsData from "@/app/talents/data.json";
 
 const themeColors = leeValentineData.theme;
+
+const TWITCH_CHANNEL = "leevalentinevt";
+
+function darkenHex(hex, amount = 40) {
+    const n = parseInt(hex.replace("#", ""), 16);
+    const r = Math.max(0, (n >> 16) - amount);
+    const g = Math.max(0, ((n >> 8) & 0xff) - amount);
+    const b = Math.max(0, (n & 0xff) - amount);
+    return `rgb(${r},${g},${b})`;
+}
+
+const swoopBtnStyles = (signatureColor) => `
+    .swoop-btn {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        border: 1px solid color-mix(in srgb, ${signatureColor} 30%, transparent);
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        overflow: hidden;
+        background: color-mix(in srgb, ${signatureColor} 10%, transparent);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        cursor: pointer;
+        min-width: 140px;
+    }
+    .swoop-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: ${signatureColor};
+        transform: translateX(-101%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+    }
+    .swoop-btn:hover::before {
+        transform: translateX(0);
+    }
+    .swoop-btn .swoop-chevron {
+        margin-left: auto;
+        font-size: 1.2rem;
+        opacity: 0.5;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        position: relative;
+        z-index: 1;
+        line-height: 1;
+    }
+    .swoop-btn:hover .swoop-chevron {
+        opacity: 1;
+    }
+    .swoop-btn.swoop-down:hover .swoop-chevron {
+        transform: translateY(3px);
+    }
+    .swoop-btn.swoop-right:hover .swoop-chevron {
+        transform: translateX(3px);
+    }
+`;
+
+function ScrollToLoreButton({ signatureColor }) {
+    const handleClick = useCallback(() => {
+        const el = document.getElementById("lore-section");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, []);
+
+    return (
+        <>
+            <style>{swoopBtnStyles(signatureColor)}</style>
+            <button onClick={handleClick} className="swoop-btn swoop-down">
+                <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
+                    View Data
+                </span>
+                <span className="swoop-chevron" style={{ transform: "rotate(90deg)" }}>›</span>
+            </button>
+        </>
+    );
+}
+
+function ViewAllClipsButton({ signatureColor, href }) {
+    return (
+        <>
+            <style>{swoopBtnStyles(signatureColor)}</style>
+            <a href={href} target="_blank" rel="noopener noreferrer" className="swoop-btn swoop-right">
+                <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
+                    View All Clips
+                </span>
+                <span className="swoop-chevron">›</span>
+            </a>
+        </>
+    );
+}
 
 const DataItem = memo(function DataItem({ label, value, color }) {
     return (
@@ -20,37 +118,116 @@ const DataItem = memo(function DataItem({ label, value, color }) {
     );
 });
 
-const YouTubeFacade = memo(function YouTubeFacade({ videoId, signatureColor }) {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const handleClick = useCallback(() => { setIsLoaded(true); }, []);
+const TwitchEmbed = memo(function TwitchEmbed({ channel, signatureColor }) {
+    const [hostname, setHostname] = useState("");
 
-    if (isLoaded) {
+    useEffect(() => {
+        setHostname(window.location.hostname);
+    }, []);
+
+    if (!hostname) {
         return (
-            <iframe
-                className="w-full h-full"
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-                title="Featured Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-            />
+            <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: signatureColor }} />
+            </div>
         );
     }
+
+    const src = `https://player.twitch.tv/?channel=${channel}&parent=${hostname}&autoplay=false`;
+
     return (
-        <button onClick={handleClick} className="relative w-full h-full group cursor-pointer bg-gray-900" aria-label="Play video">
-            <img src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`} alt="Video thumbnail" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors duration-200">
-                <div
-                    className="w-16 h-16 rounded-full flex items-center justify-center transition-transform duration-200 group-hover:scale-110"
-                    style={{ backgroundColor: signatureColor }}
-                >
-                    <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#ffffff" }}>
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
-                </div>
-            </div>
-        </button>
+        <iframe
+            className="w-full h-full"
+            src={src}
+            title={`${channel} Twitch Stream`}
+            allowFullScreen
+        />
     );
 });
+
+const ClipCard = memo(function ClipCard({ clip, signatureColor, variant }) {
+    const isRecommended = variant === "recommended";
+    return (
+        <a
+            href={clip.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block rounded-lg overflow-hidden border transition-all duration-200 hover:scale-[1.02] hover:brightness-110"
+            style={{ borderColor: `${signatureColor}30`, backgroundColor: `${signatureColor}08` }}
+        >
+            <div className={`relative overflow-hidden ${isRecommended ? "aspect-video" : "aspect-video"} bg-gray-900`}>
+                <img
+                    src={clip.thumbnail}
+                    alt={clip.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+                {clip.duration && (
+                    <span className="absolute bottom-2 right-2 text-xs font-mono bg-black/80 text-white px-1.5 py-0.5 rounded">
+                        {clip.duration}
+                    </span>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-black/30">
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: signatureColor }}>
+                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#0A0510" }}>
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div className="p-3">
+                <p className="text-white text-sm font-medium line-clamp-2 group-hover:text-opacity-90">{clip.title}</p>
+                {clip.views && <p className="text-gray-400 text-xs mt-1">{clip.views} views · {clip.date}</p>}
+                {!clip.views && clip.date && <p className="text-gray-400 text-xs mt-1">{clip.date}</p>}
+            </div>
+        </a>
+    );
+});
+
+function RecentClips({ signatureColor }) {
+    const [clips, setClips] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        fetch(`/api/twitch-clips?channel=${TWITCH_CHANNEL}&limit=4`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (data.clips && data.clips.length > 0) {
+                    setClips(data.clips);
+                } else {
+                    setError(true);
+                }
+            })
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center py-12">
+                <div className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: signatureColor }} />
+            </div>
+        );
+    }
+
+    if (error || clips.length === 0) {
+        return (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {leeValentineData.videos.map((v) => (
+                    <VideoCard key={v.id} video={v} signatureColor={signatureColor} />
+                ))}
+            </div>
+        );
+    }
+
+    return (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {clips.map((clip) => (
+                <ClipCard key={clip.id} clip={clip} signatureColor={signatureColor} />
+            ))}
+        </div>
+    );
+}
 
 const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureColor, onClick }) {
     return (
@@ -72,9 +249,81 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
     );
 });
 
+const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig }) {
+    const [hovered, setHovered] = useState(false);
+    const theme = talent.themeColor || "#334155";
+    const dark = darkenHex(theme, 50);
+    const glow = `0 0 28px ${theme}99, 0 0 8px ${theme}55`;
+
+    return (
+        <Link
+            href={talent.href}
+            className="group flex flex-col items-center"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <div
+                className="relative overflow-hidden rounded-2xl"
+                style={{
+                    width: "180px",
+                    height: "180px",
+                    backgroundColor: theme,
+                    boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
+                    transform: hovered ? "scale(1.07)" : "scale(1)",
+                    transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
+                }}
+            >
+                {groupConfig?.logo && (
+                    <img src={groupConfig.logo} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
+                        style={{ width: "130%", height: "130%", top: "-15%", left: "-15%", objectFit: "contain", opacity: 0.12, filter: "brightness(0) invert(0)", mixBlendMode: "multiply" }}
+                    />
+                )}
+                {groupConfig?.logo && (
+                    <img src={groupConfig.logo} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
+                        style={{ width: "130%", height: "130%", top: "-15%", left: "-15%", objectFit: "contain", opacity: 0.18, filter: "brightness(0)" }}
+                    />
+                )}
+                <img
+                    src={talent.char}
+                    alt={talent.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{
+                        objectPosition: talent.objectPosition || "50% 20%",
+                        transform: `scale(${hovered ? (talent.imageScale || 1) * 1.08 + 0.08 : (talent.imageScale || 1) * 1.08})`,
+                        transition: "transform 0.4s ease",
+                    }}
+                />
+                <div
+                    className="absolute inset-0 rounded-2xl"
+                    style={{
+                        background: `radial-gradient(ellipse at center, transparent 40%, ${dark}88 100%)`,
+                        opacity: hovered ? 1 : 0,
+                        transition: "opacity 0.3s ease",
+                    }}
+                />
+            </div>
+            <p
+                className="mt-3 text-sm font-semibold text-center tracking-wide text-slate-200 transition-all duration-300"
+                style={{ textShadow: hovered ? `0 0 8px ${theme}, 0 0 20px ${theme}88` : "none" }}
+            >
+                {talent.name}
+            </p>
+        </Link>
+    );
+});
+
 export default function LeeValentinePage() {
     const [selectedOutfit, setSelectedOutfit] = useState(0);
     const signatureColor = themeColors.accent;
+
+    const genmates = talentsData.talents.filter(
+        (t) =>
+            Array.isArray(t.groups)
+                ? t.groups.includes("vinfernia") && t.name !== leeValentineData.name
+                : t.group === "vinfernia" && t.name !== leeValentineData.name
+    );
+
+    const vinferniaGroupConfig = talentsData.generations.find((g) => g.id === "vinfernia");
 
     const handleOutfitClick = useCallback((id) => { setSelectedOutfit(id); }, []);
 
@@ -85,78 +334,81 @@ export default function LeeValentinePage() {
 
     return (
         <div className="flex flex-col min-h-screen" style={{ backgroundColor: themeColors.background }}>
-
             <Header />
 
             <main className="flex-grow pt-0">
 
+                {/* ── Hero ── */}
                 <div className="relative" style={{ backgroundColor: themeColors.background }}>
+                    {/* BG image — heavily darkened via brightness filter */}
                     <div
-                        className="absolute inset-0 z-0 pointer-events-none"
+                        className="absolute inset-0 z-0 pointer-events-none brightness-50"
                         style={{
                             backgroundImage: `url('${leeValentineData.backgroundImage}')`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
-                            opacity: 0.3,
                         }}
                     />
+                    {/* Dark gradient overlay */}
                     <div
                         className="absolute inset-0 z-0 pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, rgba(10,5,16,0.7) 0%, rgba(10,5,16,0.9) 100%)` }}
+                        style={{ background: `linear-gradient(to bottom, rgba(10,5,16,0.75) 0%, rgba(10,5,16,0.95) 100%)` }}
                     />
+                    {/* Radial vignette */}
                     <div
                         className="absolute inset-0 z-0 pointer-events-none"
-                        style={{ background: `radial-gradient(ellipse at center, transparent 40%, ${themeColors.background} 100%)` }}
+                        style={{ background: `radial-gradient(ellipse at center, transparent 30%, ${themeColors.background} 100%)` }}
                     />
+                    {/* Bottom fade to next section */}
                     <div
                         className="absolute bottom-0 left-0 right-0 h-40 z-[1] pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.background}90 60%, ${themeColors.background} 100%)` }}
+                        style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.featured}90 60%, ${themeColors.featured} 100%)` }}
                     />
 
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
-                            <div className="relative flex items-center justify-center h-[900px] overflow-visible">
-                                {leeValentineData.outfits.length > 1 && (
-                                    <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
-                                        {leeValentineData.outfits.map((outfit) => (
-                                            <OutfitButton
-                                                key={outfit.id}
-                                                outfit={outfit}
-                                                isSelected={selectedOutfit === outfit.id}
-                                                signatureColor={signatureColor}
-                                                onClick={() => handleOutfitClick(outfit.id)}
-                                            />
-                                        ))}
-                                    </div>
-                                )}
+                            {/* ── Character image ── */}
+                            <div className="relative flex items-center justify-center h-[700px] overflow-visible">
                                 <div className="relative w-full h-full flex items-center justify-center overflow-visible">
                                     <img
-                                        src={currentOutfitImage}
+                                        src="/VINFERNIA/VINFERNIA/Lee/Leevt.png"
                                         alt={leeValentineData.name}
                                         className="w-auto object-contain transition-opacity duration-250"
                                         style={{
                                             height: "100%",
                                             maxHeight: "none",
                                             transform: "scale(1.9)",
-                                            filter: `drop-shadow(0 0 30px ${themeColors.accent}40)`,
+                                            filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
                                         }}
                                     />
                                 </div>
                             </div>
 
+                            {/* ── Info panel ── */}
                             <div className="space-y-8">
                                 <div>
+                                    {leeValentineData.genLogo && (
+                                        <a href="/talents" className="inline-block mb-1 opacity-70 hover:opacity-100 transition-opacity duration-200">
+                                            <img
+                                                src={leeValentineData.genLogo}
+                                                alt="Gen Logo"
+                                                className="h-10 w-auto"
+                                                style={{ filter: `drop-shadow(0 0 8px ${signatureColor}90)` }}
+                                            />
+                                        </a>
+                                    )}
                                     <h1
                                         className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
-                                        style={{ borderColor: signatureColor, textShadow: `0 0 20px ${themeColors.accent}60` }}
+                                        style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{leeValentineData.name}</div>
                                     </h1>
                                     <p className="text-2xl mb-4" style={{ color: signatureColor }}>
-                                        {leeValentineData.nameJapanese}
+                                        {leeValentineData.title}
                                     </p>
+                                    <p className="text-xl text-gray-300 italic">&quot;{leeValentineData.tagline}&quot;</p>
                                 </div>
 
                                 <div
@@ -171,122 +423,231 @@ export default function LeeValentinePage() {
 
                                 <SocialLinks links={leeValentineData.links} signatureColor={signatureColor} />
 
-                                <div
-                                    className="backdrop-blur-sm rounded-lg p-6 border"
-                                    style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
-                                >
-                                    <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>Featured Video</h2>
-                                    <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden">
-                                        <YouTubeFacade videoId={leeValentineData.featuredVideoId} signatureColor={signatureColor} />
-                                    </div>
+                                <div className="flex">
+                                    <ScrollToLoreButton signatureColor={signatureColor} />
                                 </div>
                             </div>
-
                         </div>
                     </section>
                 </div>
 
-                <section
-                    className="py-20 px-4 relative"
-                    style={{ background: `linear-gradient(135deg, ${themeColors.recommended}20 0%, ${themeColors.recommended}10 100%)` }}
-                >
+                {/* ── Live on Twitch ── */}
+                <section className="py-16 px-4 relative" style={{ backgroundColor: themeColors.featured }}>
                     <div
-                        className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
-                        style={{ background: `linear-gradient(to top, transparent 0%, ${themeColors.background}80 70%, ${themeColors.background} 100%)` }}
+                        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.featured}00 0%, ${themeColors.recommended} 100%)` }}
                     />
+                    <div className="max-w-4xl mx-auto relative z-10">
+                        <h2 className="text-3xl font-bold text-white text-center mb-2" style={{ color: signatureColor }}>
+                            Live on Twitch
+                        </h2>
+                        <p className="text-gray-400 text-center text-sm mb-8">
+                            {TWITCH_CHANNEL} · <a href={`https://twitch.tv/${TWITCH_CHANNEL}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors" style={{ color: signatureColor }}>Open in Twitch ↗</a>
+                        </p>
+                        <div
+                            className="backdrop-blur-sm rounded-lg border overflow-hidden"
+                            style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
+                        >
+                            <div className="aspect-video bg-gray-800">
+                                <TwitchEmbed channel={TWITCH_CHANNEL} signatureColor={signatureColor} />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── Featured Clips ── */}
+                <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
                     <div className="max-w-6xl mx-auto relative z-0">
-                        <h2 className="text-4xl font-bold text-white text-center mb-12">Recommended Videos</h2>
+                        <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Clips</h2>
                         <div className="grid md:grid-cols-3 gap-6">
                             {leeValentineData.recommendedVideos.map((video) => (
-                                <VideoCard key={video.id} video={video} signatureColor={signatureColor} variant="recommended" />
+                                <ClipCard key={video.id} clip={{ ...video, url: video.url || "#" }} signatureColor={signatureColor} variant="recommended" />
                             ))}
                         </div>
                     </div>
                 </section>
 
-                <section
-                    className="py-20 px-4 relative"
-                    style={{ background: `linear-gradient(135deg, ${themeColors.recent}20 0%, ${themeColors.recent}10 100%)` }}
-                >
-                    <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl font-bold text-white text-center mb-12">Recent Videos</h2>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {leeValentineData.videos.map((video) => (
-                                <VideoCard key={video.id} video={video} signatureColor={signatureColor} />
-                            ))}
-                        </div>
-                        <div className="text-center mt-8">
-                            <a
-                                href="https://www.youtube.com/@LeeValentine_VT"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-block px-8 py-3 rounded-full font-semibold transition-transform duration-200 hover:scale-105 shadow-lg hover:brightness-110"
-                                style={{ background: `linear-gradient(to right, ${signatureColor}, ${signatureColor}dd)`, color: "#ffffff" }}
-                            >
-                                View All Videos
-                            </a>
+                {/* ── Recent Clips ── */}
+                <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recent }}>
+                    <div
+                        className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.recommended} 0%, ${themeColors.recent} 100%)` }}
+                    />
+                    <div className="max-w-6xl mx-auto relative z-10">
+                        <h2 className="text-4xl font-bold text-white text-center mb-12">Recent Clips</h2>
+                        <RecentClips signatureColor={signatureColor} />
+                        <div className="flex justify-center mt-8">
+                            <ViewAllClipsButton
+                                signatureColor={signatureColor}
+                                href={`https://twitch.tv/${TWITCH_CHANNEL}/clips`}
+                            />
                         </div>
                     </div>
                 </section>
 
-                <section className="py-20 px-4">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-4xl font-bold text-white text-center mb-12">DATA</h2>
+                {/* ── Lore ── */}
+                <section id="lore-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
+                    <div
+                        className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.recent} 0%, ${themeColors.background} 100%)` }}
+                    />
+                    <div className="max-w-4xl mx-auto relative z-10">
                         <div
-                            className="backdrop-blur-sm rounded-lg p-8 border"
-                            style={{
-                                background: `linear-gradient(135deg, ${signatureColor}20, ${signatureColor}10)`,
-                                borderColor: `${signatureColor}30`,
-                            }}
+                            className="backdrop-blur-sm rounded-lg p-6 border"
+                            style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
                         >
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <DataItem label="Birthday" value={leeValentineData.data.birthday} color={signatureColor} />
-                                <DataItem label="Debut Stream" value={leeValentineData.data.debutStream} color={signatureColor} />
-                                <DataItem label="Height" value={leeValentineData.data.height} color={signatureColor} />
-                                <DataItem label="Unit" value={leeValentineData.data.unit} color={signatureColor} />
+                            <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>Lore</h2>
+                            <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                                {leeValentineData.lore}
+                            </p>
+                        </div>
+                    </div>
+                </section>
 
-                                <div className="md:col-span-2">
-                                    <div className="pb-4 border-b border-white/10 mb-4">
-                                        <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Credits</h3>
-                                        <div className="space-y-1">
-                                            <p className="text-gray-300">Artist: <a href={leeValentineData.data.artist.url} target="_blank" rel="noopener noreferrer" className="text-white hover:brightness-110 underline transition-opacity duration-200">{leeValentineData.data.artist.name}</a></p>
-                                            <p className="text-gray-300">Model Artist: <a href={leeValentineData.data.modelArtist.url} target="_blank" rel="noopener noreferrer" className="text-white hover:brightness-110 underline transition-opacity duration-200">{leeValentineData.data.modelArtist.name}</a></p>
-                                            <p className="text-gray-300">Rigger: <a href={leeValentineData.data.rigger.url} target="_blank" rel="noopener noreferrer" className="text-white hover:brightness-110 underline transition-opacity duration-200">{leeValentineData.data.rigger.name}</a></p>
+                {/* ── Model + Data ── */}
+                <section id="data-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
+                    <div className="max-w-7xl mx-auto relative z-10">
+                        <div className="grid lg:grid-cols-2 gap-8 items-start">
+
+                            {/* Model viewer */}
+                            <div>
+                                <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
+                                <div className="relative flex items-center justify-center h-[700px] overflow-visible">
+                                    {leeValentineData.outfits.length > 1 && (
+                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
+                                            {leeValentineData.outfits.map((outfit) => (
+                                                <OutfitButton
+                                                    key={outfit.id}
+                                                    outfit={outfit}
+                                                    isSelected={selectedOutfit === outfit.id}
+                                                    signatureColor={signatureColor}
+                                                    onClick={() => handleOutfitClick(outfit.id)}
+                                                />
+                                            ))}
                                         </div>
+                                    )}
+                                    <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+                                        <img
+                                            src={currentOutfitImage}
+                                            alt={leeValentineData.name}
+                                            className="w-auto object-contain transition-opacity duration-250"
+                                            style={{
+                                                height: "100%",
+                                                maxHeight: "none",
+                                                transform: "scale(1.9)",
+                                                filter: `drop-shadow(0 0 25px ${themeColors.accent}40)`,
+                                            }}
+                                        />
                                     </div>
-                                </div>
-
-                                <div className="md:col-span-2">
-                                    <DataItem label="Dream" value={leeValentineData.data.dream} color={signatureColor} />
-                                </div>
-
-                                <DataItem label="Fan Name" value={leeValentineData.data.fanName} color={signatureColor} />
-
-                                <div className="md:col-span-2">
-                                    <div className="pb-4 border-b border-white/10 mb-4">
-                                        <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Hashtags</h3>
-                                        <div className="space-y-1">
-                                            <p className="text-gray-300">Fan Art: <span className="text-white">{leeValentineData.data.hashtags.fanArt}</span></p>
-                                            {leeValentineData.data.hashtags.stream && (
-                                                <p className="text-gray-300">Stream Tag: <span className="text-white">{leeValentineData.data.hashtags.stream}</span></p>
-                                            )}
-                                            {leeValentineData.data.hashtags.clips && (
-                                                <p className="text-gray-300">Clips: <span className="text-white">{leeValentineData.data.hashtags.clips}</span></p>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="md:col-span-2">
-                                    <DataItem label="Regular/Specialty Streams" value={leeValentineData.data.regularStreams} color={signatureColor} />
-                                </div>
-                                <div className="md:col-span-2">
-                                    <DataItem label="Hobbies" value={leeValentineData.data.hobbies} color={signatureColor} />
-                                </div>
-                                <div className="md:col-span-2">
-                                    <DataItem label="Likes" value={leeValentineData.data.likes} color={signatureColor} />
                                 </div>
                             </div>
+
+                            {/* Data panel */}
+                            <div>
+                                <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
+                                <div
+                                    className="backdrop-blur-sm rounded-lg p-8 border w-full"
+                                    style={{
+                                        background: `linear-gradient(135deg, ${signatureColor}20, ${signatureColor}10)`,
+                                        borderColor: `${signatureColor}30`,
+                                    }}
+                                >
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <DataItem label="Birthday" value={leeValentineData.data.birthday} color={signatureColor} />
+                                        <DataItem label="Oshi Mark" value={leeValentineData.oshiMark} color={signatureColor} />
+                                        <DataItem label="Height" value={leeValentineData.data.height} color={signatureColor} />
+                                        <DataItem label="Unit" value={leeValentineData.data.unit} color={signatureColor} />
+
+                                        <div className="md:col-span-2">
+                                            <DataItem
+                                                label="Designer"
+                                                value={
+                                                    <a href={leeValentineData.data.designer.url} target="_blank" rel="noopener noreferrer"
+                                                        className="hover:brightness-110 underline transition-opacity duration-200"
+                                                        style={{ color: signatureColor }}>
+                                                        {leeValentineData.data.designer.name}
+                                                    </a>
+                                                }
+                                                color={signatureColor}
+                                            />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem
+                                                label="Model Artist"
+                                                value={
+                                                    <a href={leeValentineData.data.modelArtist.url} target="_blank" rel="noopener noreferrer"
+                                                        className="hover:brightness-110 underline transition-opacity duration-200"
+                                                        style={{ color: signatureColor }}>
+                                                        {leeValentineData.data.modelArtist.name}
+                                                    </a>
+                                                }
+                                                color={signatureColor}
+                                            />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Dream" value={leeValentineData.data.dream} color={signatureColor} />
+                                        </div>
+
+                                        <DataItem label="Fan Name" value={leeValentineData.data.fanName} color={signatureColor} />
+                                        <DataItem label="Mascot" value={leeValentineData.data.mascot} color={signatureColor} />
+
+                                        <div className="md:col-span-2">
+                                            <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
+                                                <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Hashtags</h3>
+                                                <div className="space-y-1">
+                                                    <p className="text-gray-300">Stream Tag: <span className="text-white">{leeValentineData.data.hashtags.stream}</span></p>
+                                                    <p className="text-gray-300">Fan Art: <span className="text-white">{leeValentineData.data.hashtags.fanArt}</span></p>
+                                                    <p className="text-gray-300">Clips: <span className="text-white">{leeValentineData.data.hashtags.clips}</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {leeValentineData.data.catchphrases.length > 0 && (
+                                            <div className="md:col-span-2">
+                                                <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
+                                                    <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Catchphrases</h3>
+                                                    <ul className="space-y-1">
+                                                        {leeValentineData.data.catchphrases.map((phrase, index) => (
+                                                            <li key={index} className="text-white italic">&quot;{phrase}&quot;</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        )}
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Regular/Specialty Streams" value={leeValentineData.data.regularStreams} color={signatureColor} />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Hobbies" value={leeValentineData.data.hobbies} color={signatureColor} />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Likes" value={leeValentineData.data.likes} color={signatureColor} />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Special Skills" value={leeValentineData.data.specialSkills} color={signatureColor} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ── Meet the Others ── */}
+                <section className="py-12 px-4 relative" style={{ backgroundColor: themeColors.background }}>
+                    <div
+                        className="absolute top-0 left-0 right-0 h-px pointer-events-none"
+                        style={{ backgroundColor: `${signatureColor}20` }}
+                    />
+                    <div className="max-w-6xl mx-auto text-center">
+                        <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
+                        <div className="flex flex-wrap gap-8 justify-center">
+                            {genmates.map((talent) => (
+                                <GenmateTalentCard
+                                    key={talent.name}
+                                    talent={talent}
+                                    groupConfig={vinferniaGroupConfig}
+                                />
+                            ))}
                         </div>
                     </div>
                 </section>

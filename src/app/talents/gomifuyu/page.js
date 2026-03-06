@@ -66,9 +66,11 @@ const swoopBtnStyles = (signatureColor) => `
     .swoop-btn:hover .swoop-chevron {
         opacity: 1;
     }
+    /* View Data: chevron swoops down */
     .swoop-btn.swoop-down:hover .swoop-chevron {
         transform: translateY(3px);
     }
+    /* View All Clips: chevron swoops right */
     .swoop-btn.swoop-right:hover .swoop-chevron {
         transform: translateX(3px);
     }
@@ -83,7 +85,10 @@ function ScrollToLoreButton({ signatureColor }) {
     return (
         <>
             <style>{swoopBtnStyles(signatureColor)}</style>
-            <button onClick={handleClick} className="swoop-btn swoop-down">
+            <button
+                onClick={handleClick}
+                className="swoop-btn swoop-down"
+            >
                 <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
                     View Data
                 </span>
@@ -176,7 +181,7 @@ const ClipCard = memo(function ClipCard({ clip, signatureColor, variant }) {
                         className="w-12 h-12 rounded-full flex items-center justify-center"
                         style={{ backgroundColor: signatureColor }}
                     >
-                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#0C0E0D" }}>
+                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#100C08" }}>
                             <path d="M8 5v14l11-7z" />
                         </svg>
                     </div>
@@ -224,7 +229,7 @@ function RecentClips({ signatureColor }) {
 
     if (error || clips.length === 0) {
         return (
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                 {gomifuyuData.videos.map((v) => (
                     <VideoCard key={v.id} video={v} signatureColor={signatureColor} />
                 ))}
@@ -270,15 +275,13 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
     return (
         <Link
             href={talent.href}
-            className="group flex flex-col items-center"
+            className="group flex flex-col items-center w-full"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
             <div
-                className="relative overflow-hidden rounded-2xl"
+                className="relative overflow-hidden rounded-2xl w-full aspect-square"
                 style={{
-                    width: "180px",
-                    height: "180px",
                     backgroundColor: theme,
                     boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
                     transform: hovered ? "scale(1.07)" : "scale(1)",
@@ -368,7 +371,7 @@ export default function GomifuyuPage() {
 
             <main className="flex-grow pt-0">
 
-                {/* Hero */}
+                {/* ── Hero ── */}
                 <div className="relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute inset-0 z-0 pointer-events-none"
@@ -391,34 +394,50 @@ export default function GomifuyuPage() {
                         className="absolute bottom-0 left-0 right-0 h-40 z-[1] pointer-events-none"
                         style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.featured}90 60%, ${themeColors.featured} 100%)` }}
                     />
+                    {/* Logo watermark — desktop only, full hero width */}
+                    <img
+                        src="/VINFERNIA/VINFERNIA/Gomifuyu/logo.png"
+                        alt=""
+                        aria-hidden="true"
+                        className="hidden lg:block absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-[1]"
+                        style={{ opacity: 0.05 }}
+                    />
 
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
-                            <div className="relative flex items-center justify-center h-[700px] overflow-visible">
-                                <div className="relative w-full h-full flex items-center justify-center overflow-visible">
-                                    <img
-                                        src="/VINFERNIA/VINFERNIA/Gomifuyu/Gomifuyu_Model.png"
-                                        alt={gomifuyuData.name}
-                                        className="w-full h-auto object-contain transition-opacity duration-250"
-                                        style={{
-                                            maxHeight: "720px",
-                                            filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accent}30)`,
-                                        }}
-                                    />
-                                </div>
+                            {/* ── Character image ── */}
+                            <div className="relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible">                                <img
+                                src="/VINFERNIA/VINFERNIA/Gomifuyu/Gomifuyu_Model.png"
+                                alt={gomifuyuData.name}
+                                className="relative w-full h-auto object-contain transition-opacity duration-250"
+                                style={{
+                                    filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
+                                }}
+                            />
                             </div>
 
-                            <div className="space-y-8">
+                            {/* ── Info panel ── */}
+                            <div className="space-y-8 relative z-10">
                                 <div>
+                                    {gomifuyuData.genLogo && (
+                                        <a href="/talents" className="inline-block mb-1 opacity-70 hover:opacity-100 transition-opacity duration-200">
+                                            <img
+                                                src={gomifuyuData.genLogo}
+                                                alt="Gen Logo"
+                                                className="h-10 w-auto"
+                                                style={{ filter: `drop-shadow(0 0 8px ${signatureColor}90)` }}
+                                            />
+                                        </a>
+                                    )}
                                     <h1
-                                        className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
+                                        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
                                         style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{gomifuyuData.name}</div>
                                     </h1>
                                     <p className="text-2xl mb-4" style={{ color: signatureColor }}>
-                                        {gomifuyuData.nameJapanese}
+                                        {gomifuyuData.title}
                                     </p>
                                     <p className="text-xl text-gray-300 italic">&quot;{gomifuyuData.tagline}&quot;</p>
                                 </div>
@@ -443,7 +462,7 @@ export default function GomifuyuPage() {
                     </section>
                 </div>
 
-                {/* Twitch Embed */}
+                {/* ── Live on Twitch ── */}
                 <section
                     className="py-16 px-4 relative"
                     style={{ backgroundColor: themeColors.featured }}
@@ -470,11 +489,11 @@ export default function GomifuyuPage() {
                     </div>
                 </section>
 
-                {/* Featured Clips */}
+                {/* ── Featured Clips ── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
                     <div className="max-w-6xl mx-auto relative z-0">
                         <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Clips</h2>
-                        <div className="grid md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                             {gomifuyuData.recommendedVideos.map((video) => (
                                 <ClipCard key={video.id} clip={{ ...video, url: video.url || "#" }} signatureColor={signatureColor} variant="recommended" />
                             ))}
@@ -482,7 +501,7 @@ export default function GomifuyuPage() {
                     </div>
                 </section>
 
-                {/* Recent Clips */}
+                {/* ── Recent Clips ── */}
                 <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recent }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
@@ -500,7 +519,7 @@ export default function GomifuyuPage() {
                     </div>
                 </section>
 
-                {/* Lore */}
+                {/* ── Lore ── */}
                 <section id="lore-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
@@ -513,34 +532,34 @@ export default function GomifuyuPage() {
                         >
                             <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>Lore</h2>
                             <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                                {gomifuyuData.biography}
+                                {gomifuyuData.lore}
                             </p>
                         </div>
                     </div>
                 </section>
 
-                {/* Model + Data */}
+                {/* ── Model + Data ── */}
                 <section id="data-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
 
+                            {/* Model viewer */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
-                                <div className="relative flex items-center justify-center h-[700px] overflow-visible">
-                                    {gomifuyuData.outfits.length > 1 && (
-                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
-                                            {gomifuyuData.outfits.map((outfit) => (
-                                                <OutfitButton
-                                                    key={outfit.id}
-                                                    outfit={outfit}
-                                                    isSelected={selectedOutfit === outfit.id}
-                                                    signatureColor={signatureColor}
-                                                    onClick={() => handleOutfitClick(outfit.id)}
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
-                                    <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+                                <div className="relative flex items-center justify-center h-auto min-h-[500px] sm:h-[620px] lg:h-[700px] overflow-visible">                                    {gomifuyuData.outfits.length > 1 && (
+                                    <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-0 flex-col gap-3 z-10">
+                                        {gomifuyuData.outfits.map((outfit) => (
+                                            <OutfitButton
+                                                key={outfit.id}
+                                                outfit={outfit}
+                                                isSelected={selectedOutfit === outfit.id}
+                                                signatureColor={signatureColor}
+                                                onClick={() => handleOutfitClick(outfit.id)}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
+                                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden lg:overflow-visible">
                                         <img
                                             src={currentOutfitImage}
                                             alt={gomifuyuData.name}
@@ -552,12 +571,26 @@ export default function GomifuyuPage() {
                                         />
                                     </div>
                                 </div>
+                                {gomifuyuData.outfits.length > 1 && (
+                                    <div className="flex lg:hidden gap-3 justify-center mt-4">
+                                        {gomifuyuData.outfits.map((outfit) => (
+                                            <OutfitButton
+                                                key={outfit.id}
+                                                outfit={outfit}
+                                                isSelected={selectedOutfit === outfit.id}
+                                                signatureColor={signatureColor}
+                                                onClick={() => handleOutfitClick(outfit.id)}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
+                            {/* Data panel */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
                                 <div
-                                    className="backdrop-blur-sm rounded-lg p-8 border w-full"
+                                    className="backdrop-blur-sm rounded-lg p-4 md:p-8 border w-full"
                                     style={{
                                         background: `linear-gradient(135deg, ${signatureColor}20, ${signatureColor}10)`,
                                         borderColor: `${signatureColor}30`,
@@ -565,7 +598,7 @@ export default function GomifuyuPage() {
                                 >
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <DataItem label="Birthday" value={gomifuyuData.data.birthday} color={signatureColor} />
-                                        <DataItem label="Debut Stream" value={gomifuyuData.data.debutStream} color={signatureColor} />
+                                        <DataItem label="Oshi Mark" value={gomifuyuData.oshiMark} color={signatureColor} />
                                         <DataItem label="Height" value={gomifuyuData.data.height} color={signatureColor} />
                                         <DataItem label="Unit" value={gomifuyuData.data.unit} color={signatureColor} />
 
@@ -641,7 +674,7 @@ export default function GomifuyuPage() {
                     </div>
                 </section>
 
-                {/* Genmates */}
+                {/* ── Meet the Others ── */}
                 <section className="py-12 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-px pointer-events-none"
@@ -649,7 +682,7 @@ export default function GomifuyuPage() {
                     />
                     <div className="max-w-6xl mx-auto text-center">
                         <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
-                        <div className="flex flex-wrap gap-8 justify-center">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto w-full">
                             {genmates.map((talent) => (
                                 <GenmateTalentCard
                                     key={talent.name}

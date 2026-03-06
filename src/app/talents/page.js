@@ -68,15 +68,13 @@ function TalentCard({ talent, primaryGroupLogo }) {
   return (
     <Link
       href={talent.href}
-      className="group flex flex-col items-center"
+      className="group flex flex-col items-center w-full"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div
-        className="relative overflow-hidden rounded-2xl"
+        className="relative overflow-hidden rounded-2xl w-full aspect-square"
         style={{
-          width: "180px",
-          height: "180px",
           backgroundColor: theme,
           boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
           transform: hovered ? "scale(1.07)" : "scale(1)",
@@ -158,7 +156,7 @@ function AnimatedCard({ children, index }) {
 // ─── Talent grid ─────────────────────────────────────────────────────────────
 function TalentGrid({ filteredTalents, getPrimaryLogoForTalent }) {
   return (
-    <div className="flex flex-wrap justify-center gap-8">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
       {filteredTalents.map((talent, i) => (
         <AnimatedCard key={talent.name} index={i}>
           <TalentCard talent={talent} primaryGroupLogo={getPrimaryLogoForTalent(talent)} />
@@ -174,7 +172,7 @@ function FilterPill({ label, glowStyle, isActive, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`px-5 py-2 rounded-full text-sm font-semibold tracking-wider border transition-all duration-200 cursor-pointer ${isActive ? style.pillActive : style.pillInactive}`}
+      className={`px-3 py-1.5 text-xs sm:px-5 sm:py-2 sm:text-sm rounded-full font-semibold tracking-wider border transition-all duration-200 cursor-pointer ${isActive ? style.pillActive : style.pillInactive}`}
       style={isActive ? { boxShadow: style.glow } : {}}
     >
       {label}
@@ -233,7 +231,7 @@ export default function TalentsPage() {
       <main className="flex-grow flex flex-col items-center">
 
         {/* ── Hero banner ───────────────────────────────────────────────── */}
-        <section className="w-full flex items-center justify-center pt-28 pb-6 px-10 sm:px-16 bg-gradient-to-b from-slate-950 to-slate-900 border-b border-white/5">
+        <section className="w-full flex items-center justify-center pt-28 pb-6 px-4 sm:px-16 bg-gradient-to-b from-slate-950 to-slate-900 border-b border-white/5">
 
           {/* Left logo */}
             <img
@@ -263,7 +261,7 @@ export default function TalentsPage() {
         </section>
 
         {/* ── Filter bar ────────────────────────────────────────────────── */}
-        <section className="w-full flex flex-col items-center px-6 py-5 bg-slate-900/90 sticky top-0 z-10 border-b border-white/5 backdrop-blur-sm gap-3">
+        <section className="w-full flex flex-col items-center px-6 py-5 bg-slate-900/90 border-b border-white/5 backdrop-blur-sm gap-3">
 
           {/* Tier 1: Generations */}
           <div className="flex flex-wrap gap-3 justify-center">
@@ -311,7 +309,7 @@ export default function TalentsPage() {
         </section>
 
         {/* ── Talent grid ───────────────────────────────────────────────── */}
-        <section className="w-full max-w-6xl px-6 py-20 mx-auto min-h-[60vh]">
+        <section className="w-full max-w-6xl px-6 py-12 md:py-20 mx-auto min-h-[60vh]">
           {filteredTalents.length === 0 ? (
             <p className="text-center text-slate-500 text-base mt-12">No talents in this group yet.</p>
           ) : (
