@@ -571,7 +571,10 @@ export default function LockhartPage() {
                         >
                             <h2 className="text-2xl font-semibold mb-4 transition-colors duration-300" style={{ color: signatureColor }}>Lore</h2>
                             <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                                {talentData.lore}
+                                {talentData.lore.split(/(<em>[\s\S]*?<\/em>)/g).map((part, i) => {
+                                    const match = part.match(/^<em>([\s\S]*)<\/em>$/);
+                                    return match ? <em key={i}>{match[1]}</em> : part;
+                                })}
                             </p>
                         </div>
                     </div>
