@@ -15,8 +15,13 @@
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png",
         "name": "Default"
       },
-      {
+                  {
         "id": 1,
+        "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_NoJacket.png",
+        "name": "No Jacket"
+      },
+      {
+        "id": 2,
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Mask.png",
         "name": "Mask"
       }
@@ -130,8 +135,13 @@
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png",
         "name": "Other Default"
       },
-      {
+            {
         "id": 1,
+        "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_NoJacket.png",
+        "name": "Other No Jacket"
+      },
+      {
+        "id": 2,
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Mask.png",
         "name": "Other Mask"
       }
