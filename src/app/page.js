@@ -5,6 +5,7 @@ import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import OrgChart from "@/app/components/orgchart";
 import Link from "next/link";
+import Image from "next/image";
 import { SocialLinks } from "./components/SocialLinks";
 
 // ── Hero background: animated slow gradient + faint grid ──────────────────
@@ -123,15 +124,21 @@ export default function HomePage() {
 
           {/* Logo lockup */}
           <div className="hero-fade hero-fade-1 relative z-10 flex items-center justify-center gap-6 md:gap-10 mb-10">
-            <img
+            <Image
               src="/VINFERNIA/VINFERNIA/Vinfernia_White.png"
               alt="VINFERNIA"
+              width={80}
+              height={80}
+              priority            // ← preloads as high-priority resource
               className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_24px_rgba(239,68,68,0.45)]"
             />
             <span className="text-slate-600 mx-3 md:mx-5 font-thin">X</span>
-            <img
+            <Image
               src="/VSTAR/VSTAR.png"
               alt="VSTAR"
+              width={80}
+              height={80}
+              priority            // ← both above-fold logos get priority
               className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_24px_rgba(59,130,246,0.45)]"
             />
           </div>

@@ -44,7 +44,7 @@ const Footer = () => {
                         <nav className="space-y-2">
                             <Link href="/member-area" className={linkStyle}>Member Area</Link>
                             <Link href="/businesspartner-area" className={linkStyle}>Business partners</Link>
-                            <a href="https://shop.vstarproject.eu" target="_blank" rel="noopener noreferrer" className={linkStyle}>Shop</a>
+                            <Link href="https://shop.vstarproject.eu" target="_blank" className={linkStyle}>Shop</Link>
                             <Link href="/faq" className={linkStyle}>FAQ</Link>
                         </nav>
                     </div>
