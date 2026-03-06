@@ -5,7 +5,7 @@ import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import OrgChart from "@/app/components/orgchart";
 import Link from "next/link";
-import { SocialLinks, socialLinkStyles } from "./components/SocialLinks";
+import { SocialLinks } from "./components/SocialLinks";
 
 // ── Hero background: animated slow gradient + faint grid ──────────────────
 function HeroBackground() {
@@ -109,67 +109,10 @@ const officialChannelLinks = [
   { platform: "VSTAR on X", url: "https://x.com/VSVirtualStar" }
 ];
 
-// ── Styles ────────────────────────────────────────────────────────────────
-const globalStyles = `
-  /* Hero background */
-  @keyframes gradientDrift {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  .hero-gradient {
-    background: linear-gradient(
-      135deg,
-      #0a0e1a 0%,
-      #0d1525 25%,
-      #120a14 50%,
-      #0a0e1a 75%,
-      #0d1525 100%
-    );
-    background-size: 400% 400%;
-    animation: gradientDrift 18s ease infinite;
-  }
-  .hero-grid {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  /* Divider line with glow */
-  .hero-divider {
-    width: 1px;
-    height: 56px;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
-  }
-
-  /* Staff card glow */
-  .staff-card__frame {
-    box-shadow: 0 0 0px transparent;
-    transition: box-shadow 0.35s ease, transform 0.3s ease;
-  }
-  .staff-card:hover .staff-card__frame {
-    box-shadow: 0 8px 40px color-mix(in srgb, var(--glow) 35%, transparent),
-                0 0 0 1px color-mix(in srgb, var(--glow) 25%, transparent);
-  }
-
-  /* Hero fade-in */
-  @keyframes heroFadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .hero-fade { opacity: 0; animation: heroFadeUp 0.9s ease forwards; }
-  .hero-fade-1 { animation-delay: 0.1s; }
-  .hero-fade-2 { animation-delay: 0.3s; }
-  .hero-fade-3 { animation-delay: 0.5s; }
-  .hero-fade-4 { animation-delay: 0.7s; }
-`;
-
 // ── Page ──────────────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-900 text-white">
-      <style>{globalStyles}{socialLinkStyles}</style>
       <Header />
 
       <main className="flex-grow">

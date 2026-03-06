@@ -1,0 +1,62 @@
+{
+  "name": "HieuManh",
+  "nameJapanese": "ヒューマン",
+  "tagline": "Everyone is a Rookie to someone. You just need to accept the next quest and see where it takes you.",
+  "biography": "An adventurer and part-time professor who travels to other planes of existence to destroy potential interplanar threats before they awaken to threaten his world, Gaia.\n\nHe came to Earth to destroy various cryptids and enchanted artifacts, but was attacked by a group of powerful individuals and left without enough mana to escape. Rescued by Dee and VINFERNIA, he now works alongside them in exchange for resources to return home.\n\nHieumanh thinks he is smart. He's not. Expect a lot of strategy games.",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/HieuManh/background.png",
+  "oshiMark": "TBD",
+  "genLogo": "TBD",
+  "outfits": [
+    { "id": 0, "image": "/VINFERNIA/VINFERNIA/HieuManh/Hieumanh_default.png", "name": "Default" }
+  ],
+  "links": [
+    { "platform": "Twitch", "url": "https://www.twitch.tv/hieumanhfightervt" },
+    { "platform": "X", "url": "https://x.com/HieuManhFighter" }
+  ],
+  "featuredVideoId": "TBD",
+  "schedule": [
+    { "day": "TBD", "time": "TBD", "activity": "Chess" },
+    { "day": "TBD", "time": "TBD", "activity": "League of Legends" },
+    { "day": "TBD", "time": "TBD", "activity": "DND" }
+  ],
+  "recommendedVideos": [
+    { "id": 1, "title": "Coming Soon!", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA", "views": "Watch now" },
+    { "id": 2, "title": "Coming Soon!", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA", "views": "Watch now" },
+    { "id": 3, "title": "Coming Soon!", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA", "views": "Watch now" }
+  ],
+  "videos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" }
+  ],
+  "lore": "HieuManh is an adventurer and part-time professor who travels to other planes of existence to destroy potential interplanar threats before they awaken to threaten his world, Gaia. He isn't the strongest adventurer, but his arsenal of weapons and array of skills at his disposal make him a formidable opponent.\n\nHe came to Earth to destroy various cryptids and enchanted artifacts, when he was attacked by a group of powerful individuals and left without enough mana to escape and return to his world. As hope dwindled and he found himself about to fall, Dee and VINFERNIA rescued him, taking him back to their HQ.\n\nWith Earth being malnourished of mana, HieuManh found this group of outcasts to be his best hope of return, and agreed to help Dee in exchange for resources. Despite dire circumstances, he does tend to get involved with silly antics, whether that be agreeing to Lee sending him to Hell, to sneaking around to try to take people's artifacts — he is always chasing a new adventure.",
+  "data": {
+    "birthday": "TBD",
+    "debutStream": "TBD",
+    "height": "5ft 4in / 162.6cm",
+    "unit": "VINFERNIA",
+    "designer": { "name": "TBD", "url": "#" },
+    "modelArtist": { "name": "TBD", "url": "#" },
+    "dream": "TBD",
+    "fanName": "Rookies",
+    "mascot": "TBD",
+    "hashtags": { "stream": "TBD", "fanArt": "TBD", "clips": "TBD" },
+    "catchphrases": [
+      "Everyone is a Rookie to someone. You just need to accept the next quest and see where it takes you.",
+      "Every moment can be a learning point."
+    ],
+    "regularStreams": "Chess, League of Legends, DND, Events & Collaborations",
+    "hobbies": "Interplanar travel, Teaching, Adventuring, Organizing events",
+    "likes": "Strategy games, Teaching others, Quests, Artifacts",
+    "specialSkills": "Multi-weapon combat, Interplanar navigation, Teaching/Educating, Event organizing"
+  },
+  "theme": {
+    "accent":      "#3DAA6A",
+    "accentAlt":   "#7B3FB5",
+    "background":  "#080C09",
+    "featured":    "#0B1010",
+    "recommended": "#0F1A12",
+    "recent":      "#0B1010"
+  }
+}

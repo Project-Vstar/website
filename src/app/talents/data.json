@@ -44,7 +44,11 @@
   "talents": [
     {
       "name": "DreamyDiino",
-      "groups": ["vinfernia", "kairos", "staff"],
+      "groups": [
+        "vinfernia",
+        "kairos",
+        "staff"
+      ],
       "themeColor": "#2d6e4e",
       "objectPosition": "50% 30%",
       "imageScale": 1.16,
@@ -54,7 +58,10 @@
     },
     {
       "name": "Gomifuyu",
-      "groups": ["vinfernia", "kairos"],
+      "groups": [
+        "vinfernia",
+        "kairos"
+      ],
       "themeColor": "#8b3a3a",
       "objectPosition": "50% 36%",
       "imageScale": 1.08,
@@ -64,7 +71,10 @@
     },
     {
       "name": "Lee Valentine",
-      "groups": ["vinfernia", "kairos"],
+      "groups": [
+        "vinfernia",
+        "kairos"
+      ],
       "themeColor": "#6b3fa0",
       "objectPosition": "50% 29%",
       "imageScale": 1.09,
@@ -74,7 +84,10 @@
     },
     {
       "name": "Lockhart",
-      "groups": ["vinfernia", "kairos"],
+      "groups": [
+        "vinfernia",
+        "kairos"
+      ],
       "themeColor": "#4a6741",
       "objectPosition": "50% 27%",
       "imageScale": 1.0,
@@ -82,9 +95,25 @@
       "char": "/VINFERNIA/VINFERNIA/Genmate Banner/LockChar.png",
       "href": "/talents/lockhart"
     },
-        {
+    {
+      "name": "HieuManh",
+      "groups": [
+        "vinfernia",
+        "kairos"
+      ],
+      "themeColor": "#3DAA6A",
+      "objectPosition": "50% -62%",
+      "imageScale": 4,
+      "image": "/VINFERNIA/VINFERNIA/HieuManh/background.png",
+      "char": "/VINFERNIA/VINFERNIA/HieuManh/Hieumanh_default.png",
+      "href": "/talents/Hieumanh"
+    },
+    {
       "name": "Dee",
-      "groups": ["vinfernia", "staff"],
+      "groups": [
+        "vinfernia",
+        "staff"
+      ],
       "themeColor": "#4a5568",
       "objectPosition": "50% 28%",
       "imageScale": 1.0,

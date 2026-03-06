@@ -258,15 +258,13 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
     return (
         <Link
             href={talent.href}
-            className="group flex flex-col items-center"
+            className="group flex flex-col items-center w-full"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
             <div
-                className="relative overflow-hidden rounded-2xl"
+                className="relative overflow-hidden rounded-2xl w-full aspect-square"
                 style={{
-                    width: "180px",
-                    height: "180px",
                     backgroundColor: theme,
                     boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
                     transform: hovered ? "scale(1.07)" : "scale(1)",
@@ -333,14 +331,14 @@ export default function LeeValentinePage() {
     );
 
     return (
-        <div className="flex flex-col min-h-screen" style={{ backgroundColor: themeColors.background }}>
+        <div className="flex flex-col min-h-screen overflow-x-hidden" style={{ backgroundColor: themeColors.background }}>
             <Header />
 
-            <main className="flex-grow pt-0">
+            <main className="flex-grow pt-0 overflow-x-hidden">
 
                 {/* ── Hero ── */}
-                <div className="relative" style={{ backgroundColor: themeColors.background }}>
-                    {/* BG image — heavily darkened via brightness filter */}
+                <div className="relative overflow-hidden" style={{ backgroundColor: themeColors.background }}>
+                    {/* BG image */}
                     <div
                         className="absolute inset-0 z-0 pointer-events-none brightness-50"
                         style={{
@@ -369,22 +367,31 @@ export default function LeeValentinePage() {
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
-                            {/* ── Character image ── */}
-                            <div className="relative flex items-center justify-center h-[700px] overflow-visible">
-                                <div className="relative w-full h-full flex items-center justify-center overflow-visible">
-                                    <img
-                                        src="/VINFERNIA/VINFERNIA/Lee/Leevt.png"
-                                        alt={leeValentineData.name}
-                                        className="w-auto object-contain transition-opacity duration-250"
-                                        style={{
-                                            height: "100%",
-                                            maxHeight: "none",
-                                            transform: "scale(1.9)",
-                                            filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
-                                        }}
-                                    />
-                                </div>
+                            {/* ── Character image — overflow-hidden clips the scaled img ── */}
+                            <div className="relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible">
+                                <img
+                                    src="/VINFERNIA/VINFERNIA/Lee/Leevt.png"
+                                    alt={leeValentineData.name}
+                                    className="relative w-full h-auto object-contain transition-opacity duration-250"
+                                    style={{
+                                        filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
+                                    }}
+                                />
                             </div>
+
+                            {leeValentineData.outfits.length > 1 && (
+                                <div className="flex lg:hidden gap-3 justify-center mt-4">
+                                    {leeValentineData.outfits.map((outfit) => (
+                                        <OutfitButton
+                                            key={outfit.id}
+                                            outfit={outfit}
+                                            isSelected={selectedOutfit === outfit.id}
+                                            signatureColor={signatureColor}
+                                            onClick={() => handleOutfitClick(outfit.id)}
+                                        />
+                                    ))}
+                                </div>
+                            )}
 
                             {/* ── Info panel ── */}
                             <div className="space-y-8">
@@ -400,7 +407,7 @@ export default function LeeValentinePage() {
                                         </a>
                                     )}
                                     <h1
-                                        className="text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
+                                        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
                                         style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{leeValentineData.name}</div>
@@ -512,9 +519,9 @@ export default function LeeValentinePage() {
                             {/* Model viewer */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
-                                <div className="relative flex items-center justify-center h-[700px] overflow-visible">
+                                <div className="relative flex items-center justify-center h-auto min-h-[500px] sm:h-[620px] lg:h-[700px] overflow-visible">
                                     {leeValentineData.outfits.length > 1 && (
-                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-0 flex-col gap-3 z-10">
                                             {leeValentineData.outfits.map((outfit) => (
                                                 <OutfitButton
                                                     key={outfit.id}
@@ -526,20 +533,29 @@ export default function LeeValentinePage() {
                                             ))}
                                         </div>
                                     )}
-                                    <div className="relative w-full h-full flex items-center justify-center overflow-visible">
-                                        <img
-                                            src={currentOutfitImage}
-                                            alt={leeValentineData.name}
-                                            className="w-auto object-contain transition-opacity duration-250"
-                                            style={{
-                                                height: "100%",
-                                                maxHeight: "none",
-                                                transform: "scale(1.9)",
-                                                filter: `drop-shadow(0 0 25px ${themeColors.accent}40)`,
-                                            }}
-                                        />
-                                    </div>
+                                    <img
+                                        src={currentOutfitImage}
+                                        alt={leeValentineData.name}
+                                        className="w-full h-auto object-contain transition-opacity duration-250"
+                                        style={{
+                                            maxHeight: "720px",
+                                            filter: `drop-shadow(0 0 25px ${themeColors.accent}40)`,
+                                        }}
+                                    />
                                 </div>
+                                {leeValentineData.outfits.length > 1 && (
+                                    <div className="flex lg:hidden gap-3 justify-center mt-4">
+                                        {leeValentineData.outfits.map((outfit) => (
+                                            <OutfitButton
+                                                key={outfit.id}
+                                                outfit={outfit}
+                                                isSelected={selectedOutfit === outfit.id}
+                                                signatureColor={signatureColor}
+                                                onClick={() => handleOutfitClick(outfit.id)}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
                             {/* Data panel */}
@@ -557,7 +573,6 @@ export default function LeeValentinePage() {
                                         <DataItem label="Oshi Mark" value={leeValentineData.oshiMark} color={signatureColor} />
                                         <DataItem label="Height" value={leeValentineData.data.height} color={signatureColor} />
                                         <DataItem label="Unit" value={leeValentineData.data.unit} color={signatureColor} />
-
                                         <div className="md:col-span-2">
                                             <DataItem
                                                 label="Designer"
@@ -587,10 +602,8 @@ export default function LeeValentinePage() {
                                         <div className="md:col-span-2">
                                             <DataItem label="Dream" value={leeValentineData.data.dream} color={signatureColor} />
                                         </div>
-
                                         <DataItem label="Fan Name" value={leeValentineData.data.fanName} color={signatureColor} />
                                         <DataItem label="Mascot" value={leeValentineData.data.mascot} color={signatureColor} />
-
                                         <div className="md:col-span-2">
                                             <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
                                                 <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Hashtags</h3>
@@ -640,7 +653,7 @@ export default function LeeValentinePage() {
                     />
                     <div className="max-w-6xl mx-auto text-center">
                         <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
-                        <div className="flex flex-wrap gap-8 justify-center">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto w-full">
                             {genmates.map((talent) => (
                                 <GenmateTalentCard
                                     key={talent.name}

@@ -5,11 +5,14 @@ import Link from "next/link";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { SocialLinks } from "@/app/components/SocialLinks";
+import VideoCard from "@/app/components/Videocard";
 import { BackToTalentsButton } from "@/app/components/backtotalentsbutton";
-import data from "./data.json";
+import hieumanhData from "./data.json";
 import talentsData from "@/app/talents/data.json";
 
-const TWITCH_CHANNEL = "lockhart_vt";
+const themeColors = hieumanhData.theme;
+
+const TWITCH_CHANNEL = "hieumanhfightervt";
 
 function darkenHex(hex, amount = 40) {
     const n = parseInt(hex.replace("#", ""), 16);
@@ -80,7 +83,10 @@ function ScrollToLoreButton({ signatureColor }) {
     return (
         <>
             <style>{swoopBtnStyles(signatureColor)}</style>
-            <button onClick={handleClick} className="swoop-btn swoop-down">
+            <button
+                onClick={handleClick}
+                className="swoop-btn swoop-down"
+            >
                 <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
                     View Data
                 </span>
@@ -94,7 +100,12 @@ function ViewAllClipsButton({ signatureColor, href }) {
     return (
         <>
             <style>{swoopBtnStyles(signatureColor)}</style>
-            <a href={href} target="_blank" rel="noopener noreferrer" className="swoop-btn swoop-right">
+            <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="swoop-btn swoop-right"
+            >
                 <span style={{ position: "relative", zIndex: 1, flex: 1, textAlign: "center" }}>
                     View All Clips
                 </span>
@@ -130,10 +141,12 @@ const TwitchEmbed = memo(function TwitchEmbed({ channel, signatureColor }) {
         );
     }
 
+    const src = `https://player.twitch.tv/?channel=${channel}&parent=${hostname}&autoplay=false`;
+
     return (
         <iframe
             className="w-full h-full"
-            src={`https://player.twitch.tv/?channel=${channel}&parent=${hostname}&autoplay=false`}
+            src={src}
             title={`${channel} Twitch Stream`}
             allowFullScreen
         />
@@ -166,7 +179,7 @@ const ClipCard = memo(function ClipCard({ clip, signatureColor, variant }) {
                         className="w-12 h-12 rounded-full flex items-center justify-center"
                         style={{ backgroundColor: signatureColor }}
                     >
-                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#1a1a1a" }}>
+                        <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24" style={{ color: "#100C08" }}>
                             <path d="M8 5v14l11-7z" />
                         </svg>
                     </div>
@@ -185,7 +198,7 @@ const ClipCard = memo(function ClipCard({ clip, signatureColor, variant }) {
     );
 });
 
-function RecentClips({ signatureColor, fallbackVideos }) {
+function RecentClips({ signatureColor }) {
     const [clips, setClips] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
@@ -193,9 +206,9 @@ function RecentClips({ signatureColor, fallbackVideos }) {
     useEffect(() => {
         fetch(`/api/twitch-clips?channel=${TWITCH_CHANNEL}&limit=4`)
             .then((r) => r.json())
-            .then((d) => {
-                if (d.clips && d.clips.length > 0) {
-                    setClips(d.clips);
+            .then((data) => {
+                if (data.clips && data.clips.length > 0) {
+                    setClips(data.clips);
                 } else {
                     setError(true);
                 }
@@ -214,9 +227,9 @@ function RecentClips({ signatureColor, fallbackVideos }) {
 
     if (error || clips.length === 0) {
         return (
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {fallbackVideos.map((v) => (
-                    <ClipCard key={v.id} clip={{ ...v, url: v.url || "#" }} signatureColor={signatureColor} />
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {hieumanhData.videos.map((v) => (
+                    <VideoCard key={v.id} video={v} signatureColor={signatureColor} />
                 ))}
             </div>
         );
@@ -251,7 +264,6 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
     );
 });
 
-// ── GenmateTalentCard: fluid w-full aspect-square ──
 const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig }) {
     const [hovered, setHovered] = useState(false);
     const theme = talent.themeColor || "#334155";
@@ -331,136 +343,86 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
     );
 });
 
-export default function LockhartPage() {
+export default function HieuManhPage() {
     const [selectedOutfit, setSelectedOutfit] = useState(0);
-    const [activePersona, setActivePersona] = useState("lockhart");
-    const [isTransitioning, setIsTransitioning] = useState(false);
-    const [hasLoadedOther, setHasLoadedOther] = useState(false);
-
-    const isLockhart = activePersona === "lockhart";
-    const currentTheme = data.theme[activePersona];
-    const signatureColor = currentTheme.accent;
-    const talentData = isLockhart ? data.lockhart : data.other;
+    const signatureColor = themeColors.accent;
 
     const genmates = talentsData.talents.filter(
         (t) =>
             Array.isArray(t.groups)
-                ? t.groups.includes("vinfernia") && t.name !== talentData.name
-                : t.group === "vinfernia" && t.name !== talentData.name
+                ? t.groups.includes("vinfernia") && t.name !== hieumanhData.name
+                : t.group === "vinfernia" && t.name !== hieumanhData.name
     );
 
     const vinferniaGroupConfig = talentsData.generations.find((g) => g.id === "vinfernia");
 
-    const handlePersonaSwitch = useCallback(() => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-            setActivePersona(prev => {
-                const next = prev === "lockhart" ? "other" : "lockhart";
-                if (next === "other") setHasLoadedOther(true);
-                return next;
-            });
-            setSelectedOutfit(0);
-            setIsTransitioning(false);
-        }, 250);
-    }, []);
-
     const handleOutfitClick = useCallback((id) => { setSelectedOutfit(id); }, []);
 
     const currentOutfitImage = useMemo(
-        () => talentData.outfits[selectedOutfit]?.image,
-        [talentData.outfits, selectedOutfit]
+        () => hieumanhData.outfits[selectedOutfit]?.image,
+        [selectedOutfit]
     );
 
     return (
-        <div
-            className="flex flex-col min-h-screen transition-colors duration-400"
-            style={{ backgroundColor: currentTheme.background }}
-        >
+        <div className="flex flex-col min-h-screen" style={{ backgroundColor: themeColors.background }}>
             <Header />
-
-            <button
-                onClick={handlePersonaSwitch}
-                className={`fixed bottom-8 z-50 w-24 h-24 rounded-full transition-all duration-300 hover:scale-110 hover:rotate-12 group ${isLockhart ? "left-8" : "left-8 lg:right-8 lg:left-auto"}`}
-                title={`Switch to ${isLockhart ? "The Other" : "Dr. Lockhart"}`}
-            >
-                <img
-                    src={isLockhart
-                        ? "/VINFERNIA/VINFERNIA/Lockhart/PoeLockhart.png"
-                        : "/VINFERNIA/VINFERNIA/Lockhart/PoeOther.png"
-                    }
-                    alt={isLockhart ? "Switch to The Other" : "Switch to Dr. Lockhart"}
-                    className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-125"
-                />
-            </button>
 
             <main className="flex-grow pt-0">
 
                 {/* ── Hero ── */}
-                <div className="relative transition-colors duration-400" style={{ backgroundColor: currentTheme.background }}>
+                <div className="relative" style={{ backgroundColor: themeColors.background }}>
                     <div
-                        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-400"
+                        className="absolute inset-0 z-0 pointer-events-none"
                         style={{
-                            backgroundImage: `url('${data.lockhart.backgroundImage}')`,
+                            backgroundImage: `url('${hieumanhData.backgroundImage}')`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
-                            opacity: isLockhart ? 1 : 0,
-                        }}
-                    />
-                    {hasLoadedOther && (
-                        <div
-                            className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-400"
-                            style={{
-                                backgroundImage: `url('${data.other.backgroundImage}')`,
-                                backgroundSize: "cover",
-                                backgroundPosition: "center",
-                                backgroundRepeat: "no-repeat",
-                                opacity: isLockhart ? 0 : 1,
-                            }}
-                        />
-                    )}
-                    <div
-                        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-400"
-                        style={{
-                            background: isLockhart
-                                ? `linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(26,26,26,0.9) 100%)`
-                                : `linear-gradient(to bottom, rgba(0,15,10,0.8) 0%, rgba(5,10,8,0.95) 100%)`,
                         }}
                     />
                     <div
-                        className="absolute inset-0 z-0 pointer-events-none transition-opacity duration-400"
-                        style={{ background: `radial-gradient(ellipse at center, transparent 40%, ${currentTheme.background} 100%)` }}
+                        className="absolute inset-0 z-0 pointer-events-none opacity-30"
+                        style={{ background: `linear-gradient(to bottom, rgba(8,12,9,0.7) 50%, rgba(8,12,9,0.9) 100%)` }}
+                    />
+                    <div
+                        className="absolute inset-0 z-0 pointer-events-none"
+                        style={{ background: `radial-gradient(ellipse at center, transparent 40%, ${themeColors.background} 100%)` }}
                     />
                     <div
                         className="absolute bottom-0 left-0 right-0 h-40 z-[1] pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, transparent 0%, ${currentTheme.featured}90 60%, ${currentTheme.featured} 100%)` }}
+                        style={{ background: `linear-gradient(to bottom, transparent 0%, ${themeColors.featured}90 60%, ${themeColors.featured} 100%)` }}
+                    />
+                    {/* Logo watermark — desktop only */}
+                    <img
+                        src="/VINFERNIA/VINFERNIA/HieuManh/logo.png"
+                        alt=""
+                        aria-hidden="true"
+                        className="hidden lg:block absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-[1]"
+                        style={{ opacity: 0.05 }}
                     />
 
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
                             {/* ── Character image ── */}
-                            <div className={`relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible transition-opacity duration-250 ${isTransitioning ? "opacity-0" : "opacity-100"} ${!isLockhart ? "lg:order-2" : "lg:order-1"}`}>
+                            <div className="relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible">
                                 <img
-                                    src={currentOutfitImage}
-                                    alt={talentData.name}
+                                    src="/VINFERNIA/VINFERNIA/HieuManh/Hieumanh_default.png"
+                                    alt={hieumanhData.name}
                                     className="relative w-full h-auto object-contain transition-opacity duration-250"
                                     style={{
-                                        maxHeight: "780px",
-                                        filter: !isLockhart
-                                            ? `drop-shadow(0 0 30px ${data.theme.other.accent}40)`
-                                            : `drop-shadow(0 0 20px ${data.theme.lockhart.accent}20)`,
+                                        filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
                                     }}
                                 />
                             </div>
 
                             {/* ── Info panel ── */}
-                            <div className={`space-y-8 transition-opacity duration-250 ${isTransitioning ? "opacity-0" : "opacity-100"} ${!isLockhart ? "lg:order-1" : "lg:order-2"}`}>
+                            <div className="space-y-8 relative z-10">
                                 <div>
-                                    {talentData.genLogo && (
+                                    {hieumanhData.genLogo && hieumanhData.genLogo !== "TBD" && (
                                         <a href="/talents" className="inline-block mb-1 opacity-70 hover:opacity-100 transition-opacity duration-200">
                                             <img
-                                                src={talentData.genLogo}
+                                                src={hieumanhData.genLogo}
                                                 alt="Gen Logo"
                                                 className="h-10 w-auto"
                                                 style={{ filter: `drop-shadow(0 0 8px ${signatureColor}90)` }}
@@ -468,57 +430,55 @@ export default function LockhartPage() {
                                         </a>
                                     )}
                                     <h1
-                                        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2 transition-colors duration-300"
-                                        style={{
-                                            borderColor: signatureColor,
-                                            textShadow: !isLockhart ? `0 0 20px ${data.theme.other.accent}60` : "none",
-                                        }}
+                                        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
+                                        style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
-                                        <div className="drop-shadow-lg">{talentData.name}</div>
+                                        <div className="drop-shadow-lg">{hieumanhData.name}</div>
                                     </h1>
-                                    <p className="text-2xl mb-4 transition-colors duration-300" style={{ color: signatureColor }}>
-                                        {talentData.title}
+                                    <p className="text-2xl mb-4" style={{ color: signatureColor }}>
+                                        {hieumanhData.title}
                                     </p>
-                                    <p className="text-xl text-gray-300 italic">&quot;{talentData.tagline}&quot;</p>
+                                    <p className="text-xl text-gray-300 italic">&quot;{hieumanhData.tagline}&quot;</p>
                                 </div>
 
                                 <div
-                                    className="backdrop-blur-sm rounded-lg p-6 border transition-colors duration-300"
+                                    className="backdrop-blur-sm rounded-lg p-6 border"
                                     style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
                                 >
-                                    <h2 className="text-2xl font-semibold mb-4 transition-colors duration-300" style={{ color: signatureColor }}>About</h2>
-                                    <p className="text-gray-300 leading-relaxed whitespace-pre-line">{data.lockhart.biography}</p>
+                                    <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>About</h2>
+                                    <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                                        {hieumanhData.biography}
+                                    </p>
                                 </div>
 
-                                <SocialLinks links={talentData.links} signatureColor={signatureColor} hoverTextColor={isLockhart ? "#1a1a1a" : "#ffffff"} />
+                                <SocialLinks links={hieumanhData.links} signatureColor={signatureColor} />
 
                                 <div className="flex">
                                     <ScrollToLoreButton signatureColor={signatureColor} />
                                 </div>
                             </div>
-
                         </div>
                     </section>
                 </div>
 
                 {/* ── Live on Twitch ── */}
                 <section
-                    className="py-16 px-4 relative transition-colors duration-400"
-                    style={{ backgroundColor: currentTheme.featured }}
+                    className="py-16 px-4 relative"
+                    style={{ backgroundColor: themeColors.featured }}
                 >
                     <div
                         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, ${currentTheme.featured}00 0%, ${currentTheme.recommended} 100%)` }}
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.featured}00 0%, ${themeColors.recommended} 100%)` }}
                     />
                     <div className="max-w-4xl mx-auto relative z-10">
-                        <h2 className="text-3xl font-bold text-white text-center mb-2 transition-colors duration-300" style={{ color: signatureColor }}>
+                        <h2 className="text-3xl font-bold text-white text-center mb-2" style={{ color: signatureColor }}>
                             Live on Twitch
                         </h2>
                         <p className="text-gray-400 text-center text-sm mb-8">
                             {TWITCH_CHANNEL} · <a href={`https://twitch.tv/${TWITCH_CHANNEL}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors" style={{ color: signatureColor }}>Open in Twitch ↗</a>
                         </p>
                         <div
-                            className="backdrop-blur-sm rounded-lg border overflow-hidden transition-colors duration-300"
+                            className="backdrop-blur-sm rounded-lg border overflow-hidden"
                             style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
                         >
                             <div className="aspect-video bg-gray-800">
@@ -529,11 +489,11 @@ export default function LockhartPage() {
                 </section>
 
                 {/* ── Featured Clips ── */}
-                <section className="py-20 px-4 relative transition-colors duration-400" style={{ backgroundColor: currentTheme.recommended }}>
+                <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recommended }}>
                     <div className="max-w-6xl mx-auto relative z-0">
                         <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Clips</h2>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            {talentData.recommendedVideos.map((video) => (
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            {hieumanhData.recommendedVideos.map((video) => (
                                 <ClipCard key={video.id} clip={{ ...video, url: video.url || "#" }} signatureColor={signatureColor} variant="recommended" />
                             ))}
                         </div>
@@ -541,14 +501,14 @@ export default function LockhartPage() {
                 </section>
 
                 {/* ── Recent Clips ── */}
-                <section className="py-20 px-4 relative transition-colors duration-400" style={{ backgroundColor: currentTheme.recent }}>
+                <section className="py-20 px-4 relative" style={{ backgroundColor: themeColors.recent }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, ${currentTheme.recommended} 0%, ${currentTheme.recent} 100%)` }}
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.recommended} 0%, ${themeColors.recent} 100%)` }}
                     />
                     <div className="max-w-6xl mx-auto relative z-10">
                         <h2 className="text-4xl font-bold text-white text-center mb-12">Recent Clips</h2>
-                        <RecentClips signatureColor={signatureColor} fallbackVideos={talentData.videos} />
+                        <RecentClips signatureColor={signatureColor} />
                         <div className="flex justify-center mt-8">
                             <ViewAllClipsButton
                                 signatureColor={signatureColor}
@@ -559,36 +519,36 @@ export default function LockhartPage() {
                 </section>
 
                 {/* ── Lore ── */}
-                <section id="lore-section" className="py-20 px-4 relative transition-colors duration-400" style={{ backgroundColor: currentTheme.background }}>
+                <section id="lore-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-16 pointer-events-none"
-                        style={{ background: `linear-gradient(to bottom, ${currentTheme.recent} 0%, ${currentTheme.background} 100%)` }}
+                        style={{ background: `linear-gradient(to bottom, ${themeColors.recent} 0%, ${themeColors.background} 100%)` }}
                     />
                     <div className="max-w-4xl mx-auto relative z-10">
                         <div
-                            className="backdrop-blur-sm rounded-lg p-6 border transition-colors duration-300"
+                            className="backdrop-blur-sm rounded-lg p-6 border"
                             style={{ backgroundColor: `${signatureColor}10`, borderColor: `${signatureColor}30` }}
                         >
-                            <h2 className="text-2xl font-semibold mb-4 transition-colors duration-300" style={{ color: signatureColor }}>Lore</h2>
+                            <h2 className="text-2xl font-semibold mb-4" style={{ color: signatureColor }}>Lore</h2>
                             <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                                {talentData.lore}
+                                {hieumanhData.lore}
                             </p>
                         </div>
                     </div>
                 </section>
 
                 {/* ── Model + Data ── */}
-                <section id="data-section" className="py-20 px-4 relative transition-colors duration-400" style={{ backgroundColor: currentTheme.background }}>
+                <section id="data-section" className="py-20 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
 
                             {/* Model viewer */}
-                            <div className={`transition-opacity duration-250 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+                            <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
                                 <div className="relative flex items-center justify-center h-auto min-h-[500px] sm:h-[620px] lg:h-[700px] overflow-visible">
-                                    {talentData.outfits.length > 1 && (
+                                    {hieumanhData.outfits.length > 1 && (
                                         <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-0 flex-col gap-3 z-10">
-                                            {talentData.outfits.map((outfit) => (
+                                            {hieumanhData.outfits.map((outfit) => (
                                                 <OutfitButton
                                                     key={outfit.id}
                                                     outfit={outfit}
@@ -602,20 +562,18 @@ export default function LockhartPage() {
                                     <div className="relative w-full h-full flex items-center justify-center overflow-hidden lg:overflow-visible">
                                         <img
                                             src={currentOutfitImage}
-                                            alt={talentData.name}
+                                            alt={hieumanhData.name}
                                             className="w-full h-auto object-contain transition-opacity duration-250"
                                             style={{
-                                                maxHeight: "700px",
-                                                filter: !isLockhart
-                                                    ? `drop-shadow(0 0 30px ${data.theme.other.accent}40)`
-                                                    : `drop-shadow(0 0 20px ${data.theme.lockhart.accent}20)`,
+                                                maxHeight: "720px",
+                                                filter: `drop-shadow(0 0 25px ${themeColors.accent}40)`,
                                             }}
                                         />
                                     </div>
                                 </div>
-                                {talentData.outfits.length > 1 && (
+                                {hieumanhData.outfits.length > 1 && (
                                     <div className="flex lg:hidden gap-3 justify-center mt-4">
-                                        {talentData.outfits.map((outfit) => (
+                                        {hieumanhData.outfits.map((outfit) => (
                                             <OutfitButton
                                                 key={outfit.id}
                                                 outfit={outfit}
@@ -629,94 +587,105 @@ export default function LockhartPage() {
                             </div>
 
                             {/* Data panel */}
-                            <div className={`transition-opacity duration-250 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
+                            <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
                                 <div
-                                    className="backdrop-blur-sm rounded-lg p-4 md:p-8 border w-full transition-colors duration-300"
+                                    className="backdrop-blur-sm rounded-lg p-4 md:p-8 border w-full"
                                     style={{
                                         background: `linear-gradient(135deg, ${signatureColor}20, ${signatureColor}10)`,
                                         borderColor: `${signatureColor}30`,
                                     }}
                                 >
                                     <div className="grid md:grid-cols-2 gap-6">
-                                        <DataItem label="Birthday" value={talentData.data.birthday} color={signatureColor} />
-                                        <DataItem label="Debut Stream" value={talentData.data.debutStream} color={signatureColor} />
-                                        <DataItem label="Oshi Mark" value={talentData.oshiMark} color={signatureColor} />
-                                        <DataItem label="Height" value={talentData.data.height} color={signatureColor} />
-                                        <DataItem label="Unit" value={talentData.data.unit} color={signatureColor} />
+                                        <DataItem label="Birthday" value={hieumanhData.data.birthday} color={signatureColor} />
+                                        <DataItem label="Oshi Mark" value={hieumanhData.oshiMark} color={signatureColor} />
+                                        <DataItem label="Height" value={hieumanhData.data.height} color={signatureColor} />
+                                        <DataItem label="Unit" value={hieumanhData.data.unit} color={signatureColor} />
 
                                         <div className="md:col-span-2">
                                             <DataItem
-                                                label="Illustrator"
+                                                label="Designer"
                                                 value={
-                                                    <a href={talentData.data.illustrator.url} target="_blank" rel="noopener noreferrer"
-                                                        className="hover:brightness-110 underline transition-opacity duration-200"
-                                                        style={{ color: signatureColor }}>
-                                                        {talentData.data.illustrator.name}
-                                                    </a>
+                                                    hieumanhData.data.designer.url !== "#"
+                                                        ? <a href={hieumanhData.data.designer.url} target="_blank" rel="noopener noreferrer"
+                                                            className="hover:brightness-110 underline transition-opacity duration-200"
+                                                            style={{ color: signatureColor }}>
+                                                            {hieumanhData.data.designer.name}
+                                                        </a>
+                                                        : hieumanhData.data.designer.name
                                                 }
                                                 color={signatureColor}
                                             />
                                         </div>
                                         <div className="md:col-span-2">
-                                            <DataItem label="Dream" value={talentData.data.dream} color={signatureColor} />
+                                            <DataItem
+                                                label="Model Artist"
+                                                value={
+                                                    hieumanhData.data.modelArtist.url !== "#"
+                                                        ? <a href={hieumanhData.data.modelArtist.url} target="_blank" rel="noopener noreferrer"
+                                                            className="hover:brightness-110 underline transition-opacity duration-200"
+                                                            style={{ color: signatureColor }}>
+                                                            {hieumanhData.data.modelArtist.name}
+                                                        </a>
+                                                        : hieumanhData.data.modelArtist.name
+                                                }
+                                                color={signatureColor}
+                                            />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Dream" value={hieumanhData.data.dream} color={signatureColor} />
                                         </div>
 
-                                        <DataItem label="Fan Name" value={talentData.data.fanName} color={signatureColor} />
+                                        <DataItem label="Fan Name" value={hieumanhData.data.fanName} color={signatureColor} />
+                                        <DataItem label="Mascot" value={hieumanhData.data.mascot} color={signatureColor} />
 
                                         <div className="md:col-span-2">
                                             <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
-                                                <h3 className="font-semibold mb-2 transition-colors duration-300" style={{ color: signatureColor }}>Hashtags</h3>
+                                                <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Hashtags</h3>
                                                 <div className="space-y-1">
-                                                    <p className="text-gray-300">Stream Tag: <span className="text-white">{talentData.data.hashtags.stream}</span></p>
-                                                    <p className="text-gray-300">Fan Art: <span className="text-white">{talentData.data.hashtags.fanArt}</span></p>
-                                                    {talentData.data.hashtags.clips && (
-                                                        <p className="text-gray-300">Clips: <span className="text-white">{talentData.data.hashtags.clips}</span></p>
-                                                    )}
+                                                    <p className="text-gray-300">Stream Tag: <span className="text-white">{hieumanhData.data.hashtags.stream}</span></p>
+                                                    <p className="text-gray-300">Fan Art: <span className="text-white">{hieumanhData.data.hashtags.fanArt}</span></p>
+                                                    <p className="text-gray-300">Clips: <span className="text-white">{hieumanhData.data.hashtags.clips}</span></p>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className="md:col-span-2">
                                             <div className="pb-4 border-b border-white/10 mb-4 last:border-0 last:mb-0 last:pb-0">
-                                                <h3 className="font-semibold mb-2 transition-colors duration-300" style={{ color: signatureColor }}>Catchphrases</h3>
+                                                <h3 className="font-semibold mb-2" style={{ color: signatureColor }}>Catchphrases</h3>
                                                 <ul className="space-y-1">
-                                                    {talentData.data.catchphrases.map((phrase, index) => (
+                                                    {hieumanhData.data.catchphrases.map((phrase, index) => (
                                                         <li key={index} className="text-white italic">&quot;{phrase}&quot;</li>
                                                     ))}
                                                 </ul>
                                             </div>
                                         </div>
-
                                         <div className="md:col-span-2">
-                                            <DataItem label="Regular/Specialty Streams" value={talentData.data.regularStreams} color={signatureColor} />
+                                            <DataItem label="Regular/Specialty Streams" value={hieumanhData.data.regularStreams} color={signatureColor} />
                                         </div>
                                         <div className="md:col-span-2">
-                                            <DataItem label="Hobbies" value={talentData.data.hobbies} color={signatureColor} />
+                                            <DataItem label="Hobbies" value={hieumanhData.data.hobbies} color={signatureColor} />
                                         </div>
                                         <div className="md:col-span-2">
-                                            <DataItem label="Likes" value={talentData.data.likes} color={signatureColor} />
+                                            <DataItem label="Likes" value={hieumanhData.data.likes} color={signatureColor} />
                                         </div>
                                         <div className="md:col-span-2">
-                                            <DataItem label="Special Skills" value={talentData.data.specialSkills} color={signatureColor} />
+                                            <DataItem label="Special Skills" value={hieumanhData.data.specialSkills} color={signatureColor} />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </section>
 
                 {/* ── Meet the Others ── */}
-                <section className="py-12 px-4 relative transition-colors duration-400" style={{ backgroundColor: currentTheme.background }}>
+                <section className="py-12 px-4 relative" style={{ backgroundColor: themeColors.background }}>
                     <div
                         className="absolute top-0 left-0 right-0 h-px pointer-events-none"
                         style={{ backgroundColor: `${signatureColor}20` }}
                     />
                     <div className="max-w-6xl mx-auto text-center">
                         <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
-                        {/* Grid layout — responsive fluid cards */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto w-full">
                             {genmates.map((talent) => (
                                 <GenmateTalentCard
@@ -729,7 +698,7 @@ export default function LockhartPage() {
                     </div>
                 </section>
 
-                <BackToTalentsButton signatureColor={signatureColor} hoverTextColor={isLockhart ? "#1a1a1a" : "#ffffff"} />
+                <BackToTalentsButton signatureColor={signatureColor} />
 
             </main>
 

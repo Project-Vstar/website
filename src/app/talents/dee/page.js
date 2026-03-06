@@ -241,6 +241,7 @@ function RecentClips({ signatureColor }) {
     );
 }
 
+// ── OutfitButton: matches Gomifuyu's objectPosition + scale(4) approach ──
 const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureColor, onClick }) {
     return (
         <button
@@ -255,12 +256,13 @@ const OutfitButton = memo(function OutfitButton({ outfit, isSelected, signatureC
                 src={outfit.image}
                 alt={outfit.name}
                 className="w-full h-full object-cover"
-                style={{ transform: "scale(3) translateY(0%) translateX(2%)", transformOrigin: "center top" }}
+                style={{ objectPosition: "center -29%", transform: "scale(2.5)" }}
             />
         </button>
     );
 });
 
+// ── GenmateTalentCard: fluid w-full aspect-square like Gomifuyu ──
 const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig }) {
     const [hovered, setHovered] = useState(false);
     const theme = talent.themeColor || "#334155";
@@ -270,15 +272,13 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig 
     return (
         <Link
             href={talent.href}
-            className="group flex flex-col items-center"
+            className="group flex flex-col items-center w-full"
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
         >
             <div
-                className="relative overflow-hidden rounded-2xl"
+                className="relative overflow-hidden rounded-2xl w-full aspect-square"
                 style={{
-                    width: "180px",
-                    height: "180px",
                     backgroundColor: theme,
                     boxShadow: hovered ? glow : "0 4px 24px rgba(0,0,0,0.4)",
                     transform: hovered ? "scale(1.07)" : "scale(1)",
@@ -395,21 +395,19 @@ export default function DeePage() {
                     <section className="relative z-10 min-h-screen flex items-start justify-center px-4 pt-32 pb-20">
                         <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 items-start">
 
-                            <div className="relative flex items-center justify-center h-[700px] overflow-visible">
-                                <div className="relative w-full h-full flex items-center justify-center overflow-visible">
-                                    <img
-                                        src="/VINFERNIA/VINFERNIA/Dee/Full_Model_Default.png"
-                                        alt={deeData.name}
-                                        className="w-auto object-contain transition-opacity duration-250"
-                                        style={{
-                                            maxHeight: "720px",
-                                            transform: "scale(1.9)",
-                                            filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
-                                        }}
-                                    />
-                                </div>
+                            {/* ── Character image ── */}
+                            <div className="relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible">
+                                <img
+                                    src="/VINFERNIA/VINFERNIA/Dee/Full_Model_Default.png"
+                                    alt={deeData.name}
+                                    className="relative w-full h-auto object-contain transition-opacity duration-250"
+                                    style={{
+                                        filter: `drop-shadow(0 0 25px ${themeColors.accent}40) drop-shadow(0 0 15px ${themeColors.accentAlt}30)`,
+                                    }}
+                                />
                             </div>
 
+                            {/* ── Info panel ── */}
                             <div className="space-y-8">
                                 <div>
                                     {deeData.genLogo && (
@@ -423,7 +421,7 @@ export default function DeePage() {
                                         </a>
                                     )}
                                     <h1
-                                        className="text-5xl lg:text-5xl font-bold text-white mb-2 border-b-4 pb-2"
+                                        className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-2 border-b-4 pb-2"
                                         style={{ borderColor: signatureColor, textShadow: `0 0 15px ${themeColors.accent}50` }}
                                     >
                                         <div className="drop-shadow-lg">{deeData.name}</div>
@@ -535,11 +533,12 @@ export default function DeePage() {
                     <div className="max-w-7xl mx-auto relative z-10">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
 
+                            {/* Model viewer */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Model</h2>
-                                <div className="relative flex items-center justify-center h-[700px] overflow-visible">
+                                <div className="relative flex items-center justify-center h-auto min-h-[500px] sm:h-[620px] lg:h-[700px] overflow-visible">
                                     {deeData.outfits.length > 1 && (
-                                        <div className="absolute top-1/2 -translate-y-1/2 left-0 flex flex-col gap-3 z-10">
+                                        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 left-0 flex-col gap-3 z-10">
                                             {deeData.outfits.map((outfit) => (
                                                 <OutfitButton
                                                     key={outfit.id}
@@ -551,26 +550,38 @@ export default function DeePage() {
                                             ))}
                                         </div>
                                     )}
-                                    <div className="relative w-full h-full flex items-center justify-center overflow-visible">
+                                    <div className="relative w-full h-full flex items-center justify-center overflow-hidden lg:overflow-visible">
                                         <img
                                             src={currentOutfitImage}
                                             alt={deeData.name}
-                                            className="w-auto object-contain transition-opacity duration-250"
+                                            className="w-full h-auto object-contain transition-opacity duration-250"
                                             style={{
-                                                height: "100%",
-                                                maxHeight: "none",
-                                                transform: "scale(1.9) translateX(1%)",
+                                                maxHeight: "700px",
                                                 filter: `drop-shadow(0 0 25px ${themeColors.accent}40)`,
                                             }}
                                         />
                                     </div>
                                 </div>
+                                {deeData.outfits.length > 1 && (
+                                    <div className="flex lg:hidden gap-3 justify-center mt-4">
+                                        {deeData.outfits.map((outfit) => (
+                                            <OutfitButton
+                                                key={outfit.id}
+                                                outfit={outfit}
+                                                isSelected={selectedOutfit === outfit.id}
+                                                signatureColor={signatureColor}
+                                                onClick={() => handleOutfitClick(outfit.id)}
+                                            />
+                                        ))}
+                                    </div>
+                                )}
                             </div>
 
+                            {/* Data panel */}
                             <div>
                                 <h2 className="text-4xl font-bold text-white text-center mb-6">Data</h2>
                                 <div
-                                    className="backdrop-blur-sm rounded-lg p-8 border w-full"
+                                    className="backdrop-blur-sm rounded-lg p-4 md:p-8 border w-full"
                                     style={{
                                         background: `linear-gradient(135deg, ${signatureColor}20, ${signatureColor}10)`,
                                         borderColor: `${signatureColor}30`,
@@ -669,7 +680,8 @@ export default function DeePage() {
                     />
                     <div className="max-w-6xl mx-auto text-center">
                         <p className="text-gray-500 text-sm uppercase tracking-widest mb-10">Meet the Others</p>
-                        <div className="flex flex-wrap gap-8 justify-center">
+                        {/* Grid layout matching Gomifuyu — responsive, fluid cards */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto w-full">
                             {genmates.map((talent) => (
                                 <GenmateTalentCard
                                     key={talent.name}
