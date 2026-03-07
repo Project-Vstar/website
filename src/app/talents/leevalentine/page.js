@@ -370,7 +370,7 @@ export default function LeeValentinePage() {
                             {/* ── Character image — overflow-hidden clips the scaled img ── */}
                             <div className="relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible">
                                 <img
-                                    src="/VINFERNIA/VINFERNIA/Lee/Leevt.png"
+                                    src="/VINFERNIA/VINFERNIA/Lee/leevt.png"
                                     alt={leeValentineData.name}
                                     className="relative w-full h-auto object-contain transition-opacity duration-250"
                                     style={{

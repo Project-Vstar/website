@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 "use client";
 import React, { useState, useEffect, useCallback, useRef, memo } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
@@ -202,7 +201,7 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig,
   const glow  = `0 0 28px ${theme}99, 0 0 8px ${theme}55`;
 
   return (
-    <Link href={talent.href} className="group flex flex-col items-center w-full"
+    <a href={`https://vstarproject.eu${talent.href}`} className="group flex flex-col items-center w-full"
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <div className="relative overflow-hidden rounded-2xl w-full aspect-square"
         style={{
@@ -237,7 +236,7 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig,
         style={{ textShadow: hovered ? `0 0 8px ${theme}, 0 0 20px ${theme}88` : "none" }}>
         {talent.name}
       </p>
-    </Link>
+    </a>
   );
 });
 
@@ -441,7 +440,7 @@ export default function VinferniaHubPage() {
   return (
     <div className="flex flex-col min-h-screen text-white" style={{ background:"#0f172a" }}>
       <style>{globalStyles}</style>
-      <Header />
+      <Header baseUrl="https://vstarproject.eu" />
       {!loading.live && <LiveNowBanner streams={liveStreams} />}
 
       <main className="flex-grow">
@@ -562,16 +561,16 @@ export default function VinferniaHubPage() {
           <div className="max-w-xl mx-auto">
             <SectionLabel>Explore More</SectionLabel>
             <h2 className="font-oswald text-3xl font-bold uppercase mb-6 text-white">See All Talents</h2>
-            <Link href="/talents"
+            <a href="https://vstarproject.eu/talents"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-bold uppercase tracking-widest text-sm transition-all hover:scale-105"
               style={{ background:"rgba(239,68,68,0.15)", border:"1px solid rgba(239,68,68,0.4)", color:"#f87171" }}>
               All Talents →
-            </Link>
+            </a>
           </div>
         </section>
 
       </main>
-      <Footer />
+      <Footer baseUrl="https://vstarproject.eu" />
     </div>
   );
 }

@@ -3,11 +3,11 @@
   "nameJapanese": "ヒューマン",
   "tagline": "Everyone is a Rookie to someone. You just need to accept the next quest and see where it takes you.",
   "biography": "An adventurer and part-time professor who travels to other planes of existence to destroy potential interplanar threats before they awaken to threaten his world, Gaia.\n\nHe came to Earth to destroy various cryptids and enchanted artifacts, but was attacked by a group of powerful individuals and left without enough mana to escape. Rescued by Dee and VINFERNIA, he now works alongside them in exchange for resources to return home.\n\nHieumanh thinks he is smart. He's not. Expect a lot of strategy games.",
-  "backgroundImage": "/VINFERNIA/VINFERNIA/HieuManh/background.png",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/Hieumanh/background.png",
   "oshiMark": "TBD",
   "genLogo": "TBD",
   "outfits": [
-    { "id": 0, "image": "/VINFERNIA/VINFERNIA/HieuManh/Hieumanh_default.png", "name": "Default" }
+    { "id": 0, "image": "/VINFERNIA/VINFERNIA/Hieumanh/Hieumanh_default.png", "name": "Default" }
   ],
   "links": [
     { "platform": "Twitch", "url": "https://www.twitch.tv/hieumanhfightervt" },

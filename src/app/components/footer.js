@@ -2,7 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = () => {
+// baseUrl: pass "https://vstarproject.eu" when rendering on a subdomain page
+// so that nav links point to the main domain instead of staying on the subdomain.
+const Footer = ({ baseUrl = "" }) => {
+    const toUrl = (href) => href.startsWith("http") ? href : baseUrl + href;
     // Cleaner, more traditional typography
     const sectionLabelStyle = "font-oswald text-xs uppercase tracking-[0.2em] text-white/50 mb-6 block font-medium";
     const linkStyle = "text-gray-400 hover:text-white transition-colors duration-200 text-sm py-1 block";
@@ -14,7 +17,7 @@ const Footer = () => {
 
                     {/* Brand Section */}
                     <div className="lg:col-span-1">
-                        <Link href="/" className="inline-block mb-6">
+                        <Link href={toUrl("/")} className="inline-block mb-6">
                             <Image
                                 src="/vstar.png"
                                 alt="Logo"
@@ -32,38 +35,38 @@ const Footer = () => {
                     <div>
                         <span className={sectionLabelStyle}>Navigation</span>
                         <nav className="space-y-2">
-                            <Link href="/" className={linkStyle}>Home</Link>
-                            <Link href="/talents" className={linkStyle}>Talents</Link>
-                            <Link href="/lore" className={linkStyle}>Lore</Link>
-                            <Link href="/articles" className={linkStyle}>Articles</Link>
+                            <Link href={toUrl("/")} className={linkStyle}>Home</Link>
+                            <Link href={toUrl("/talents")} className={linkStyle}>Talents</Link>
+                            <Link href={toUrl("/lore")} className={linkStyle}>Lore</Link>
+                            <Link href={toUrl("/articles")} className={linkStyle}>Articles</Link>
                         </nav>
                     </div>
 
                     <div>
                         <span className={sectionLabelStyle}>Resources</span>
                         <nav className="space-y-2">
-                            <Link href="/member-area" className={linkStyle}>Member Area</Link>
-                            <Link href="/businesspartner-area" className={linkStyle}>Business partners</Link>
+                            <Link href={toUrl("/member-area")} className={linkStyle}>Member Area</Link>
+                            <Link href={toUrl("/businesspartner-area")} className={linkStyle}>Business partners</Link>
                             <Link href="https://shop.vstarproject.eu" target="_blank" className={linkStyle}>Shop</Link>
-                            <Link href="/faq" className={linkStyle}>FAQ</Link>
+                            <Link href={toUrl("/faq")} className={linkStyle}>FAQ</Link>
                         </nav>
                     </div>
 
                     <div>
                         <span className={sectionLabelStyle}>Involvement</span>
                         <nav className="space-y-2">
-                            <Link href="/auditions" className={linkStyle}>Auditions</Link>
-                            <Link href="/press" className={linkStyle}>Press Kit</Link>
-                            <Link href="/derivative-works-guideline" className={linkStyle}>Derivative Works</Link>
+                            <Link href={toUrl("/auditions")} className={linkStyle}>Auditions</Link>
+                            <Link href={toUrl("/press")} className={linkStyle}>Press Kit</Link>
+                            <Link href={toUrl("/derivative-works-guideline")} className={linkStyle}>Derivative Works</Link>
                         </nav>
                     </div>
 
                     <div>
                         <span className={sectionLabelStyle}>Legal</span>
                         <nav className="space-y-2">
-                            <Link href="/impressum" className={linkStyle}>Impressum</Link>
-                            <Link href="/privacy-policy" className={linkStyle}>Privacy Policy</Link>
-                            <Link href="/terms" className={linkStyle}>Terms of Service</Link>
+                            <Link href={toUrl("/impressum")} className={linkStyle}>Impressum</Link>
+                            <Link href={toUrl("/privacy-policy")} className={linkStyle}>Privacy Policy</Link>
+                            <Link href={toUrl("/terms")} className={linkStyle}>Terms of Service</Link>
                         </nav>
                     </div>
                 </div>
