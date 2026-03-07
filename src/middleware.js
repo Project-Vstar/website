@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   const { pathname } = request.nextUrl;
   const hostname = request.headers.get("host");
+  const host = hostname?.split(":")[0]; // Strip port
 
   // 1. EXIT EARLY: If this is an API route, do not rewrite it!
   if (pathname.startsWith("/api")) {
@@ -10,19 +11,19 @@ export function middleware(request) {
   }
 
   // 2. Shop
-  if (hostname === "shop.vstarproject.eu" || hostname === "shop.localhost:3000") {
+  if (host === "shop.vstarproject.eu" || host === "shop.localhost") {
     return NextResponse.rewrite(new URL("/shop" + pathname, request.url));
   }
 
   // 3. Vinfernia
-  if (hostname === "vinfernia.vstarproject.eu" || hostname === "vinfernia.localhost:3000") {
+  if (host === "vinfernia.vstarproject.eu" || host === "vinfernia.localhost") {
     return NextResponse.rewrite(
       new URL("/vinfernia" + (pathname || "/"), request.url)
     );
   }
 
   // 4. VStar
-  if (hostname === "vstar.vstarproject.eu" || hostname === "vstar.localhost:3000") {
+  if (host === "vstar.vstarproject.eu" || host === "vstar.localhost") {
     return NextResponse.rewrite(
       new URL("/vstar" + (pathname || "/"), request.url)
     );
