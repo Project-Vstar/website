@@ -2,6 +2,3 @@ name = "vstar"
 compatibility_date = "2025-03-07"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".open-next"
-
-[build]
-command = "npm run build"
