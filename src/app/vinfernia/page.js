@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 "use client";
 import React, { useState, useEffect, useCallback, useRef, memo } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
@@ -190,6 +189,8 @@ const globalStyles = `
   .vhub-divider { height:1px; background: linear-gradient(90deg,transparent,rgba(239,68,68,0.3),transparent); }
   .vhub-scroll::-webkit-scrollbar { height: 4px; }
   .vhub-scroll::-webkit-scrollbar-thumb { background: rgba(239,68,68,0.3); border-radius: 2px; }
+  .vh-live-btn { transition: box-shadow 0.2s ease, background 0.2s ease; }
+  .vh-live-btn:hover { box-shadow: 0 0 12px rgba(239,68,68,0.5), 0 0 4px rgba(239,68,68,0.3); background: rgba(239,68,68,0.15) !important; }
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -202,7 +203,7 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig,
   const glow  = `0 0 28px ${theme}99, 0 0 8px ${theme}55`;
 
   return (
-    <Link href={talent.href} className="group flex flex-col items-center w-full"
+    <a href={`https://vstarproject.eu${talent.href}`} className="group flex flex-col items-center w-full"
       onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <div className="relative overflow-hidden rounded-2xl w-full aspect-square"
         style={{
@@ -237,7 +238,7 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig,
         style={{ textShadow: hovered ? `0 0 8px ${theme}, 0 0 20px ${theme}88` : "none" }}>
         {talent.name}
       </p>
-    </Link>
+    </a>
   );
 });
 
@@ -274,18 +275,19 @@ function EmptyState({ icon, label, sub }) {
 function LiveNowBanner({ streams }) {
   if (!streams.length) return null;
   return (
-    <div className="w-full py-3 px-4 flex items-center gap-3 overflow-x-auto vhub-scroll"
+    <div className="mt-16 w-full overflow-x-auto vhub-scroll"
       style={{ background:"rgba(239,68,68,0.08)", borderBottom:"1px solid rgba(239,68,68,0.2)" }}>
+      <div className="flex items-center gap-3 min-w-max py-3 px-4">
       <div className="flex items-center gap-2 shrink-0">
         <div className="live-dot" />
         <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color:"#ef4444" }}>Live Now</span>
       </div>
-      <div className="flex gap-3 overflow-x-auto vhub-scroll">
+      <div className="flex gap-3">
         {streams.map((s) => {
           const t = TALENTS.find((t) => t.twitchLogin.toLowerCase() === s.user_login.toLowerCase());
           return (
             <a key={s.id} href={`https://twitch.tv/${s.user_login}`} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 shrink-0 px-3 py-1 rounded-full border text-xs font-medium transition-all hover:scale-105"
+              className="flex items-center gap-2 shrink-0 px-3 py-1 rounded-full border text-xs font-medium vh-live-btn"
               style={{ borderColor:"rgba(239,68,68,0.4)", color:"#f87171", background:"rgba(0,0,0,0.3)" }}>
               <span>{t?.name ?? s.user_name}</span>
               <span className="text-slate-500">·</span>
@@ -295,6 +297,7 @@ function LiveNowBanner({ streams }) {
             </a>
           );
         })}
+      </div>
       </div>
     </div>
   );
@@ -441,7 +444,7 @@ export default function VinferniaHubPage() {
   return (
     <div className="flex flex-col min-h-screen text-white" style={{ background:"#0f172a" }}>
       <style>{globalStyles}</style>
-      <Header />
+      <Header baseUrl="https://vstarproject.eu" />
       {!loading.live && <LiveNowBanner streams={liveStreams} />}
 
       <main className="flex-grow">
@@ -562,16 +565,16 @@ export default function VinferniaHubPage() {
           <div className="max-w-xl mx-auto">
             <SectionLabel>Explore More</SectionLabel>
             <h2 className="font-oswald text-3xl font-bold uppercase mb-6 text-white">See All Talents</h2>
-            <Link href="/talents"
+            <a href="https://vstarproject.eu/talents"
               className="inline-flex items-center gap-2 px-8 py-3 rounded-full font-bold uppercase tracking-widest text-sm transition-all hover:scale-105"
               style={{ background:"rgba(239,68,68,0.15)", border:"1px solid rgba(239,68,68,0.4)", color:"#f87171" }}>
               All Talents →
-            </Link>
+            </a>
           </div>
         </section>
 
       </main>
-      <Footer />
+      <Footer baseUrl="https://vstarproject.eu" />
     </div>
   );
 }

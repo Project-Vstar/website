@@ -50,7 +50,10 @@ const PAGE_LABELS = {
     "/cookies": "Cookies",
 };
 
-const Header = () => {
+// baseUrl: pass "https://vstarproject.eu" when rendering on a subdomain page
+// so that nav links point to the main domain instead of staying on the subdomain.
+const Header = ({ baseUrl = "" }) => {
+    const toUrl = (href) => href.startsWith("http") ? href : baseUrl + href;
     const [mounted, setMounted] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -97,7 +100,7 @@ const Header = () => {
             >
                 <nav className="flex items-center justify-between px-6 py-3 relative">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center">
+                    <Link href={toUrl("/")} className="flex items-center">
                         <div className="flex gap-2 items-center">
                             <Image src="/vstar.png" alt="Logo" width={32} height={32} />
                             <p className="font-oswald text-white font-bold text-xl ml-1 hidden sm:block">VSTAR PROJECT</p>
@@ -111,8 +114,8 @@ const Header = () => {
 
                     {/* Desktop nav */}
                     <div className="hidden md:flex items-center gap-3">
-                        <Link href="/" className={`nav-link-btn${pathname === "/" ? " active" : ""}`}>Home</Link>
-                        <Link href="/talents" className={`nav-link-btn${pathname === "/talents" ? " active" : ""}`}>Talents</Link>
+                        <Link href={toUrl("/")} className={`nav-link-btn${pathname === "/" ? " active" : ""}`}>Home</Link>
+                        <Link href={toUrl("/talents")} className={`nav-link-btn${pathname === "/talents" ? " active" : ""}`}>Talents</Link>
 
                         <div className="relative z-50">
                             <button className="hamburger-btn" onClick={(e) => { e.stopPropagation(); setDesktopMenuOpen(!desktopMenuOpen); }}>
@@ -133,7 +136,7 @@ const Header = () => {
                                 >
                                     <div className="grid grid-cols-3 gap-3">
                                         {navItems.map(({ href, label }) => (
-                                            <Link key={href} href={href} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
+                                            <Link key={href} href={toUrl(href)} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
                                                 {label}
                                             </Link>
                                         ))}
@@ -178,15 +181,15 @@ const Header = () => {
 
                     <div className="flex flex-col gap-4 mb-10">
                         <p className="mobile-menu-section-label">Main</p>
-                        <Link href="/" onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/" ? "active" : ""}`}>Home</Link>
-                        <Link href="/talents" onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/talents" ? "active" : ""}`}>Talents</Link>
+                        <Link href={toUrl("/")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/" ? "active" : ""}`}>Home</Link>
+                        <Link href={toUrl("/talents")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/talents" ? "active" : ""}`}>Talents</Link>
                     </div>
 
                     <div className="flex flex-col gap-4">
                         <p className="mobile-menu-section-label">Database</p>
                         <div className="grid grid-cols-2 gap-3">
                             {navItems.map(({ href, label }) => (
-                                <Link key={href} href={href} onClick={() => setMobileMenuOpen(false)} className={`dropdown-link-btn !py-5 ${pathname === href ? "active" : ""}`}>
+                                <Link key={href} href={toUrl(href)} onClick={() => setMobileMenuOpen(false)} className={`dropdown-link-btn !py-5 ${pathname === href ? "active" : ""}`}>
                                     {label}
                                 </Link>
                             ))}

@@ -4,12 +4,12 @@
   "tagline": "Your friendly neighborhood demon VTuber!",
     "biography": "Lee Valentine is an Energy vampire — better known as an Incubus VTuber who streams a variety of games. You'll mainly find him playing horror games or hanging out with friends.",
     "lore": "Lee is an incubus demon summoned from the depths of hell quite some years ago. Ever since, he's been able to freely answer summons, though he took a particular interest in mortals after discovering he can feed off their life energy.\n\nHe's a chaotic guy with a deep love for horror and gaming. He doesn't take things too seriously in the mortal world — preferring to hide away in the VINFERNIA HQ, knock back energy drinks, play his favourite games, spend time with his beloved cat Zelda, or just generally cause problems for the others in the house.\n\nExpect a variety of games, a fondness for anything scary (though not much actually scares him), the occasional gaming session with friends, and sometimes — if the mood strikes — some singing. Whether it'll be chaotic or surprisingly sincere is anyone's guess.",
-  "backgroundImage": "/VINFERNIA/VINFERNIA/Lee/Lee_bg.png",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/Lee/lee_bg.png",
   "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
   "outfits": [
     {
       "id": 0,
-      "image": "/VINFERNIA/VINFERNIA/Lee/Leevt.png",
+      "image": "/VINFERNIA/VINFERNIA/Lee/leevt.png",
       "name": "Default"
     }
   ],

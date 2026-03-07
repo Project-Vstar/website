@@ -394,7 +394,7 @@ export default function HieuManhPage() {
                     />
                     {/* Logo watermark — desktop only */}
                     <img
-                        src="/VINFERNIA/VINFERNIA/HieuManh/logo.png"
+                        src="/VINFERNIA/VINFERNIA/Hieumanh/logo.png"
                         alt=""
                         aria-hidden="true"
                         className="hidden lg:block absolute inset-0 w-full h-full object-contain pointer-events-none select-none z-[1]"
@@ -407,7 +407,7 @@ export default function HieuManhPage() {
                             {/* ── Character image ── */}
                             <div className="relative flex items-start justify-center h-[580px] sm:h-[680px] lg:h-[780px] overflow-visible">
                                 <img
-                                    src="/VINFERNIA/VINFERNIA/HieuManh/Hieumanh_default.png"
+                                    src={currentOutfitImage}
                                     alt={hieumanhData.name}
                                     className="relative w-full h-auto object-contain transition-opacity duration-250"
                                     style={{
