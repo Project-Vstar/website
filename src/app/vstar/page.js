@@ -410,7 +410,8 @@ export default function VStarHubPage() {
               style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.3)" }}>
               <div className="vs-live-dot" />
               <span className="text-sm font-semibold" style={{ color: "#93c5fd" }}>
-    {liveStreams.length} talent{liveStreams.length === 1 ? "" : "s"} live now              </span>
+                {liveStreams.length} talent{liveStreams.length !== 0 ? "s" : ""} live now
+              </span>
             </div>
           )}
         </section>
