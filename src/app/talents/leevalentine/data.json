@@ -1,0 +1,114 @@
+{
+  "name": "Lee Valentine",
+  "title": "Vkei Incubus",
+  "tagline": "Your friendly neighborhood demon VTuber!",
+    "biography": "Lee Valentine is an Energy vampire — better known as an Incubus VTuber who streams a variety of games. You'll mainly find him playing horror games or hanging out with friends.",
+    "lore": "Lee is an incubus demon summoned from the depths of hell quite some years ago. Ever since, he's been able to freely answer summons, though he took a particular interest in mortals after discovering he can feed off their life energy.\n\nHe's a chaotic guy with a deep love for horror and gaming. He doesn't take things too seriously in the mortal world — preferring to hide away in the VINFERNIA HQ, knock back energy drinks, play his favourite games, spend time with his beloved cat Zelda, or just generally cause problems for the others in the house.\n\nExpect a variety of games, a fondness for anything scary (though not much actually scares him), the occasional gaming session with friends, and sometimes — if the mood strikes — some singing. Whether it'll be chaotic or surprisingly sincere is anyone's guess.",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/Lee/Lee_bg.png",
+  "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
+  "outfits": [
+    {
+      "id": 0,
+      "image": "/VINFERNIA/VINFERNIA/Lee/Leevt.png",
+      "name": "Default"
+    }
+  ],
+  "links": [
+    {
+      "platform": "Twitch",
+      "url": "https://www.twitch.tv/leevalentine_vt"
+    },
+    {
+      "platform": "X",
+      "url": "https://x.com/leevalentine_vt"
+    }
+  ],
+  "featuredVideoId": null,
+  "recommendedVideos": [
+    {
+      "id": 1,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    },
+    {
+      "id": 2,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    },
+    {
+      "id": 3,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    }
+  ],
+  "videos": [
+    {
+      "id": 1,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    },
+    {
+      "id": 2,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    },
+    {
+      "id": 3,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    },
+    {
+      "id": 4,
+      "title": "Coming Soon",
+      "thumbnail": "/placeholder.png",
+      "url": "#",
+      "date": "TBA"
+    }
+  ],
+  "data": {
+    "birthday": "July 7th",
+    "height": "5'3\" (1.63m)",
+    "unit": "Vinfernia Gen 0",
+    "designer": {
+      "name": "ShrimpyMaki",
+      "url": "https://x.com/ShrimpyMaki"
+    },
+    "modelArtist": {
+      "name": "Piyoriin",
+      "url": "https://x.com/piyoriinchan"
+    },
+    "dream": "Having an original song one day",
+    "fanName": "IMPS",
+    "mascot": "Zelda",
+    "hashtags": {
+      "stream": "TBA",
+      "fanArt": "#ArtistLeec",
+      "clips": "TBA"
+    },
+    "catchphrases": [],
+    "regularStreams": "Horror Games, Identity V, Games with Friends",
+    "hobbies": "Cosplay, Playing Games",
+    "likes": "Horror Things, Yaoi, Omori, Pokemon",
+    "specialSkills": "Feeding off life energy, Ragebaiting, Singing"
+  },
+  "theme": {
+    "accent": "#B57EE8",
+    "accentAlt": "#E8B5D8",
+    "background": "#0A0510",
+    "featured": "#0F0818",
+    "recommended": "#141020",
+    "recent": "#0F0818"
+  }
+}

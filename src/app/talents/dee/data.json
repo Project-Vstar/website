@@ -1,0 +1,65 @@
+{
+  "name": "Dee Ronny syn Łużycy",
+  "nameJapanese": "ディー ロニー シン ウジュトジー",
+  "tagline": "Wherever you go, wherever you will be, I will always be there. With my handcuffs, watching, waiting for you to slip up.",
+  "biography": "Do you enjoy ASMR and role play without having to commit? \nDo you enjoy being interrogated? \nThen this is the security officer for you!\n\nA Jack of all trades in knocking people out, be it with a soft and deep voice that gives you safety, security and peace in ASMR streams. Or by causing blunt force trauma on the back of your head.\n\nYou can be entertained or calmed, recover joy or energy. All specifically focused on you.",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/Dee/mfsddyandere.png",
+  "outfits": [
+    { "id": 0, "image": "/VINFERNIA/VINFERNIA/Dee/Full_Model_Default.png", "name": "Default" },
+    { "id": 1, "image": "/VINFERNIA/VINFERNIA/Dee/Full Model Undercover Dee.png", "name": "Undercover" },
+    { "id": 2, "image": "/VINFERNIA/VINFERNIA/Dee/Full Model idol Dee.png", "name": "Idol" },
+    { "id": 3, "image": "/VINFERNIA/VINFERNIA/Dee/Full model Default 2.png", "name": "Default Alt" }
+  ],
+  "links": [
+    { "platform": "Twitch", "url": "https://twitch.tv/deeronnysynluzycy" },
+    { "platform": "X", "url": "https://x.com/MysteryForS_DD" }
+  ],
+  "featuredVideoId": "bxDk4lLkpzU",
+  "schedule": [
+    { "day": "Tuesday",   "time": "18:00 CEST / 2am JST / 10am PST", "activity": "Variety Stream" },
+    { "day": "Wednesday", "time": "18:00 CEST / 2am JST / 10am PST", "activity": "ASMR" },
+    { "day": "Friday",    "time": "18:00 CEST / 2am JST / 10am PST", "activity": "Experimental Friday" },
+    { "day": "Saturday",  "time": "18:00 CEST / 2am JST / 10am PST", "activity": "Collab Saturday" },
+    { "day": "Sunday",    "time": "14:00 CEST / 9pm JST / 5am PST",  "activity": "DND" }
+  ],
+  "recommendedVideos": [
+    { "id": 1, "title": "Recommended Stream Highlight", "thumbnail": "https://img.youtube.com/vi/bxDk4lLkpzU/maxresdefault.jpg", "url": "https://youtu.be/bxDk4lLkpzU", "date": "Recent", "views": "Watch now" },
+    { "id": 2, "title": "Live Stream VOD", "thumbnail": "https://img.youtube.com/vi/NeVjnxpdm_k/maxresdefault.jpg", "url": "https://youtube.com/live/NeVjnxpdm_k", "date": "Recent", "views": "Watch now" },
+    { "id": 3, "title": "Coming soon!", "thumbnail": "/placeholder.png", "url": "https://www.tiktok.com/@deeronnysynluzycy/video/7560046108395785505", "date": "Recent", "views": "Watch now" }
+  ],
+  "videos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" }
+  ],
+  "data": {
+    "birthday": "June 6th",
+    "debutStream": "First Stream: Apr. 16th 2023 | 3D 2.0: Aug. 23rd 2024 | 2D: Apr. 22nd 2025",
+    "height": "1.8m without ears, 1.95m with ears",
+    "unit": "VINFERNIA Gen 0 - KAIROS",
+    "designer": { "name": "Piyoriin & Rezi/rezypm", "url": "https://vgen.co/piyoriinchan" },
+    "modelArtist": { "name": "Gyasomi/Hori & DreamyDiino", "url": "https://x.com/gyasomi" },
+    "dream": "Conquer the world!",
+    "fanName": "I.E's (Inofficial Employees) / Denunciates",
+    "mascot": "N/A",
+    "hashtags": { "stream": "#DeeLive", "fanArt": "#DrawingDeez", "clips": "#ClippingDeez", "nsfw": "#FSKDeez" },
+    "catchphrases": [
+      "Iiiiit's gonna be fiiiiiiinee.",
+      "I will have your kneecaps for this.",
+      "I want you to rest, relax, recover and keep stress in your life down. Because I appreciate you!"
+    ],
+    "regularStreams": "ASMR, Neptunia, Relaxation Games",
+    "hobbies": "Cosplay, Civil Engineering, Cars, Fitness, Researching psychology",
+    "likes": "Money, Yaoi & Yuri, I.E.s, Metal/Emo",
+    "specialSkills": "Multilingual, Can actually do math, Economic/trade/logistics law, Singing and Screaming/growling"
+  },
+  "theme": {
+  "accent":      "#4A8FBF",
+  "accentAlt":   "#C23A3A",
+  "background":  "#0A0C10",
+  "featured":    "#0D1018",
+  "recommended": "#111520",
+  "recent":      "#0D1018"
+  }
+}

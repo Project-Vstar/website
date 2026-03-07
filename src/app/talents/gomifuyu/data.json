@@ -1,0 +1,59 @@
+{
+  "name": "Gomifuyu",
+  "title": "Raccoon Craftswoman",
+  "tagline": "Leave your windows open ;)",
+  "biography": "Gomifuyu is a raccoon girl who has a love for sewing outfits, to tinkering away crafting wild designs. Gomi has a way with the things she tinkers up - she has a way to make it do whatever she wants. She's yet to know how this little quirk of hers is possible, but it is.\n\nNow Gomi has found herself enjoying playing games on her own computer she built, so sometimes the computer can be a little slow, but that's something she's just going to need to work on.\n\nSometimes, Gomi is often found lurking around and pinching other people's belongings - but don't worry, it's not like they will notice, right?\n\nP.S. Leave your windows open ;)",
+  "lore": "",
+  "oshiMark": "⚙️🧵",
+  "backgroundImage": "/VINFERNIA/VINFERNIA/Gomifuyu/Gomi_bg.png",
+  "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
+  "outfits": [
+    { "id": 0, "image": "/VINFERNIA/VINFERNIA/Gomifuyu/Gomifuyu_Model.png", "name": "Default" }
+  ],
+  "links": [
+    { "platform": "Twitch", "url": "https://twitch.tv/Gomifuyu" },
+    { "platform": "X",      "url": "https://x.com/Gomifuyu" }
+  ],
+  "featuredVideoId": null,
+  "recommendedVideos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" }
+  ],
+  "videos": [
+    { "id": 1, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 2, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 3, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" },
+    { "id": 4, "title": "Coming Soon", "thumbnail": "/placeholder.png", "url": "#", "date": "TBA" }
+  ],
+  "data": {
+    "birthday": "TBD",
+    "height": "TBD",
+    "unit": "Vinfernia Gen 0",
+    "designer": { "name": "TBD", "url": "#" },
+    "modelArtist": { "name": "TBD", "url": "#" },
+    "dream": "TBD",
+    "fanName": "TBD",
+    "mascot": "TBD",
+    "hashtags": {
+      "stream": "TBD",
+      "fanArt": "TBD",
+      "clips": "TBD"
+    },
+    "catchphrases": [
+      "Leave your windows open ;)"
+    ],
+    "regularStreams": "TBD",
+    "hobbies": "Sewing outfits, Tinkering, Crafting wild designs, Building computers",
+    "likes": "Sewing, Tinkering, Games, Pinching other people's belongings",
+    "specialSkills": "Making her creations do whatever she wants, Building computers, Lurking undetected"
+  },
+  "theme": {
+    "accent":      "#9B4F5C",
+    "accentAlt":   "#9B4F5C",
+    "background":  "#100C08",
+    "featured":    "#1A1208",
+    "recommended": "#261A10",
+    "recent":      "#1A1208"
+  }
+}
