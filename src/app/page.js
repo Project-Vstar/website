@@ -233,24 +233,12 @@ export default function HomePage() {
         <div className="w-full h-24 bg-gradient-to-b from-blue-950/30 to-slate-900" />
 
         {/* ── Official Channels ─────────────────────────────────────────── */}
-        <section className="max-w-5xl mx-auto px-6 py-20 text-center">
+        <section className="max-w-5xl mx-auto px-6 py-20 text-center pb-40">
           <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Follow</p>
           <h2 className="font-oswald text-3xl font-bold uppercase mb-3">Official Channels</h2>
           <p className="text-slate-400 mb-10 text-sm">Follow us for announcements, streams, and updates.</p>
           <div className="flex justify-center">
             <SocialLinks links={officialChannelLinks} signatureColor="rgba(255,255,255,0.6)" />
-          </div>
-        </section>
-
-        {/* ── Organisation ──────────────────────────────────────────────── */}
-        <section className="max-w-6xl mx-auto px-6 py-20 text-center">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Structure</p>
-          <h2 className="font-oswald text-3xl font-bold uppercase mb-4">Organisation</h2>
-          <div className="relative group">
-            <div className="absolute inset-0 bg-blue-500/10 blur-[100px] pointer-events-none" />
-            <div className="p-4 md:p-8 rounded-3xl backdrop-blur-sm overflow-x-auto">
-              <OrgChart />
-            </div>
           </div>
         </section>
 
