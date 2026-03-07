@@ -1,3 +1,4 @@
 name = "vstar"
 compatibility_date = "2024-03-07"
 compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".open-next"
