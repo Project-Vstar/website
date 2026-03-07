@@ -150,12 +150,12 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig,
           transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
         }}>
         {groupConfig?.logo && (<>
-          <img src={groupConfig.logo} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
+          <img src={`https://vstarproject.eu${groupConfig.logo}`} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
             style={{ width: "130%", height: "130%", top: "-15%", left: "-15%", objectFit: "contain", opacity: 0.12, filter: "brightness(0) invert(0)", mixBlendMode: "multiply" }} />
-          <img src={groupConfig.logo} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
+          <img src={`https://vstarproject.eu${groupConfig.logo}`} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
             style={{ width: "130%", height: "130%", top: "-15%", left: "-15%", objectFit: "contain", opacity: 0.18, filter: "brightness(0)" }} />
         </>)}
-        <img src={talent.char} alt={talent.name} className="absolute inset-0 w-full h-full object-cover"
+        <img src={`https://vstarproject.eu${talent.char}`} alt={talent.name} className="absolute inset-0 w-full h-full object-cover"
           style={{
             objectPosition: talent.objectPosition || "50% 20%",
             transform: `scale(${hovered ? (talent.imageScale || 1) * 1.08 + 0.08 : (talent.imageScale || 1) * 1.08})`,
@@ -456,7 +456,7 @@ export default function VStarHubPage() {
               <SectionLabel>Upcoming</SectionLabel>
               <SectionHeading>Schedule</SectionHeading>
             </div>
-            {loading.schedule ? <Spinner /> : schedule.length = 0 ? (
+            {loading.schedule ? <Spinner /> : schedule.length === 0 ? (
               <div className="rounded-2xl py-20 text-center text-slate-700"
                 style={{ border:"1px dashed rgba(59,130,246,0.15)" }}>
                 <p className="text-4xl mb-4">✦</p>
