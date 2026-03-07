@@ -273,7 +273,7 @@ function EmptyState({ icon, label, sub }) {
 function LiveNowBanner({ streams }) {
   if (!streams.length) return null;
   return (
-    <div className="w-full py-3 px-4 flex items-center gap-3 overflow-x-auto vhub-scroll"
+    <div className="mt-16 w-full py-3 px-4 flex items-center gap-3 overflow-x-auto vhub-scroll"
       style={{ background:"rgba(239,68,68,0.08)", borderBottom:"1px solid rgba(239,68,68,0.2)" }}>
       <div className="flex items-center gap-2 shrink-0">
         <div className="live-dot" />
