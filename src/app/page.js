@@ -163,6 +163,34 @@ export default function HomePage() {
 
         </section>
 
+        {/* ── Divisions ─────────────────────────────────────────────────── */}
+        <section className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 pb-24 px-6">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-14">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Divisions</p>
+              <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase">Our Brands</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* VINFERNIA */}
+              <Link href="/vinfernia" className="group relative flex flex-col items-center text-center rounded-2xl border border-red-900/30 p-10 transition-all duration-300 hover:-translate-y-1 hover:border-red-500/40" style={{ background: "rgba(239,68,68,0.04)" }}>
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: "0 0 60px rgba(239,68,68,0.12)" }} />
+                <Image src="/VINFERNIA/VINFERNIA/Vinfernia_White.png" alt="VINFERNIA" width={72} height={72} className="mb-6 drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]" />
+                <h3 className="font-oswald text-3xl font-bold uppercase mb-2" style={{ color: "#f87171" }}>VINFERNIA</h3>
+                <p className="text-slate-400 text-sm mb-8">Where darkness meets destiny</p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest" style={{ color: "#f87171" }}>Enter Hub <span>›</span></span>
+              </Link>
+              {/* VSTAR */}
+              <Link href="/vstar" className="group relative flex flex-col items-center text-center rounded-2xl border border-blue-900/30 p-10 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40" style={{ background: "rgba(59,130,246,0.04)" }}>
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: "0 0 60px rgba(59,130,246,0.12)" }} />
+                <Image src="/VSTAR/VSTAR.png" alt="VSTAR" width={72} height={72} className="mb-6 drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
+                <h3 className="font-oswald text-3xl font-bold uppercase mb-2" style={{ color: "#93c5fd" }}>VSTAR</h3>
+                <p className="text-slate-400 text-sm mb-8">Rise to your star</p>
+                <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest" style={{ color: "#93c5fd" }}>Enter Hub <span>›</span></span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ── What We Do ────────────────────────────────────────────────── */}
         <section id="what-we-do" className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 md:pt-32 pb-24 px-6">
           <div className="max-w-6xl mx-auto">
