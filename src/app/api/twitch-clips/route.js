@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-export const runtime = 'nodejs'
 import { NextResponse } from "next/server";
 
 const TOKEN_URL = "https://id.twitch.tv/oauth2/token";

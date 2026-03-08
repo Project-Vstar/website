@@ -34,8 +34,6 @@ const PAGE_LABELS = {
     "/talents/gomifuyu": "Gomifuyu",
     "/talents/leevalentine": "Lee Valentine",
     "/talents/lockhart": "Lockhart",
-    "/vinfernia": "VINFERNIA Hub",
-    "/vstar": "VSTAR Hub",
     "/lore": "Lore",
     "/about": "About",
     "/partners": "Partners",
@@ -118,8 +116,6 @@ const Header = ({ baseUrl = "" }) => {
                     <div className="hidden md:flex items-center gap-3">
                         <Link href={toUrl("/")} className={`nav-link-btn${pathname === "/" ? " active" : ""}`}>Home</Link>
                         <Link href={toUrl("/talents")} className={`nav-link-btn${pathname === "/talents" ? " active" : ""}`}>Talents</Link>
-                        <Link href={toUrl("/vinfernia")} className="nav-link-btn" style={{ color: pathname === "/vinfernia" ? "#f87171" : undefined }}>VINFERNIA</Link>
-                        <Link href={toUrl("/vstar")} className="nav-link-btn" style={{ color: pathname === "/vstar" ? "#93c5fd" : undefined }}>VSTAR</Link>
 
                         <div className="relative z-50">
                             <button className="hamburger-btn" onClick={(e) => { e.stopPropagation(); setDesktopMenuOpen(!desktopMenuOpen); }}>
@@ -187,12 +183,6 @@ const Header = ({ baseUrl = "" }) => {
                         <p className="mobile-menu-section-label">Main</p>
                         <Link href={toUrl("/")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/" ? "active" : ""}`}>Home</Link>
                         <Link href={toUrl("/talents")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/talents" ? "active" : ""}`}>Talents</Link>
-                    </div>
-
-                    <div className="flex flex-col gap-4 mb-10">
-                        <p className="mobile-menu-section-label">Hubs</p>
-                        <Link href={toUrl("/vinfernia")} onClick={() => setMobileMenuOpen(false)} className="nav-link-btn w-full !py-5 !text-xl" style={{ color: "#f87171" }}>VINFERNIA</Link>
-                        <Link href={toUrl("/vstar")} onClick={() => setMobileMenuOpen(false)} className="nav-link-btn w-full !py-5 !text-xl" style={{ color: "#93c5fd" }}>VSTAR</Link>
                     </div>
 
                     <div className="flex flex-col gap-4">

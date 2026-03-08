@@ -126,8 +126,6 @@ const globalStyles = `
   .vshub-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(59,130,246,0.3),transparent); }
   .vshub-scroll::-webkit-scrollbar { height:4px; }
   .vshub-scroll::-webkit-scrollbar-thumb { background:rgba(59,130,246,0.3); border-radius:2px; }
-  .vs-live-btn { transition: box-shadow 0.2s ease, background 0.2s ease; }
-  .vs-live-btn:hover { box-shadow: 0 0 12px rgba(59,130,246,0.5), 0 0 4px rgba(59,130,246,0.3); background: rgba(59,130,246,0.15) !important; }
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -150,12 +148,12 @@ const GenmateTalentCard = memo(function GenmateTalentCard({ talent, groupConfig,
           transition: "transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease",
         }}>
         {groupConfig?.logo && (<>
-          <img src={`https://vstarproject.eu${groupConfig.logo}`} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
+          <img src={groupConfig.logo} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
             style={{ width: "130%", height: "130%", top: "-15%", left: "-15%", objectFit: "contain", opacity: 0.12, filter: "brightness(0) invert(0)", mixBlendMode: "multiply" }} />
-          <img src={`https://vstarproject.eu${groupConfig.logo}`} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
+          <img src={groupConfig.logo} alt="" aria-hidden="true" className="absolute pointer-events-none select-none"
             style={{ width: "130%", height: "130%", top: "-15%", left: "-15%", objectFit: "contain", opacity: 0.18, filter: "brightness(0)" }} />
         </>)}
-        <img src={`https://vstarproject.eu${talent.char}`} alt={talent.name} className="absolute inset-0 w-full h-full object-cover"
+        <img src={talent.char} alt={talent.name} className="absolute inset-0 w-full h-full object-cover"
           style={{
             objectPosition: talent.objectPosition || "50% 20%",
             transform: `scale(${hovered ? (talent.imageScale || 1) * 1.08 + 0.08 : (talent.imageScale || 1) * 1.08})`,
@@ -212,19 +210,18 @@ function EmptyState({ icon, label, sub }) {
 function LiveNowBanner({ streams }) {
   if (!streams.length) return null;
   return (
-    <div className="mt-16 w-full overflow-x-auto vshub-scroll"
+    <div className="mt-16 w-full py-3 px-4 flex items-center gap-3 overflow-x-auto vshub-scroll"
       style={{ background: "rgba(59,130,246,0.08)", borderBottom: "1px solid rgba(59,130,246,0.2)" }}>
-      <div className="flex items-center gap-3 min-w-max py-3 px-4">
       <div className="flex items-center gap-2 shrink-0">
         <div className="vs-live-dot" />
         <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: "#3b82f6" }}>Live Now</span>
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-3 overflow-x-auto vshub-scroll">
         {streams.map((s) => {
           const t = TALENTS.find((t) => t.twitchLogin.toLowerCase() === s.user_login.toLowerCase());
           return (
             <a key={s.id} href={`https://twitch.tv/${s.user_login}`} target="_blank" rel="noopener noreferrer"
-              className="flex items-center gap-2 shrink-0 px-3 py-1 rounded-full border text-xs font-medium vs-live-btn"
+              className="flex items-center gap-2 shrink-0 px-3 py-1 rounded-full border text-xs font-medium transition-all hover:scale-105"
               style={{ borderColor: "rgba(59,130,246,0.4)", color: "#93c5fd", background: "rgba(0,0,0,0.3)" }}>
               <span>{t?.name ?? s.user_name}</span>
               <span className="text-slate-500">·</span>
@@ -234,7 +231,6 @@ function LiveNowBanner({ streams }) {
             </a>
           );
         })}
-      </div>
       </div>
     </div>
   );
@@ -410,7 +406,7 @@ export default function VStarHubPage() {
               style={{ background: "rgba(59,130,246,0.1)", border: "1px solid rgba(59,130,246,0.3)" }}>
               <div className="vs-live-dot" />
               <span className="text-sm font-semibold" style={{ color: "#93c5fd" }}>
-                {liveStreams.length} talent{liveStreams.length !== 0 ? "s" : ""} live now
+                {liveStreams.length} talent{liveStreams.length !== 1 ? "s" : ""} live now
               </span>
             </div>
           )}

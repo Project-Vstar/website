@@ -1,5 +1,3 @@
-export const runtime = 'nodejs'
-
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const channelId = searchParams.get("channelId");

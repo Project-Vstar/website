@@ -3,7 +3,6 @@
 import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
-import OrgChart from "@/app/components/orgchart";
 import Link from "next/link";
 import Image from "next/image";
 import { SocialLinks } from "./components/SocialLinks";
@@ -163,7 +162,32 @@ export default function HomePage() {
 
         </section>
 
-        {/* ── Divisions ─────────────────────────────────────────────────── */}
+        {/* ── What We Do ────────────────────────────────────────────────── */}
+        <section id="what-we-do" className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 md:pt-32 pb-24 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-16">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Services</p>
+              <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight">What We Do</h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {services.map((svc) => (
+                <GlassCard key={svc.title} accentColor={svc.bg} borderColor={svc.border}>
+                  <h3 className="font-oswald text-xl font-bold mb-6" style={{ color: svc.color }}>{svc.title}</h3>
+                  <div className="space-y-6">
+                    {svc.items.map(item => (
+                      <div key={item.label} className="border-b border-white/5 pb-4 last:border-0">
+                        <h4 className="font-bold text-sm mb-1" style={{ color: svc.color }}>{item.label}</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">{item.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                </GlassCard>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Our Brands ────────────────────────────────────────────────── */}
         <section className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 pb-24 px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
@@ -191,36 +215,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ── What We Do ────────────────────────────────────────────────── */}
-        <section id="what-we-do" className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 md:pt-32 pb-24 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-16">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Services</p>
-              <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase leading-tight">What We Do</h2>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {services.map((svc) => (
-                <GlassCard key={svc.title} accentColor={svc.bg} borderColor={svc.border}>
-                  <h3 className="font-oswald text-xl font-bold mb-6" style={{ color: svc.color }}>{svc.title}</h3>
-                  <div className="space-y-6">
-                    {svc.items.map(item => (
-                      <div key={item.label} className="border-b border-white/5 pb-4 last:border-0">
-                        <h4 className="font-bold text-sm mb-1" style={{ color: svc.color }}>{item.label}</h4>
-                        <p className="text-sm text-slate-400 leading-relaxed">{item.body}</p>
-                      </div>
-                    ))}
-                  </div>
-                </GlassCard>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ── Talents ───────────────────────────────────────────────────── */}
         <section className="max-w-5xl mx-auto px-6 py-20 text-center">
           <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Roster</p>
           <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase mb-4">Our Talents</h2>
-          <p className="text-slate-400 mb-10 text-sm max-w-md mx-auto">Meet the personalities behind our flagship divisions.</p>
+          <p className="text-slate-400 mb-10 text-sm max-w-md mx-auto">Meet the personalities behind our groups.</p>
           <AgencyButton href="/talents">Go to Talents</AgencyButton>
         </section>
 
