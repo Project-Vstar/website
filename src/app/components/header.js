@@ -81,12 +81,21 @@ const Header = ({ baseUrl = "" }) => {
 
     const navItems = [
         { href: "/lore", label: "Lore" },
+        { href: "/articles", label: "Articles" },
         { href: "/about", label: "About" },
         { href: "/partners", label: "Partners" },
         { href: "/auditions", label: "Auditions" },
         { href: "/faq", label: "FAQ" },
         { href: "https://shop.vstarproject.eu", label: "Shop" },
     ];
+
+    const dropdownGroups = [
+        { label: "Content",      items: [{ href: "/lore", label: "Lore" }, { href: "/articles", label: "Articles" }] },
+        { label: "Company",      items: [{ href: "/about", label: "About" }, { href: "/partners", label: "Partners" }] },
+        { label: "Get Involved", items: [{ href: "/auditions", label: "Auditions" }, { href: "/faq", label: "FAQ" }] },
+    ];
+
+    const isDropdownActive = navItems.some(item => item.href === pathname);
 
     return (
         <>
@@ -122,12 +131,12 @@ const Header = ({ baseUrl = "" }) => {
                         <Link href={toUrl("/vstar")} className="nav-link-btn" style={{ color: pathname === "/vstar" ? "#93c5fd" : undefined }}>VSTAR</Link>
 
                         <div className="relative z-50">
-                            <button className="hamburger-btn" onClick={(e) => { e.stopPropagation(); setDesktopMenuOpen(!desktopMenuOpen); }}>
+                            <button className={`hamburger-btn${isDropdownActive ? " active" : ""}`} onClick={(e) => { e.stopPropagation(); setDesktopMenuOpen(!desktopMenuOpen); }}>
                                 <Chevrons open={desktopMenuOpen} />
                             </button>
                             {mounted && createPortal(
                                 <div
-                                    className={`fixed top-[73px] right-6 backdrop-blur-xl rounded-2xl p-6 min-w-[420px] transition-all duration-300 ${desktopMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
+                                    className={`fixed top-[73px] right-6 backdrop-blur-xl rounded-2xl p-6 min-w-[480px] transition-all duration-300 ${desktopMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}
                                     style={{
                                         zIndex: 9999,
                                         background: "rgba(0, 0, 0, 0.5)",
@@ -138,12 +147,24 @@ const Header = ({ baseUrl = "" }) => {
                                         boxShadow: "0 20px 40px rgba(0,0,0,0.4)"
                                     }}
                                 >
-                                    <div className="grid grid-cols-3 gap-3">
-                                        {navItems.map(({ href, label }) => (
-                                            <Link key={href} href={toUrl(href)} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
-                                                {label}
-                                            </Link>
+                                    <div className="flex gap-3">
+                                        {dropdownGroups.map(({ label, items }) => (
+                                            <div key={label} className="flex flex-col flex-1 min-w-0">
+                                                <p className="font-oswald text-[9px] uppercase tracking-[0.3em] text-white/30 mb-2 px-1">{label}</p>
+                                                <div className="flex flex-col gap-2">
+                                                    {items.map(({ href, label: itemLabel }) => (
+                                                        <Link key={href} href={toUrl(href)} className={`dropdown-link-btn${pathname === href ? " active" : ""}`} onClick={() => setDesktopMenuOpen(false)}>
+                                                            {itemLabel}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         ))}
+                                    </div>
+                                    <div className="mt-3 pt-3 border-t border-white/10">
+                                        <Link href={toUrl("https://shop.vstarproject.eu")} className="dropdown-link-btn w-full flex items-center justify-center gap-2" onClick={() => setDesktopMenuOpen(false)}>
+                                            Shop <span className="text-white/40 text-xs">↗</span>
+                                        </Link>
                                     </div>
                                 </div>,
                                 document.body
@@ -198,7 +219,7 @@ const Header = ({ baseUrl = "" }) => {
                         </div>
 
                         <div className="flex flex-col gap-4">
-                            <p className="mobile-menu-section-label">Database</p>
+                            <p className="mobile-menu-section-label">Explore</p>
                             <div className="grid grid-cols-2 gap-3">
                                 {navItems.map(({ href, label }) => (
                                     <Link key={href} href={toUrl(href)} onClick={() => setMobileMenuOpen(false)} className={`dropdown-link-btn !py-5 ${pathname === href ? "active" : ""}`}>
