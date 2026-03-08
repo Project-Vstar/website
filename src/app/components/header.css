@@ -47,6 +47,10 @@
         border-color: rgba(255,255,255,0.45);
         transform: translateY(3px);
     }
+    .hamburger-btn.active {
+        background: rgba(255,255,255,0.22);
+        border-color: rgba(255,255,255,0.6);
+    }
 
     /* Desktop chevrons */
     .chevrons {
@@ -138,6 +142,10 @@
     .dropdown-link-btn:hover {
         background: rgba(255,255,255,0.18);
         border-color: rgba(255,255,255,0.45);
+    }
+    .dropdown-link-btn.active {
+        background: rgba(255,255,255,0.22);
+        border-color: rgba(255,255,255,0.6);
     }
 
     .mobile-menu-section-label {

@@ -575,7 +575,7 @@ export default function LeeValentinePage() {
                                         <DataItem label="Unit" value={leeValentineData.data.unit} color={signatureColor} />
                                         <div className="md:col-span-2">
                                             <DataItem
-                                                label="Designer"
+                                                label="Background Art"
                                                 value={
                                                     <a href={leeValentineData.data.designer.url} target="_blank" rel="noopener noreferrer"
                                                         className="hover:brightness-110 underline transition-opacity duration-200"
@@ -598,6 +598,9 @@ export default function LeeValentinePage() {
                                                 }
                                                 color={signatureColor}
                                             />
+                                        </div>
+                                        <div className="md:col-span-2">
+                                            <DataItem label="Rigger" value={leeValentineData.data.rigger.name} color={signatureColor} />
                                         </div>
                                         <div className="md:col-span-2">
                                             <DataItem label="Dream" value={leeValentineData.data.dream} color={signatureColor} />

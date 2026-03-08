@@ -54,6 +54,7 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const channel = searchParams.get("channel") || "DreamyDiino";
     const limit = Math.min(parseInt(searchParams.get("limit") || "4", 10), 20);
+    const days = Math.min(parseInt(searchParams.get("days") || "365", 10), 365);
 
     try {
         const token = await getAppToken();
@@ -68,24 +69,45 @@ export async function GET(request) {
         const user = userData.data?.[0];
         if (!user) throw new Error(`Channel "${channel}" not found`);
 
+        const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+
+        // Primary: fetch clips within the rolling window
         const clipsRes = await fetch(
-            `${CLIPS_URL}?broadcaster_id=${user.id}&first=${limit}&sort=time`,
+            `${CLIPS_URL}?broadcaster_id=${user.id}&first=50&started_at=${since}`,
             { headers, next: { revalidate: 300 } }
         );
         if (!clipsRes.ok) throw new Error("Clips fetch failed");
         const clipsData = await clipsRes.json();
+        let allClips = clipsData.data || [];
 
-        const clips = (clipsData.data || []).map((c) => ({
-            id: c.id,
-            title: c.title,
-            url: c.url,
-            thumbnail: c.thumbnail_url,
-            views: formatViews(c.view_count),
-            date: formatDate(c.created_at),
-            duration: formatDuration(c.duration),
-        }));
+        // Top-up: if window didn't return enough, merge in all-time clips
+        if (allClips.length < limit) {
+            const topupRes = await fetch(
+                `${CLIPS_URL}?broadcaster_id=${user.id}&first=50`,
+                { headers, next: { revalidate: 300 } }
+            );
+            if (topupRes.ok) {
+                const topupData = await topupRes.json();
+                const existingIds = new Set(allClips.map((c) => c.id));
+                const extras = (topupData.data || []).filter((c) => !existingIds.has(c.id));
+                allClips = [...allClips, ...extras];
+            }
+        }
 
-        return NextResponse.json({ clips }, { status: 200 });
+        const clips = allClips
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+            .slice(0, limit)
+            .map((c) => ({
+                id: c.id,
+                title: c.title,
+                url: c.url,
+                thumbnail: c.thumbnail_url,
+                views: formatViews(c.view_count),
+                date: formatDate(c.created_at),
+                duration: formatDuration(c.duration),
+            }));
+
+        return NextResponse.json({ clips, window: `${days}d` }, { status: 200 });
     } catch (err) {
         console.error("[twitch-clips]", err.message);
         return NextResponse.json({ clips: [], error: err.message }, { status: 200 });
