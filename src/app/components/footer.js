@@ -37,6 +37,8 @@ const Footer = ({ baseUrl = "" }) => {
                         <nav className="space-y-2">
                             <Link href={toUrl("/")} className={linkStyle}>Home</Link>
                             <Link href={toUrl("/talents")} className={linkStyle}>Talents</Link>
+                            <Link href={toUrl("/vinfernia")} className={linkStyle}>VINFERNIA Hub</Link>
+                            <Link href={toUrl("/vstar")} className={linkStyle}>VSTAR Hub</Link>
                             <Link href={toUrl("/lore")} className={linkStyle}>Lore</Link>
                             <Link href={toUrl("/articles")} className={linkStyle}>Articles</Link>
                         </nav>

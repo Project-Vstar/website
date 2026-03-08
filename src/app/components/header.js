@@ -34,6 +34,8 @@ const PAGE_LABELS = {
     "/talents/gomifuyu": "Gomifuyu",
     "/talents/leevalentine": "Lee Valentine",
     "/talents/lockhart": "Lockhart",
+    "/vinfernia": "VINFERNIA Hub",
+    "/vstar": "VSTAR Hub",
     "/lore": "Lore",
     "/about": "About",
     "/partners": "Partners",
@@ -116,6 +118,8 @@ const Header = ({ baseUrl = "" }) => {
                     <div className="hidden md:flex items-center gap-3">
                         <Link href={toUrl("/")} className={`nav-link-btn${pathname === "/" ? " active" : ""}`}>Home</Link>
                         <Link href={toUrl("/talents")} className={`nav-link-btn${pathname === "/talents" ? " active" : ""}`}>Talents</Link>
+                        <Link href={toUrl("/vinfernia")} className="nav-link-btn" style={{ color: pathname === "/vinfernia" ? "#f87171" : undefined }}>VINFERNIA</Link>
+                        <Link href={toUrl("/vstar")} className="nav-link-btn" style={{ color: pathname === "/vstar" ? "#93c5fd" : undefined }}>VSTAR</Link>
 
                         <div className="relative z-50">
                             <button className="hamburger-btn" onClick={(e) => { e.stopPropagation(); setDesktopMenuOpen(!desktopMenuOpen); }}>
@@ -161,15 +165,15 @@ const Header = ({ baseUrl = "" }) => {
 
                 {/* ── MOBILE OVERLAY ── */}
                 <div
-                    className={`fixed inset-0 w-full h-screen z-[100] transition-all duration-500 flex flex-col p-8 md:hidden ${mobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"}`}
+                    className={`fixed inset-0 w-full h-screen z-[100] flex flex-col md:hidden transition-all duration-500 ${mobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"}`}
                     style={{ background: "rgba(8,10,9,0.98)", backdropFilter: "blur(24px)" }}
                 >
-                    <div className="flex justify-between items-center mb-10">
+                    {/* Sticky top bar with X — never scrolls away */}
+                    <div className="flex-shrink-0 flex justify-between items-center px-8 pt-8 pb-6">
                         <div className="flex gap-2 items-center">
                             <Image src="/vstar.png" alt="Logo" width={28} height={28} />
                             <span className="font-oswald text-white/40 font-bold text-sm tracking-widest uppercase">Navigation</span>
                         </div>
-                        {/* Close button — same style, X state */}
                         <button
                             onClick={() => setMobileMenuOpen(false)}
                             className="hamburger-btn"
@@ -179,25 +183,34 @@ const Header = ({ baseUrl = "" }) => {
                         </button>
                     </div>
 
-                    <div className="flex flex-col gap-4 mb-10">
-                        <p className="mobile-menu-section-label">Main</p>
-                        <Link href={toUrl("/")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/" ? "active" : ""}`}>Home</Link>
-                        <Link href={toUrl("/talents")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/talents" ? "active" : ""}`}>Talents</Link>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                        <p className="mobile-menu-section-label">Database</p>
-                        <div className="grid grid-cols-2 gap-3">
-                            {navItems.map(({ href, label }) => (
-                                <Link key={href} href={toUrl(href)} onClick={() => setMobileMenuOpen(false)} className={`dropdown-link-btn !py-5 ${pathname === href ? "active" : ""}`}>
-                                    {label}
-                                </Link>
-                            ))}
+                    {/* Scrollable content */}
+                    <div className="flex-1 overflow-y-auto px-8 pb-8 flex flex-col gap-10">
+                        <div className="flex flex-col gap-4">
+                            <p className="mobile-menu-section-label">Main</p>
+                            <Link href={toUrl("/")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/" ? "active" : ""}`}>Home</Link>
+                            <Link href={toUrl("/talents")} onClick={() => setMobileMenuOpen(false)} className={`nav-link-btn w-full !py-5 !text-xl ${pathname === "/talents" ? "active" : ""}`}>Talents</Link>
                         </div>
-                    </div>
 
-                    <div className="mt-auto pb-4 border-t border-white/5 pt-6 flex justify-between items-center">
-                        <p className="font-oswald text-[9px] text-white/15 tracking-[0.4em] uppercase">VStar Project // Nine Lives Digital</p>
+                        <div className="flex flex-col gap-4">
+                            <p className="mobile-menu-section-label">Hubs</p>
+                            <Link href={toUrl("/vinfernia")} onClick={() => setMobileMenuOpen(false)} className="nav-link-btn w-full !py-5 !text-xl" style={{ color: "#f87171" }}>VINFERNIA</Link>
+                            <Link href={toUrl("/vstar")} onClick={() => setMobileMenuOpen(false)} className="nav-link-btn w-full !py-5 !text-xl" style={{ color: "#93c5fd" }}>VSTAR</Link>
+                        </div>
+
+                        <div className="flex flex-col gap-4">
+                            <p className="mobile-menu-section-label">Database</p>
+                            <div className="grid grid-cols-2 gap-3">
+                                {navItems.map(({ href, label }) => (
+                                    <Link key={href} href={toUrl(href)} onClick={() => setMobileMenuOpen(false)} className={`dropdown-link-btn !py-5 ${pathname === href ? "active" : ""}`}>
+                                        {label}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="border-t border-white/5 pt-6 flex justify-between items-center">
+                            <p className="font-oswald text-[9px] text-white/15 tracking-[0.4em] uppercase"> // VStar Project</p>
+                        </div>
                     </div>
                 </div>
             </header>

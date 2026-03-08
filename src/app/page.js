@@ -191,7 +191,6 @@ export default function HomePage() {
         <section className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/5 pt-20 pb-24 px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">Divisions</p>
               <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase">Our Brands</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
