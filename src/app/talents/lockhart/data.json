@@ -15,7 +15,7 @@
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Base.png",
         "name": "Default"
       },
-                  {
+      {
         "id": 1,
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_NoJacket.png",
         "name": "No Jacket"
@@ -113,7 +113,7 @@
         "Get that apple away from me",
         "What are your symptoms?"
       ],
-      "regularStreams": "Tilted Tuesdays, 日本語の勉強, DnD",
+      "regularStreams": "Tilted Tuesdays, 日本語の勉強, Freaky Friday",
       "hobbies": "Journaling, Collecting Feathers, Brewing Herbal Remedies, Stargazing, Collecting Small Oddities",
       "likes": "Fresh Tea, Orderly Workspaces, Old Music Boxes, Herbal Scents, Poe",
       "specialSkills": "Plague Diagnostics, Silent Movement, High Emotional Regulation"
@@ -125,8 +125,9 @@
     "nameJapanese": "ザー・アザー",
     "tagline": "Don't be shy, Patient. Come closer, let me get a closer look.",
     "oshiMark": "📜🧪",
-    "biography": "Lockhart is a Plague Doctor themed VTuber who streams a variety of content. His main focus is game streaming, but you'll also find him doing language study, reaction content, and exploring the lore of his favourite games.\n\nWhen you tune in, you'll either be greeted by the friendly Doctor or his more unhinged other side — but that's down to the choice of his dear patients. His goal is to create a community where anyone can hang out and not be afraid to let their 'Other' side show.\n\nSo tune on in, take a seat. The Doctor will see you soon.",
-    "lore": "Lockhart is a Plague Doctor themed VTuber who streams a variety of content. Game streaming, language study, reactions, lore discussions… <em>blah blah blah, you know he calls all these 'important intellectual pursuits.' But, we know he just loves playing games.'</em>\n\n'When you tune in, you'll either be greeted by the friendly Doctor or his more unhinged other side.....'\n\n<em>Unhinged? Rather harsh if you ask us. We prefer 'honest'.</em>\n\n<em>Yes, yes we are the one he calls The Other, but don't worry dear Patient. We are not here to ruin the place.\nThe Doctor built this little community so people could relax, laugh, and enjoy themselves without pretending to be perfect. Turns out people are much more entertaining when they stop trying to hide parts of themselves.</em>\n\n<em>So take a seat, patient. We are sure we'll see you soon...</em>",
+    "biography": "Lockhart is a Plague Doctor themed VTuber who streams a variety of content. Game streaming, language study, reactions, lore discussions… <em>blah blah blah, you know he calls all these 'important intellectual pursuits.' But, we know he just loves playing games.'</em>\n\n'When you tune in, you'll either be greeted by the friendly Doctor or his more unhinged other side.....'\n\n<em>Unhinged? Rather harsh if you ask us. We prefer 'honest'.</em>\n\n<em>Yes, yes we are the one he calls The Other, but don't worry dear Patient. We are not here to ruin the place.\nThe Doctor built this little community so people could relax, laugh, and enjoy themselves without pretending to be perfect. Turns out people are much more entertaining when they stop trying to hide parts of themselves.</em>\n\n<em>So take a seat, patient. We are sure we'll see you soon...</em>",
+    "lore": "Lockhart is a Plague Doctor themed VTuber who streams a variety of content. His main focus is game streaming, but you'll also find him doing language study, reaction content, and exploring the lore of his favourite games.\n\nWhen you tune in, you'll either be greeted by the friendly Doctor or his more unhinged other side — but that's down to the choice of his dear patients. His goal is to create a community where anyone can hang out and not be afraid to let their 'Other' side show.\n\nSo tune on in, take a seat. The Doctor will see you soon.",
+    "backgroundImage": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_BG.png",
     "genLogo": "/VINFERNIA/VINFERNIA/Vinfernia_Black.png",
     "outfits": [
       {
@@ -134,7 +135,7 @@
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_Base.png",
         "name": "Other Default"
       },
-            {
+      {
         "id": 1,
         "image": "/VINFERNIA/VINFERNIA/Lockhart/Lockhart_Other_NoJacket.png",
         "name": "Other No Jacket"
@@ -240,7 +241,7 @@
         "Don't flinch, this is my favourite part",
         "Try not to die on me, it would ruin my night"
       ],
-      "regularStreams": "Tilted Tuesdays, 日本語の勉強, DnD",
+      "regularStreams": "Tilted Tuesdays, 日本語の勉強, Freaky Friday",
       "hobbies": "Annotating Lockhart's Journals, Mixing Potent Concoctions, Studying Poe, Admiring their Reflection, Night Walks in Plague Filled Towns",
       "likes": "Strong Tea with Too Much Honey, Chaotic Workspaces, The Smell of Alcohol and Iron, Their Own Voice, Poe",
       "specialSkills": "Unrestrained Adaptability, Rapid Reflexes, Pain Tolerance"
