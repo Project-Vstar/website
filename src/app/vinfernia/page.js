@@ -50,7 +50,7 @@ const TALENTS = [
     twitchLogin: "leevalentine", 
     twitchId: "55757929", 
     youtubeChannelId: "UCe_9u_L3L7I-LIdI1BqX00A", 
-    href: "/talents/leevalentine" 
+    href: "/talents/leevalentinevt" 
   },
   { 
     name: "Lockhart", 
@@ -58,7 +58,7 @@ const TALENTS = [
     twitchLogin: "lockhart", 
     twitchId: "6296507", 
     youtubeChannelId: "UC1V7WzK7lR_8_vU5lS7f4jg",
-    href: "/talents/lockhart" 
+    href: "/talents/lockhart_vt" 
   },
   { 
     name: "HieuManh", 
