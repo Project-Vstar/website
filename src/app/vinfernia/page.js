@@ -47,15 +47,15 @@ const TALENTS = [
   { 
     name: "Lee Valentine", 
     slug: "leevalentine", 
-    twitchLogin: "leevalentine", 
-    twitchId: "55757929", 
+    twitchLogin: "leevalentine_vt",
+    twitchId: "55757929",
     youtubeChannelId: "UCe_9u_L3L7I-LIdI1BqX00A", 
     href: "/talents/leevalentinevt" 
   },
   { 
     name: "Lockhart", 
     slug: "lockhart", 
-    twitchLogin: "lockhart", 
+    twitchLogin: "lockhart_vt",
     twitchId: "6296507", 
     youtubeChannelId: "UC1V7WzK7lR_8_vU5lS7f4jg",
     href: "/talents/lockhart_vt" 
