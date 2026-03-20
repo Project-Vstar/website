@@ -48,7 +48,7 @@ const TALENTS = [
     name: "Lee Valentine", 
     slug: "leevalentine", 
     twitchLogin: "leevalentinevt",
-    twitchId: "55757929",
+    twitchId: "880392467",
     youtubeChannelId: "UCe_9u_L3L7I-LIdI1BqX00A", 
     href: "/talents/leevalentinevt" 
   },
@@ -56,7 +56,7 @@ const TALENTS = [
     name: "Lockhart", 
     slug: "lockhart", 
     twitchLogin: "lockhart_vt",
-    twitchId: "6296507", 
+    twitchId: "887239220", 
     youtubeChannelId: "UC1V7WzK7lR_8_vU5lS7f4jg",
     href: "/talents/lockhart_vt" 
   },
@@ -402,7 +402,7 @@ export default function VinferniaHubPage() {
         .forEach((seg) => all.push({ segment:seg, talent }));
     }
     all.sort((a,b) => new Date(a.segment.start_time) - new Date(b.segment.start_time));
-    setSchedule(all.slice(0, 10));
+    setSchedule(all);
     setLoading((p) => ({ ...p, schedule:false }));
   }, []);
 
