@@ -178,7 +178,7 @@ We would like to point out that data transmission over the Internet (e.g., when 
 #### Note on the responsible body
 The responsible body for data processing on this website is:
 
-VINFENRIA UG (haftungsbeschränkt) & Co.KG
+VINFERNIA UG (haftungsbeschränkt) & Co.KG
 Blasewitzer Straße 41
 01307 Dresden
 Deutschland
@@ -293,7 +293,7 @@ Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kom
 #### Hinweis zur verantwortlichen Stelle
 Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
 
-VINFENRIA UG (haftungsbeschränkt) & Co.KG
+VINFERNIA UG (haftungsbeschränkt) & Co.KG
 Blasewitzer Straße 41
 01307 Dresden
 Deutschland
