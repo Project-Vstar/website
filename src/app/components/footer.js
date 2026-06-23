@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +18,7 @@ const Footer = ({ baseUrl = "" }) => {
                     <div className="lg:col-span-1">
                         <Link href={toUrl("/")} className="inline-block mb-6">
                             <Image
-                                src="/vstar.png"
+                                src="/VSTAR/VSTAR_no_bg.png"
                                 alt="Logo"
                                 width={48}
                                 height={48}

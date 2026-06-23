@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
 "use client";
-import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import Link from "next/link";
@@ -58,7 +56,7 @@ function StaffCard({ member }) {
       style={{ "--glow": member.color }}
     >
       <div className="staff-card__frame w-36 h-40 md:w-44 md:h-48 rounded-2xl overflow-hidden mb-6 border border-white/20 transition-all duration-300">
-        <img src={member.img} alt={member.name} className="w-full h-full object-cover" />
+        <img src={member.img} alt={member.name} loading="lazy" decoding="async" className="w-full h-full object-cover" />
       </div>
       <p className="font-oswald text-[10px] font-bold uppercase tracking-widest mb-1 transition-colors duration-200" style={{ color: member.color }}>{member.role}</p>
       <p className="text-lg font-bold tracking-wide">{member.name}</p>
@@ -100,8 +98,7 @@ const services = [
 ];
 
 const staff = [
-  { img: "/Company/dee-staff.png", role: "CEO & Management Lead", name: "Dee Ronny", color: "#60a5fa", href: "/talents/dee" },
-  { img: "/Company/diino-staff.png", role: "Art Director", name: "DreamyDiino", color: "#C9A84C", href: "/talents/dreamydiino" }
+  { img: "/Company/dee-staff.png", role: "CEO & Management Lead", name: "Dee Ronny", color: "#60a5fa", href: "/talents/dee" }
 ];
 
 const officialChannelLinks = [
@@ -133,7 +130,7 @@ export default function HomePage() {
             />
             <span className="text-slate-600 mx-3 md:mx-5 font-thin">X</span>
             <Image
-              src="/VSTAR/VSTAR.png"
+              src="/VSTAR/VSTAR_no_bg.png"
               alt="VSTAR"
               width={80}
               height={80}
@@ -205,7 +202,7 @@ export default function HomePage() {
               {/* VSTAR */}
               <Link href="/vstar" className="group relative flex flex-col items-center text-center rounded-2xl border border-blue-900/30 p-10 transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/40" style={{ background: "rgba(59,130,246,0.04)" }}>
                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ boxShadow: "0 0 60px rgba(59,130,246,0.12)" }} />
-                <Image src="/VSTAR/VSTAR.png" alt="VSTAR" width={72} height={72} className="mb-6 drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
+                <Image src="/VSTAR/VSTAR_no_bg.png" alt="VSTAR" width={72} height={72} className="mb-6 drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]" />
                 <h3 className="font-oswald text-3xl font-bold uppercase mb-2" style={{ color: "#93c5fd" }}>VSTAR</h3>
                 <p className="text-slate-400 text-sm mb-8">Rise to your star</p>
                 <span className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest" style={{ color: "#93c5fd" }}>Enter Hub <span>›</span></span>
@@ -225,9 +222,9 @@ export default function HomePage() {
         {/* ── The Company ───────────────────────────────────────────────── */}
         <section className="py-24 px-6 text-center bg-slate-900">
           <div className="flex items-center justify-center gap-8 md:gap-12 mb-10">
-            <img src="/VINFERNIA/VINFERNIA/Vinfernia_White.png" alt="VINFERNIA Logo" className="w-24 h-24 object-contain drop-shadow-[0_0_20px_rgba(239,68,68,0.35)]" />
+            <Image src="/VINFERNIA/VINFERNIA/Vinfernia_White.png" alt="VINFERNIA Logo" width={96} height={96} className="w-24 h-24 object-contain drop-shadow-[0_0_20px_rgba(239,68,68,0.35)]" />
             <span className="text-slate-700 text-4xl font-thin">×</span>
-            <img src="/VSTAR/VSTAR.png" alt="VSTAR Logo" className="w-24 h-24 object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.35)]" />
+            <Image src="/VSTAR/VSTAR_no_bg.png" alt="VSTAR Logo" width={96} height={96} className="w-24 h-24 object-contain drop-shadow-[0_0_20px_rgba(59,130,246,0.35)]" />
           </div>
           <p className="text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-3">About</p>
           <h2 className="font-oswald text-4xl md:text-5xl font-bold uppercase mb-5">The Company</h2>

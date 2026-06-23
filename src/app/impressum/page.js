@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { marked } from "marked";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";

@@ -111,3 +111,30 @@ body {
 .hero-fade-2 { animation-delay: 0.3s; }
 .hero-fade-3 { animation-delay: 0.5s; }
 .hero-fade-4 { animation-delay: 0.7s; }
+
+
+/* ───────────────── Hub fade animations ───────────────── */
+
+@keyframes hubFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hub-fade   { opacity: 0; animation: hubFadeUp 0.7s ease forwards; }
+.hub-fade-1 { animation-delay: 0.10s; }
+.hub-fade-2 { animation-delay: 0.25s; }
+.hub-fade-3 { animation-delay: 0.40s; }
+.hub-fade-4 { animation-delay: 0.55s; }
+
+
+/* ───────────────── Hub clip/video card ───────────────── */
+
+.hub-clip-card { transition: transform 0.25s ease; }
+.hub-clip-card:hover { transform: translateY(-3px); }
+.hub-clip-card:hover .hub-clip-overlay { opacity: 1; }
+.hub-clip-overlay { opacity: 0; transition: opacity 0.2s ease; }
+
+
+/* ───────────────── Hub schedule row ───────────────── */
+
+.hub-schedule-row { transition: background 0.2s ease; }

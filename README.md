@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/vstar.png" alt="VSTAR Logo" width="120" />
+  <img src="public/VSTAR/VSTAR_no_bg.png" alt="VSTAR Logo" width="120" />
 </p>
 
 <h1 align="center">VSTAR — Official Website</h1>
@@ -25,11 +25,12 @@ This repository contains the source code for the VSTAR company website. The site
 
 ### VSTAR
 
-| Talent | Role | Links |
-|--------|------|-------|
-| **Dee Ronny** | CEO | [Twitch](https://twitch.tv/deeronnysynluzycy) · [YouTube](https://youtube.com/@MfSDD) · [X](https://x.com/MysteryForS_DD) |
-| **DreamyDiino** | Art Director | [Twitch](https://twitch.tv/DreamyDiino) · [X](https://x.com/DreamyDiino) |
-| **Aymen/Wificat** | Developer | [Twitch](https://twitch.tv/iwificat) · Discord @wificat
+| Talent               | Role | Links |
+|----------------------|------|-------|
+| **Dee Ronny**        | CEO | [Twitch](https://twitch.tv/deeronnysynluzycy) · [YouTube](https://youtube.com/@MfSDD) · [X](https://x.com/MysteryForS_DD) |
+| **DreamyDiino**      | Art Director | [Twitch](https://twitch.tv/DreamyDiino) · [X](https://x.com/DreamyDiino) |
+| **Aymen/Wificat**    | Developer | [Twitch](https://twitch.tv/iwificat) · Discord @wificat
+| **Marvel/Mr. Mundo** | Developer | [Twitch](https://twitch.tv/psemarvel) · [X](https://x.com/psemarvel) · Discord @psemarvel
 
 ---
 

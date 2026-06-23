@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(cmd /c \"dir /s /b C:\\\\Projekte\\\\website\\\\public\\\\VINFERNIA\\\\VINFERNIA\\\\DreamyDiino 2>nul\")",
+      "Bash(cmd /c \"dir /s /b C:\\\\Projekte\\\\website\\\\public\\\\VINFERNIA\\\\VINFERNIA\\\\Gomifuyu 2>nul\")",
+      "Bash(cmd *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Projekte\\\\website\\\\public\" -Recurse -File | Where-Object { $_.FullName -match \"DreamyDiino|Diino|dreamydiino\" -or $_.FullName -match \"Gomifuyu|gomifuyu|Gomi\" } | Select-Object FullName)",
+      "Bash(rm -rf \"/mnt/c/Projekte/website/src/app/talents/dreamydiino\")",
+      "Bash(rm -rf \"/mnt/c/Projekte/website/src/app/talents/gomifuyu\")",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Projekte\\\\website\\\\public\" -Recurse -File | Where-Object { $_.FullName -imatch \"dreamydiino|dreamy|diino|gomifuyu|gomi\" } | Select-Object -ExpandProperty FullName)",
+      "Bash(git check-ignore *)",
+      "Bash(magick --version)",
+      "Bash(convert --version)",
+      "Bash(node -e \"require\\('sharp'\\); console.log\\('sharp ok'\\)\")",
+      "Bash(node *)",
+      "Bash(xargs ls -la)",
+      "Bash(sort -k5 -rn)",
+      "Bash(awk '{sum+=$5} END {print \"Total public size: \" sum/1024/1024 \" MB\"}')",
+      "Bash(ls -la pages/)",
+      "Bash(ls src/pages/)",
+      "Bash(cat .next/server/pages-manifest.json)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(awk '{size=$1/1024/1024; printf \"%.2f MB  %s\\\\n\", size, $2}')",
+      "Bash(awk 'BEGIN{total=0} {total+=$1; size=$1/1024/1024; printf \"%.2f MB  %s\\\\n\", size, $2}')"
+    ]
+  }
+}

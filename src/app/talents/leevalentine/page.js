@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 "use client";
-import React, { useState, useMemo, useCallback, memo, useEffect } from "react";
+import { useState, useMemo, useCallback, memo, useEffect } from "react";
 import Link from "next/link";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
@@ -41,7 +40,7 @@ const swoopBtnStyles = (signatureColor) => `
         -webkit-backdrop-filter: blur(4px);
         cursor: pointer;
         min-width: 140px;
-    }
+    }l
     .swoop-btn::before {
         content: '';
         position: absolute;

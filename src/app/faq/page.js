@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 
@@ -88,7 +88,7 @@ const faqItems = [
     question: "Where do I inquire about promotional sponsorships or media appearance offerings for VSTAR talents?",
     answer: [
       { type: "text", content: "For business inquiries regarding VINFERNIA / VSTAR and its affiliated VTubers, please get in touch via the link below." },
-      { type: "link", label: "www.vstarproject.eu/partners", href: "https://www.vstarproject.eu/partners" },
+      { type: "link", label: "www.vstarproject.eu/partners", href: "/partners" },
     ],
   },
   {

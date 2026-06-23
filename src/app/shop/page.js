@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 export const metadata = {
   title: "VStar Shop",
   description: "Coming soon!",
@@ -16,7 +15,7 @@ export default function Shop() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6">
-        <img src="/vstar.png" alt="VSTAR Logo" className="w-24 h-24 mb-8 drop-shadow-[0_0_24px_rgba(59,130,246,0.45)]" />
+        <img src="/VSTAR/VSTAR_no_bg.png" alt="VSTAR Logo" className="w-24 h-24 mb-8 drop-shadow-[0_0_24px_rgba(59,130,246,0.45)]" />
         <h1
           className="font-oswald font-bold uppercase tracking-tight leading-none mb-3"
           style={{ fontSize: "clamp(2.5rem, 8vw, 5rem)" }}

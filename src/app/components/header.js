@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 "use client"
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,8 +29,6 @@ const PAGE_LABELS = {
     "/": "Home",
     "/talents": "Talents",
     "/talents/dee": "Dee Ronny",
-    "/talents/dreamydiino": "DreamyDiino",
-    "/talents/gomifuyu": "Gomifuyu",
     "/talents/leevalentine": "Lee Valentine",
     "/talents/lockhart": "Lockhart",
     "/vinfernia": "VINFERNIA Hub",
@@ -113,7 +110,7 @@ const Header = ({ baseUrl = "" }) => {
                     {/* Logo */}
                     <Link href={toUrl("/")} className="flex items-center">
                         <div className="flex gap-2 items-center">
-                            <Image src="/vstar.png" alt="Logo" width={32} height={32} />
+                            <Image src="/VSTAR/VSTAR_no_bg.png" alt="Logo" width={32} height={32} />
                             <p className="font-oswald text-white font-bold text-xl ml-1 hidden sm:block">VSTAR PROJECT</p>
                         </div>
                     </Link>
@@ -192,7 +189,7 @@ const Header = ({ baseUrl = "" }) => {
                     {/* Sticky top bar with X — never scrolls away */}
                     <div className="flex-shrink-0 flex justify-between items-center px-8 pt-8 pb-6">
                         <div className="flex gap-2 items-center">
-                            <Image src="/vstar.png" alt="Logo" width={28} height={28} />
+                            <Image src="/VSTAR/VSTAR_no_bg.png" alt="Logo" width={28} height={28} />
                             <span className="font-oswald text-white/40 font-bold text-sm tracking-widest uppercase">Navigation</span>
                         </div>
                         <button
@@ -230,7 +227,7 @@ const Header = ({ baseUrl = "" }) => {
                         </div>
 
                         <div className="border-t border-white/5 pt-6 flex justify-between items-center">
-                            <p className="font-oswald text-[9px] text-white/15 tracking-[0.4em] uppercase"> // VStar Project</p>
+                            <p className="font-oswald text-[9px] text-white/15 tracking-[0.4em] uppercase">{/* VStar Project */}</p>
                         </div>
                     </div>
                 </div>

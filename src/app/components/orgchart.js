@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 
 const DeptColumn = ({ title, subtitle, items }) => (
   <div className="flex flex-col">

@@ -1,7 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/react-in-jsx-scope */
-
-
 import { Geist, Geist_Mono, Oswald } from "next/font/google";
 import "./globals.css";
 // import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -25,8 +21,22 @@ const oswald = Oswald({
 });
 
 export const metadata = {
-  title: "VINFERNIA/VSTAR",
-  description: "Coming soon!",
+  metadataBase: new URL('https://vstarproject.eu'),
+  title: {
+    default: 'VSTAR PROJECT — Virtual Entertainment Agency',
+    template: '%s | VSTAR PROJECT',
+  },
+  description: 'VSTAR PROJECT is a virtual entertainment agency home to VINFERNIA and VSTAR — live streaming, 3D events, original manga, and more.',
+  robots: { index: true, follow: true },
+  openGraph: {
+    siteName: 'VSTAR PROJECT',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@VSVirtualStar',
+  },
 };
 
 export default function RootLayout({ children }) {

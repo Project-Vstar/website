@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
 "use client";
-import React from "react";
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import { EmblaCarousel } from "@/app/components/carousel_vinfernia";

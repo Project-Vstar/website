@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const FactionChooser = () => {
     const [hovered, setHovered] = useState(null);
-    const [touched, setTouched] = useState(null);
+    const [, setTouched] = useState(null);
 
     const handleTouch = (side) => {
         setTouched(side);
@@ -22,7 +22,7 @@ const FactionChooser = () => {
                 >
                     <div 
                         className="absolute top-0 left-0 w-full h-full opacity-20 bg-center bg-no-repeat bg-contain"
-                        style={{ backgroundImage: "url('/vstar.png')" }}
+                        style={{ backgroundImage: "url('/VSTAR/VSTAR_no_bg.png')" }}
                     />
                     
                     <div className="relative z-10 h-full flex items-center justify-center">
@@ -67,7 +67,7 @@ const FactionChooser = () => {
                     <div 
                         className="absolute top-0 left-0 w-full h-full opacity-40 blur-sm bg-center bg-no-repeat bg-cover"
                         style={{ 
-                            backgroundImage: "url('/vstar.png')",
+                            backgroundImage: "url('/VSTAR/VSTAR_no_bg.png')",
                             backgroundSize: "80%",
                             backgroundPosition: "left",
                          }}

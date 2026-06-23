@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 "use client";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { MANGA_FACTIONS, MANGA_SLIDES } from "./manga-data";
 
