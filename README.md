@@ -28,8 +28,6 @@ This repository contains the source code for the VSTAR company website. The site
 | Talent               | Role | Links |
 |----------------------|------|-------|
 | **Dee Ronny**        | CEO | [Twitch](https://twitch.tv/deeronnysynluzycy) · [YouTube](https://youtube.com/@MfSDD) · [X](https://x.com/MysteryForS_DD) |
-| **DreamyDiino**      | Art Director | [Twitch](https://twitch.tv/DreamyDiino) · [X](https://x.com/DreamyDiino) |
-| **Aymen/Wificat**    | Developer | [Twitch](https://twitch.tv/iwificat) · Discord @wificat
 | **Marvel/Mr. Mundo** | Developer | [Twitch](https://twitch.tv/psemarvel) · [X](https://x.com/psemarvel) · Discord @psemarvel
 
 ---
