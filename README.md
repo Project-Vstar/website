@@ -25,10 +25,12 @@ This repository contains the source code for the VSTAR company website. The site
 
 ### VSTAR
 
-| Talent               | Role | Links |
-|----------------------|------|-------|
-| **Dee Ronny**        | CEO | [Twitch](https://twitch.tv/deeronnysynluzycy) · [YouTube](https://youtube.com/@MfSDD) · [X](https://x.com/MysteryForS_DD) |
-| **Marvel/Mr. Mundo** | Developer | [Twitch](https://twitch.tv/psemarvel) · [X](https://x.com/psemarvel) · Discord @psemarvel
+| Talent               | Role                    | Links |
+|----------------------|-------------------------|----|
+| **Dee Ronny**        | CEO                     | [Twitch](https://twitch.tv/deeronnysynluzycy) · [YouTube](https://youtube.com/@MfSDD) · [X](https://x.com/MysteryForS_DD) |
+| **K-Manesan**        | Social media Manager & temp Art Director |
+| **O-Manesan /Orby Stardust**        | Talent Manager / Lead Manager||
+| **Marvel/Mr. Mundo** | Developer               | [Twitch](https://twitch.tv/psemarvel) · [X](https://x.com/psemarvel) · Discord @psemarvel
 
 ---
 
